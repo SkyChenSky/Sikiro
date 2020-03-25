@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Authors>陈珙</Authors>
+    <Company>葛氏</Company>
+    <Description>RPC注册,微服务框架-服务注册,终端跟踪忽略</Description>
+    <Version>1.0.0.9</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Consul" Version="0.7.2.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.0" />
+    <PackageReference Include="SkyAPM.Agent.AspNetCore" Version="0.9.0" />
+    <PackageReference Include="SkyAPM.Utilities.DependencyInjection" Version="0.9.0" />
+    <PackageReference Include="WebApiClient.JIT" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sikiro.Nosql.Mongo\Sikiro.Nosql.Mongo.csproj" />
+    <ProjectReference Include="..\Sikiro.Tookits\Sikiro.Tookits.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AutoEntity>
+  <ConnString>
+    <![CDATA[
+    Server=im.gshichina.com;Port=5002;Database=business_platform;Uid=ge;Pwd=shi2019
+    ]]>
+  </ConnString>
+  <Template>
+    <![CDATA[
+/*
+ * 本文件由根据实体插件自动生成，请勿更改
+ * =========================== */
+
+using System;
+using Chloe.Annotations;
+namespace $entity.ProjectName
+{
+    /// <summary>
+    /// $entity.TableComment
+    /// </summary>
+    [Table("$entity.TableName")]
+    public class $entity.ClassName
+    {
+#foreach($c in $entity.Columns)
+        
+        /// <summary>
+#if($c.Remark != "")
+        /// $c.Remark
+#else
+        /// $c.Name
+#end
+        /// </summary>
+#if($c.IsIdentity)
+        [AutoIncrement]
+#elseif($c.CSharpType == "int")
+        [NonAutoIncrementAttribute]
+#end    
+        [Column("$c.Name")]
+        public $c.CSharpType  $c.PropertyName{ get; set; }
+#end
+    }
+}
+]]>
+  </Template>
+</AutoEntity>

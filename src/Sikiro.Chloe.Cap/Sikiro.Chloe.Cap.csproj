@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Version>1.1.1.4</Version>
+    <Authors>陈珙</Authors>
+    <Product>GS.Chloe.Cap</Product>
+    <Company>葛氏</Company>
+    <Description>基于Cap的分布式事务封装</Description>
+    <PackageId>GS.Chloe.Cap</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Chloe.MySql" Version="3.9.0" />
+    <PackageReference Include="DotNetCore.CAP.MySql" Version="1.1.1.2" />
+    <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="2.6.0" />
+  </ItemGroup>
+
+</Project>

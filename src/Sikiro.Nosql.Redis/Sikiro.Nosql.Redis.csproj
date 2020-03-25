@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Description>StackExchange.Redis的基本封装</Description>
+    <Version>1.0.0.5</Version>
+    <Authors>陈珙</Authors>
+    <Company>葛氏</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StackExchange.Redis" Version="2.0.601" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sikiro.Tookits\Sikiro.Tookits.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>DotNetCore.CAP.MySql</AssemblyName>
+    <PackageTags>$(PackageTags);MySQL</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\netstandard2.0\DotNetCore.CAP.MySql.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;CS1591</NoWarn>
+    <LangVersion>7.3</LangVersion>
+    <Authors>陈珙</Authors>
+    <Company>葛氏</Company>
+    <Description>基于github的DotNetCore.CAP.MySql进行mysql.data的修改</Description>
+    <Version>1.1.1.2</Version>
+    <PackageId>DotNetCore.CAP.MySql</PackageId>
+    <Product>DotNetCore.CAP.MySql</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.60.6" />
+    <PackageReference Include="DotNetCore.CAP" Version="2.6.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.2.0" />
+    <PackageReference Include="MySql.Data" Version="8.0.17" />
+  </ItemGroup>
+
+</Project>

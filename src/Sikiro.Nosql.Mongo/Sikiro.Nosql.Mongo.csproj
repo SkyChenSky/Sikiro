@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl></RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageTags></PackageTags>
+    <Authors>陈珙</Authors>
+    <Company>葛氏</Company>
+    <Description>mongodb驱动封装</Description>
+    <Version>1.0.4.7</Version>
+    <AssemblyVersion>1.0.4.6</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sikiro.Tookits\Sikiro.Tookits.csproj" />
+  </ItemGroup>
+
+</Project>
