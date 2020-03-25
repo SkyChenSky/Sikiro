@@ -11,8 +11,11 @@
   <ItemGroup>
     <PackageReference Include="Chloe.Extension" Version="3.8.0" />
     <PackageReference Include="Chloe.MySql" Version="3.9.0" />
-    <PackageReference Include="GS.Tookits" Version="1.0.4.4" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
     <PackageReference Include="MySql.Data" Version="8.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sikiro.Tookits\Sikiro.Tookits.csproj" />
   </ItemGroup>
 </Project>
