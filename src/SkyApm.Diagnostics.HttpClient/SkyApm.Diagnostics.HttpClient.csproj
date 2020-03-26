@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>$(PackagePrefix).Diagnostics.HttpClient notifies outgoing Http requests.</Description>
+    <AssemblyTitle>$(PackagePrefix).Diagnostics.HttpClient</AssemblyTitle>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SkyAPM.Diagnostics.HttpClient</AssemblyName>
+    <PackageId>SkyAPM.Diagnostics.HttpClient</PackageId>
+    <PackageTags>SkyWalking;APM;Diagnostics;HttpClient</PackageTags>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
+    <RootNamespace>SkyApm.Diagnostics.HttpClient</RootNamespace>
+    <Version>0.10.13</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="SkyAPM.Abstractions" Version="0.9.0" />
+    <PackageReference Include="SkyAPM.Core" Version="0.9.0" />
+    <PackageReference Include="SkyAPM.Utilities.DependencyInjection" Version="0.9.0" />
+  </ItemGroup>
+</Project>
