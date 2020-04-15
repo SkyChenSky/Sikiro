@@ -440,31 +440,6 @@ namespace GS.WebApi.Customer.Controllers
             return ServiceResult.IsFailed(result.Message);
         }
 
-        /// <summary>
-        /// 修改地区
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost("EditArea")]
-        public async Task<ServiceResult> EditArea(AreaRequest request)
-        {
-            var vArea = new UpdateAreaRequest { Id = request.Id };
-            UpdateArea updateArea = new UpdateArea
-            {
-                CityId = request.CityId,
-                CityName = request.CityName,
-                CountryId = request.CountryId,
-                CountryName = request.CountryName
-            };
-            vArea.AreaRequest = updateArea;
-            var result = await _iUser.EditArea(vArea);
-            if (result.Success)
-            {
-                return ServiceResult.IsSuccess("修改成功");
-            }
-            return ServiceResult.IsFailed(result.Message);
-        }
-
         #endregion
 
     }

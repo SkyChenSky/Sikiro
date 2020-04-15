@@ -264,16 +264,5 @@ namespace GS.InnerApi.Customer.Controllers
         {
             return _userService.UpdateEmail(request.Id, request.Email);
         }
-
-        /// <summary>
-        /// 修改地区
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ServiceResult EditArea(UpdateAreaRequest request)
-        {
-            return _userService.UpdateArea(request.Id, request.AreaRequest.MapTo<AreaBo>());
-        }
     }
 }

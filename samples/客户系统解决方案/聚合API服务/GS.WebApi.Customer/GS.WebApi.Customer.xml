@@ -39,6 +39,150 @@
             获取登录用户信息
             </summary>
         </member>
+        <member name="T:GS.WebApi.Customer.Controllers.UserController">
+            <summary>
+            用户接口
+            </summary>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.Logon(GS.WebApi.Customer.Models.User.UserLogonRequest)">
+            <summary>
+            登录
+            </summary>
+            <param name="logonRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.RegisterUser(GS.WebApi.Customer.Models.User.UserRegisterRequest)">
+            <summary>
+            注册
+            </summary>
+            <param name="registerRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.GetPhoneUser(GS.WebApi.Customer.Models.User.UserGetPhoneResponse)">
+            <summary>
+            根据用户名或者手机获取用户手机
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.SendSms(GS.WebApi.Customer.Models.User.SendSmsRequest)">
+            <summary>
+            发送验证短信
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.VaildSms(GS.WebApi.Customer.Models.User.VaildSmsRequest)">
+            <summary>
+            验证验证码
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.UpdatePwdUser(GS.WebApi.Customer.Models.User.UserUpdatePwdRequest)">
+            <summary>
+            修改密码
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.WxLogonCheck(GS.WebApi.Customer.Models.User.UserWxLogonCheckRequest)">
+            <summary>
+            微信登录
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.WxRegister(GS.WebApi.Customer.Models.User.UserWxRegisterRequest)">
+            <summary>
+            微信注册
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.GetUser">
+            <summary>
+            获取用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.UpdatePhone(GS.WebApi.Customer.Models.User.UserUpdatePhoneRequest)">
+            <summary>
+            更换绑定手机
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.SetPayPassword(GS.WebApi.Customer.Models.User.UserSetPayPwdRequest)">
+            <summary>
+            设置支付密码
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.ChangePayPassword(GS.WebApi.Customer.Models.User.UserChangePayPwdRequest)">
+            <summary>
+            修改支付密码
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.CheckingPayPassword(GS.WebApi.Customer.Models.User.UserCheckingPayPasswordRequest)">
+            <summary>
+            验证支付密码
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.BindingWx(GS.WebApi.Customer.Models.User.UserBindingWxRequest)">
+            <summary>
+            绑定微信
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.BuildJwt(GS.Common.Utils.AdministratorData)">
+            <summary>
+            创建JWT
+            </summary>
+            <param name="userData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.EditUserLogo(GS.WebApi.Customer.Models.User.UserLogoRequest)">
+            <summary>
+            更换用户头像
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.EditNickName(GS.WebApi.Customer.Models.User.NickNameRequest)">
+            <summary>
+            修改昵称
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.EditUserName(GS.WebApi.Customer.Models.User.UserNameRequest)">
+            <summary>
+            修改用户名
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.EditRealName(GS.WebApi.Customer.Models.User.RealNameRequest)">
+            <summary>
+            修改姓名
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.WebApi.Customer.Controllers.UserController.EditEmail(GS.WebApi.Customer.Models.User.EmailRequest)">
+            <summary>
+            修改Email
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
         <member name="M:GS.WebApi.Customer.Extention.DependenceExtension.AddCustomerApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             注册个人平台内部api

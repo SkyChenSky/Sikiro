@@ -159,14 +159,6 @@ namespace GS.Interface.Customer
         [HttpPost("User/EditEmail")]
         ITask<ServiceResult> EditEmail([JsonContent] UpdateEmailRequest request);
 
-        /// <summary>
-        /// 修改地区
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost("User/EditArea")]
-        ITask<ServiceResult> EditArea([JsonContent] UpdateAreaRequest request);
-
         #endregion
 
     }

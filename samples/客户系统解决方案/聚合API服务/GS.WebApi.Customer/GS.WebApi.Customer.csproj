@@ -74,6 +74,6 @@
   </ItemGroup>
 
 
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1pro_1json__JSONSchema="" appsettings_1Testing_1json__JSONSchema="" appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
