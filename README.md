@@ -1,5 +1,5 @@
-﻿# GS.Tookits 
-GS.Tookits is base And Frequently-used Tools Library.
+﻿# Sikiro.Tookits 
+Sikiro.Tookits is base And Frequently-used Tools Library.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ GS.Tookits is base And Frequently-used Tools Library.
 You can run the following command to install the Sikiro.Tookits in your project。
 
 ```
-PM> Install-Package GS.Tookits
+PM> Install-Package Sikiro.Tookits
 ```
 
 ### What does it have？
@@ -37,7 +37,7 @@ and so on
 
 
 
-# GS.Nosql.Mongo
+# Sikiro.Nosql.Mongo
 This is mongo repository.Base on MongoDB.Driver.It is easy to use.
 
 ## Getting Started
@@ -47,7 +47,7 @@ This is mongo repository.Base on MongoDB.Driver.It is easy to use.
 You can run the following command to install the Sikiro.Nosql.Mongo in your project。
 
 ```
-PM> Install-Package GS.Nosql.Mongo
+PM> Install-Package Sikiro.Nosql.Mongo
 ```
 
 ### Connection
@@ -337,5 +337,5 @@ public class ValuesController : Controller
 
 ### 注意点
 1. UseTransactionEx里必须使用_capBus.Publish
-2. 默认重发间隔60秒，重试第3次与第四次间隔5分钟，默认次数上限50次
+2. 默认重发间隔60秒，重试第3次与第四次间隔4分钟，默认次数上限50次
 3. 配置文档 ：http://cap.dotnetcore.xyz/user-guide/zh/cap/configuration/

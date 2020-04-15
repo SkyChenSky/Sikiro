@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sikiro.Infrastructure.Id</name>
+    </assembly>
+    <members>
+        <member name="T:GS.Infrastructure.Id.Controllers.IdController">
+            <summary>
+            分布式id
+            </summary>
+        </member>
+        <member name="M:GS.Infrastructure.Id.Controllers.IdController.Generate(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

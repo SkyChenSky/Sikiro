@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GS.Infrastructure.Msg</name>
+    </assembly>
+    <members>
+        <member name="T:GS.Infrastructure.Msg.Controllers.CodeController">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="M:GS.Infrastructure.Msg.Controllers.CodeController.Create(System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            创建验证码
+            </summary>
+            <param name="num">号码</param>
+            <param name="validSeconds">有效期（秒）</param>
+            <param name="ipAddress">ip地址</param>
+            <param name="repeatSeconds">重复时间（秒）默认60秒</param>
+            <returns></returns>
+        </member>
+        <member name="M:GS.Infrastructure.Msg.Controllers.CodeController.Vaild(System.String,System.String)">
+            <summary>
+            验证验证码
+            </summary>
+            <param name="num">号码</param>
+            <param name="inputCode">验证码</param>
+            <returns></returns>
+        </member>
+        <member name="T:GS.Infrastructure.Msg.Entitys.SmsRecord">
+            <summary>
+            发送短信
+            </summary>
+        </member>
+        <member name="P:GS.Infrastructure.Msg.Entitys.SmsRecord.PhoneNum">
+            <summary>
+            接收的手机号码
+            </summary>
+        </member>
+        <member name="P:GS.Infrastructure.Msg.Entitys.SmsRecord.Content">
+            <summary>
+            短信内容，例如验证码等 
+            </summary>
+        </member>
+        <member name="P:GS.Infrastructure.Msg.Entitys.SmsRecord.SendTime">
+            <summary>
+            发送时间
+            </summary>
+        </member>
+        <member name="P:GS.Infrastructure.Msg.Entitys.SmsRecord.IpAddress">
+            <summary>
+            Ip地址
+            </summary>
+        </member>
+    </members>
+</doc>

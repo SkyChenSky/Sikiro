@@ -1,0 +1,760 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GS.WebApi.Customer</name>
+    </assembly>
+    <members>
+        <member name="T:GS.WebApi.Customer.Attribute.ChineseAttribute">
+            <summary>
+             中文
+             </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Attribute.EmailAttribute">
+            <summary>
+             邮箱验证特性
+             </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Attribute.GolbalExceptionAttribute">
+            <summary>
+            全局异常捕获
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Attribute.IdCardAttribute">
+            <summary>
+             邮箱验证特性
+             </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Attribute.MobileAttribute">
+            <summary>
+             手机号码
+             </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Attribute.PasswordAttribute">
+            <summary>
+             密码验证特性
+             </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Controllers.BaseController.CurrentUserData">
+            <summary>
+            获取登录用户信息
+            </summary>
+        </member>
+        <member name="M:GS.WebApi.Customer.Extention.DependenceExtension.AddCustomerApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注册个人平台内部api
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:GS.WebApi.Customer.Extention.DependenceExtension.AddWarehouseOrderApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注册仓储服务内部api
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:GS.WebApi.Customer.Extention.DependenceExtension.AddInfrastructureApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注册基础设施服务Api
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:GS.WebApi.Customer.Extention.DependenceExtension.AddMsgApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注册消息服务内部api
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:GS.WebApi.Customer.Extention.DependenceExtension.AddCmsApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注册企业信息服务内部api
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:GS.WebApi.Customer.Extention.DependenceExtension.AddCapitalApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注册资金服务Api
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:GS.WebApi.Customer.Extention.DependenceExtension.AddRpc(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注册Rpc服务
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:GS.WebApi.Customer.Extention.ModelStateExtensions.GetModelStateMsg(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)">
+            <summary>
+            获取模型验证错误信息
+            </summary>
+            <param name="modelState"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GS.WebApi.Customer.Extention.TrimModelBinder">
+            <summary>
+            字符串去除空格
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.Enums.PersonEnum.EnumDistribution">
+            <summary>
+            配送方式
+            </summary>
+        </member>
+        <member name="F:GS.WebApi.Customer.Models.Enums.PersonEnum.Status.Stop">
+            <summary>
+            已取消
+            </summary>
+        </member>
+        <member name="F:GS.WebApi.Customer.Models.Enums.PersonEnum.Status.Open">
+            <summary>
+            已创建
+            </summary>
+        </member>
+        <member name="F:GS.WebApi.Customer.Models.Enums.PersonEnum.Status.Complete">
+            <summary>
+            已完成
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.Enums.PersonEnum.EnumPayment">
+            <summary>
+            收货入库-支付方式
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.Enums.PersonEnum.EShipmentTimeTransport">
+            <summary>
+            发货时效-运输方式
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.Enums.PersonEnum.EpdPayment">
+            <summary>
+            支付方式
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.Enums.PersonEnum.EPaymentFlowType">
+            <summary>
+            支付流水类型
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.Enums.PersonEnum.EPaymentFlowStatus">
+            <summary>
+            支付流水状态
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.Enums.PersonEnum.EPayMethod">
+            <summary>
+            订单支付方式 1客户支付 2签收支付 3 财务支付
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.Enums.PersonEnum.EForecastWay">
+            <summary>
+            预报方式
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.Enums.PersonEnum.ETransportScheme">
+            <summary>
+            运输方案
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.Enums.PersonEnum.EWharehouseOrderStatus">
+            <summary>
+            入库单状态 0:收货入库 10:入库上架 20:拣货下架 30:发货出库 40:中转 50:到点入库 60自提出库 70 自提签收 80 配送出库 90配送签收，配送失败签入
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.Enums.PersonEnum.EWharehousePayStatus">
+            <summary>
+            支付状态
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.Enums.PersonEnum.ECollectionGoodFeeType">
+             <summary>
+            代收货款手续费类型(0:代收款总额，1单票) 1是元 0是百分比
+             </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.Enums.PersonEnum.EGoodCheckFeeType">
+             <summary>
+            商检费类型(单票/单件)
+             </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.Enums.PersonEnum.EDrawbackServiceFeeType">
+            <summary>
+            退税手续费类型(0单票，1单件)
+            </summary>
+        </member>
+        <member name="F:GS.WebApi.Customer.Models.Enums.PersonEnum.SiteStatus.Stop">
+            <summary>
+            停用
+            </summary>
+        </member>
+        <member name="F:GS.WebApi.Customer.Models.Enums.PersonEnum.SiteStatus.Open">
+            <summary>
+            启用
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.PageList.PageListResponse`1">
+            <summary>
+            分页实体类
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.PageList.PageListResponse`1.Total">
+            <summary>
+            总数
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.PageList.PageListResponse`1.Items">
+            <summary>
+            元素
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.PageList.PageListResponse`1.PageSize">
+            <summary>
+            页项
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.PageList.PageListResponse`1.PageIndex">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.PageList.PageListResponse`1.TotalPage">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.PageList.PageListResponse`1.HasPrev">
+            <summary>
+            是否有上一页
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.PageList.PageListResponse`1.HasNext">
+            <summary>
+            是否有下一页
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.SendSmsRequest">
+            <summary>
+            登录请求
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.SendSmsRequest.Phone">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserBindingWxRequest">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserBindingWxRequest.WxCode">
+            <summary>
+            微信授权CODE
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserChangePayPwdRequest">
+            <summary>
+            修改密码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserChangePayPwdRequest.OldPassword">
+            <summary>
+            旧密码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserChangePayPwdRequest.NewPassword">
+            <summary>
+            新密码
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserCheckingPayPasswordRequest">
+            <summary>
+            修改密码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserCheckingPayPasswordRequest.PayPassword">
+            <summary>
+            新密码
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserGetPayResponse">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetPayResponse.AppId">
+            <summary>
+            公众号ID
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetPayResponse.TimeStamp">
+            <summary>
+            微信时间
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetPayResponse.NonceStr">
+            <summary>
+            随机码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetPayResponse.Package">
+            <summary>
+            扩展包
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetPayResponse.PaySign">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetPayResponse.OrderNo">
+            <summary>
+            流水号
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserGetPhoneResponse">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetPhoneResponse.UserName">
+            <summary>
+            用户登陆名称/手机
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserGetResponse">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.Id">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.UserNo">
+            <summary>
+            用户编码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.UserName">
+            <summary>
+            用户名称
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.Phone">
+            <summary>
+            用户手机
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.WxName">
+            <summary>
+            微信名称
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.UserLogo">
+            <summary>
+            LOGO
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.RealName">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.CountryName">
+            <summary>
+            国家
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.CityName">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.Balance">
+            <summary>
+            余额
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.CountryCode">
+            <summary>
+            区号
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.NoReadCount">
+            <summary>
+            未读数
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.IsPayPwd">
+            <summary>
+            是否有支付密码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserGetResponse.IsChangedUserName">
+            <summary>
+            是否修改过用户名
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserInfoResponse">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserInfoResponse.Id">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserInfoResponse.UserNo">
+            <summary>
+            会员ID
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserInfoResponse.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserInfoResponse.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserInfoResponse.ImgUrl">
+            <summary>
+            LOGO
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserInfoResponse.RealName">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserInfoResponse.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserInfoResponse.CountryId">
+            <summary>
+            国家ID
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserInfoResponse.CityId">
+            <summary>
+            城市ID
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserInfoResponse.IsChangedUserName">
+            <summary>
+            是否修改过用户名
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserLogonRequest">
+            <summary>
+            登录请求
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserLogonRequest.UserName">
+            <summary>
+            用户账户
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserLogonRequest.Password">
+            <summary>
+            用户密码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserLogonRequest.CompanyId">
+            <summary>
+            企业Id
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserLogonResponse">
+            <summary>
+            登录响应
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserLogonResponse.UserId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserLogonResponse.AccessToken">
+            <summary>
+            授权码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserLogonResponse.OpenId">
+            <summary>
+            用户WXid
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserLogonResponse.CompanyId">
+            <summary>
+            公司ID
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserLogonResponse.Token">
+            <summary>
+            登录令牌
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserQueryWxPayDataRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserQueryWxPayDataRequest.OrderNo">
+            <summary>
+            流水号
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserQueryWxPayDataRequest.WharehouseOrderId">
+            <summary>
+            订单ID
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserRegisterRequest">
+            <summary>
+            注册请求
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRegisterRequest.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRegisterRequest.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRegisterRequest.CompanyId">
+            <summary>
+            企业ID
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRegisterRequest.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRegisterRequest.CountryCode">
+            <summary>
+            区号
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRegisterRequest.Code">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRegisterRequest.UserNo">
+            <summary>
+            用户编码
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserRetrievePwdRequest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRetrievePwdRequest.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRetrievePwdRequest.CountryCode">
+            <summary>
+            区号
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRetrievePwdRequest.NewPassword">
+            <summary>
+            新密码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRetrievePwdRequest.Code">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRetrievePwdRequest.CompanyId">
+            <summary>
+            企业Id
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserRetrieveSetPayPwdRequest">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRetrieveSetPayPwdRequest.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRetrieveSetPayPwdRequest.PayPassword">
+            <summary>
+            支付密码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserRetrieveSetPayPwdRequest.Code">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserSetPayPwdRequest">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserSetPayPwdRequest.PayPassword">
+            <summary>
+            支付密码
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserUpdatePhoneRequest">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserUpdatePhoneRequest.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserUpdatePhoneRequest.Code">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserUpdatePhoneRequest.CountryCode">
+            <summary>
+            区号
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserUpdatePwdRequest">
+            <summary>
+            修改密码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserUpdatePwdRequest.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserUpdatePwdRequest.OldPassword">
+            <summary>
+            登录密码（旧）
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserUpdatePwdRequest.NewPassword">
+            <summary>
+            新登录密码
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserWxLogonCheckRequest">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserWxLogonCheckRequest.WxCode">
+            <summary>
+            微信授权CODE
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserWxLogonCheckRequest.CompanyId">
+            <summary>
+            企业ID
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserWxPayDataRequest">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserWxPayDataRequest.Money">
+            <summary>
+            金额（分）
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserWxPayDataRequest.WharehouseOrderId">
+            <summary>
+            订单ID
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.UserWxRegisterRequest">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserWxRegisterRequest.CompanyId">
+            <summary>
+            企业ID
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserWxRegisterRequest.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserWxRegisterRequest.CountryCode">
+            <summary>
+            区号
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserWxRegisterRequest.AccessToken">
+            <summary>
+            授权码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserWxRegisterRequest.OpenId">
+            <summary>
+            用户WXid
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.UserWxRegisterRequest.Code">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Models.User.VaildSmsRequest">
+            <summary>
+            登录请求
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.VaildSmsRequest.Phone">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:GS.WebApi.Customer.Models.User.VaildSmsRequest.Code">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="T:GS.WebApi.Customer.Program">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

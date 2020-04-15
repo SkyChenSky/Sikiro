@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyVersion>1.0.0.4</AssemblyVersion>
+    <Version>1.0.0.9</Version>
+    <Description>发送消息服务接口</Description>
+    <Authors>陈珙</Authors>
+    <Company>葛氏</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GS.Tookits" Version="1.0.6.3" />
+    <PackageReference Include="WebApiClient.Extensions.DependencyInjection" Version="2.0.3" />
+    <PackageReference Include="WebApiClient.JIT" Version="1.1.0" />
+  </ItemGroup>
+
+</Project>

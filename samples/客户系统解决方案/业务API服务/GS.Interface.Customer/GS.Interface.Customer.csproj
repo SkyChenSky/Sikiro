@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Version>1.2.3.1</Version>
+    <Authors>陈珙</Authors>
+    <Company>葛氏</Company>
+    <Description>个人平台内部API</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GS.Tookits" Version="1.0.6.4" />
+    <PackageReference Include="WebApiClient.Extensions.DependencyInjection" Version="2.0.3" />
+    <PackageReference Include="WebApiClient.JIT" Version="1.1.0" />
+  </ItemGroup>
+
+</Project>

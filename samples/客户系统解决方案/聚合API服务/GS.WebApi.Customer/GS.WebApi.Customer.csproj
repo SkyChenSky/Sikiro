@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>GS.WebApi.Customer.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <OutputPath></OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="log4net\**" />
+    <Compile Remove="logs\**" />
+    <Content Remove="log4net\**" />
+    <Content Remove="logs\**" />
+    <EmbeddedResource Remove="log4net\**" />
+    <EmbeddedResource Remove="logs\**" />
+    <None Remove="log4net\**" />
+    <None Remove="logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Extention\ExceptionExtension.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="GS.Chloe.Extension" Version="1.0.1.8" />
+    <PackageReference Include="GS.Interface.Capital" Version="1.0.0.6" />
+    <PackageReference Include="GS.Interface.CMS" Version="1.1.3.9" />
+    <PackageReference Include="GS.Interface.Customer" Version="1.2.3.1" />
+    <PackageReference Include="GS.Interface.Id" Version="1.0.0.4" />
+    <PackageReference Include="GS.Interface.Msg" Version="1.0.0.9" />
+    <PackageReference Include="GS.Interface.Warehouse" Version="1.1.0.7" />
+    <PackageReference Include="GS.MicroService.Extension" Version="1.0.0.9" />
+    <PackageReference Include="GS.Nosql.Redis" Version="1.0.0.5" />
+    <PackageReference Include="GS.Tookits" Version="1.0.6.4" />
+    <PackageReference Include="IdentityModel" Version="4.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.0.6" />
+    <PackageReference Include="Senparc.Weixin.MP" Version="16.9.104.1" />
+    <PackageReference Include="Senparc.Weixin.TenPay" Version="1.5.104" />
+    <PackageReference Include="SkyAPM.Agent.AspNetCore" Version="0.9.0" />
+    <PackageReference Include="SkyAPM.Diagnostics.AspNetCore" Version="0.10.13" />
+    <PackageReference Include="SkyAPM.Diagnostics.HttpClient" Version="0.10.13" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\GS.Common.Utils\GS.Common.Utils.csproj" />
+    <ProjectReference Include="..\..\业务API服务\GS.Interface.Customer\GS.Interface.Customer.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="skyapm.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Update="GS.WebApi.Customer.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1pro_1json__JSONSchema="" appsettings_1Testing_1json__JSONSchema="" appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>
