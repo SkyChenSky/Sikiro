@@ -1,6 +1,6 @@
 ﻿using WebApiClient;
 
-namespace GS.Interface.Customer
+namespace Sikiro.Interface.Customer
 {
     /// <summary>
     /// 个人平台接口

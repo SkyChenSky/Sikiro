@@ -1,43 +1,43 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>GS.InnerApi.Customer</name>
+        <name>Sikiro.InnerApi.Customer</name>
     </assembly>
     <members>
-        <member name="T:GS.InnerApi.Customer.Controllers.UserController">
+        <member name="T:Sikiro.InnerApi.Customer.Controllers.UserController">
             <summary>
             快运单接口
             </summary>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.GetUser(GS.Interface.Customer.User.GetUserRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.GetUser(Sikiro.Interface.Customer.User.GetUserRequest)">
             <summary>
             获取会员信息接口
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.GetUserInfo(System.String)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.GetUserInfo(System.String)">
             <summary>
             获取会员信息接口
             </summary>
             <param name="userId"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.GetPhoneUser(GS.Interface.Customer.User.GetPhoneUserRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.GetPhoneUser(Sikiro.Interface.Customer.User.GetPhoneUserRequest)">
             <summary>
             根据用户名获取手机号
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.LogonCheck(GS.Interface.Customer.User.LogonCheckRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.LogonCheck(Sikiro.Interface.Customer.User.LogonCheckRequest)">
             <summary>
             登录判断
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.UpdateBalance(System.String,System.Decimal)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.UpdateBalance(System.String,System.Decimal)">
             <summary>
             修改支付流水
             </summary>
@@ -45,112 +45,112 @@
             <param name="moeny"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.RegisterUser(GS.Interface.Customer.User.RegisterUserRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.RegisterUser(Sikiro.Interface.Customer.User.RegisterUserRequest)">
             <summary>
             注册
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.RegisterWxUser(GS.Interface.Customer.User.RegisterWxUserRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.RegisterWxUser(Sikiro.Interface.Customer.User.RegisterWxUserRequest)">
             <summary>
             微信注册
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.ChangePassword(GS.Interface.Customer.User.UpdatePwdUserRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.ChangePassword(Sikiro.Interface.Customer.User.UpdatePwdUserRequest)">
             <summary>
             修改密码
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.RetrievePassword(GS.Interface.Customer.User.UpdateRetrievePwdUserRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.RetrievePassword(Sikiro.Interface.Customer.User.UpdateRetrievePwdUserRequest)">
             <summary>
             找回密码
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.UpdatePhone(GS.Interface.Customer.User.UpdatePhoneUserRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.UpdatePhone(Sikiro.Interface.Customer.User.UpdatePhoneUserRequest)">
             <summary>
             更换绑定手机
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.SetPayPassword(GS.Interface.Customer.User.SetPayPwdUserRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.SetPayPassword(Sikiro.Interface.Customer.User.SetPayPwdUserRequest)">
             <summary>
             设置支付密码
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.ChangePayPassword(GS.Interface.Customer.User.ChangePayPwdUserRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.ChangePayPassword(Sikiro.Interface.Customer.User.ChangePayPwdUserRequest)">
             <summary>
             修改支付密码
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.CheckingPayPassword(GS.Interface.Customer.User.CheckingPayPasswordRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.CheckingPayPassword(Sikiro.Interface.Customer.User.CheckingPayPasswordRequest)">
             <summary>
             验证支付密码
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.WxLogonCheck(GS.Interface.Customer.User.WxLogonCheckRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.WxLogonCheck(Sikiro.Interface.Customer.User.WxLogonCheckRequest)">
             <summary>
             微信登录验证
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.BindingWx(GS.Interface.Customer.User.BindingWxRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.BindingWx(Sikiro.Interface.Customer.User.BindingWxRequest)">
             <summary>
             更换或绑定微信
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.UpdateUserLogo(GS.Interface.Customer.User.UpdateUserLogoRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.UpdateUserLogo(Sikiro.Interface.Customer.User.UpdateUserLogoRequest)">
             <summary>
             更换头像
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.EditNickName(GS.Interface.Customer.User.UpdateNickNameRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.EditNickName(Sikiro.Interface.Customer.User.UpdateNickNameRequest)">
             <summary>
             修改昵称
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.EditUserName(GS.Interface.Customer.User.UpdateUserNameRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.EditUserName(Sikiro.Interface.Customer.User.UpdateUserNameRequest)">
             <summary>
             修改用户名
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.EditRealName(GS.Interface.Customer.User.UpdateRealNameRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.EditRealName(Sikiro.Interface.Customer.User.UpdateRealNameRequest)">
             <summary>
             修改姓名
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Controllers.UserController.EditEmail(GS.Interface.Customer.User.UpdateEmailRequest)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.EditEmail(Sikiro.Interface.Customer.User.UpdateEmailRequest)">
             <summary>
             修改Email
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:GS.InnerApi.Customer.Extention.ModelStateExtensions.GetModelStateMsg(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)">
+        <member name="M:Sikiro.InnerApi.Customer.Extention.ModelStateExtensions.GetModelStateMsg(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)">
             <summary>
             获取模型验证错误信息
             </summary>

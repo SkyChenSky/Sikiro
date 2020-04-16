@@ -1,4 +1,4 @@
-﻿namespace GS.WebApi.Customer.Extention
+﻿namespace Sikiro.WebApi.Customer.Extention
 {
     public static class ConstString
     {

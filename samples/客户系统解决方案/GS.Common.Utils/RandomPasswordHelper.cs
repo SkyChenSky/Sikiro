@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace GS.Common.Utils
+namespace Sikiro.Common.Utils
 {
     public static class RandomPasswordHelper
     {

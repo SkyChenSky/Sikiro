@@ -19,7 +19,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using SkyApm.Utilities.DependencyInjection;
 
-namespace SkyApm.AspNetCore.Diagnostics
+namespace SkyApm.Diagnostics.AspNetCore
 {
     public static class SkyWalkingBuilderExtensions
     {

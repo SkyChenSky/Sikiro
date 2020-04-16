@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GS.WebApi.Customer.Models.Enums
+namespace Sikiro.WebApi.Customer.Models.Enums
 {
     public class PersonEnum
     {

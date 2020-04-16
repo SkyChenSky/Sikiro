@@ -5,110 +5,112 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dapper;
-using DotNetCore.CAP;
 using DotNetCore.CAP.Infrastructure;
 using DotNetCore.CAP.Models;
 using Microsoft.Extensions.Options;
 using MySql.Data.MySqlClient;
 
-public class MySqlStorageConnection : IStorageConnection
+namespace DotNetCore.CAP.MySql
 {
-    private readonly CapOptions _capOptions;
-    private readonly IOptions<MySqlOptions> _options;
-    private readonly string _prefix;
-
-    public MySqlStorageConnection(IOptions<MySqlOptions> options, IOptions<CapOptions> capOptions)
+    public class MySqlStorageConnection : IStorageConnection
     {
-        _options = options;
-        _capOptions = capOptions.Value;
-        _prefix = options.Value.TableNamePrefix;
-    }
+        private readonly CapOptions _capOptions;
+        private readonly IOptions<MySqlOptions> _options;
+        private readonly string _prefix;
 
-    public MySqlOptions Options => _options.Value;
-
-    public IStorageTransaction CreateTransaction()
-    {
-        return new MySqlStorageTransaction(this);
-    }
-
-    public async Task<CapPublishedMessage> GetPublishedMessageAsync(long id)
-    {
-        var sql = $@"SELECT * FROM `{_prefix}.published` WHERE `Id`={id};";
-
-        using (var connection = new MySqlConnection(Options.ConnectionString))
+        public MySqlStorageConnection(IOptions<MySqlOptions> options, IOptions<CapOptions> capOptions)
         {
-            return await connection.QueryFirstOrDefaultAsync<CapPublishedMessage>(sql);
-        }
-    }
-
-    public async Task<IEnumerable<CapPublishedMessage>> GetPublishedMessagesOfNeedRetry()
-    {
-        var fourMinsAgo = DateTime.Now.AddMinutes(-4).ToString("O");
-        var sql =
-            $"SELECT * FROM `{_prefix}.published` WHERE `Retries`<{_capOptions.FailedRetryCount} AND `Version`='{_capOptions.Version}' AND `Added`<'{fourMinsAgo}' AND (`StatusName` = '{StatusName.Failed}' OR `StatusName` = '{StatusName.Scheduled}') LIMIT 200;";
-
-        using (var connection = new MySqlConnection(Options.ConnectionString))
-        {
-            return await connection.QueryAsync<CapPublishedMessage>(sql);
-        }
-    }
-
-    public void StoreReceivedMessage(CapReceivedMessage message)
-    {
-        if (message == null)
-        {
-            throw new ArgumentNullException(nameof(message));
+            _options = options;
+            _capOptions = capOptions.Value;
+            _prefix = options.Value.TableNamePrefix;
         }
 
-        var sql = $@"
+        public MySqlOptions Options => _options.Value;
+
+        public IStorageTransaction CreateTransaction()
+        {
+            return new MySqlStorageTransaction(this);
+        }
+
+        public async Task<CapPublishedMessage> GetPublishedMessageAsync(long id)
+        {
+            var sql = $@"SELECT * FROM `{_prefix}.published` WHERE `Id`={id};";
+
+            using (var connection = new MySqlConnection(Options.ConnectionString))
+            {
+                return await connection.QueryFirstOrDefaultAsync<CapPublishedMessage>(sql);
+            }
+        }
+
+        public async Task<IEnumerable<CapPublishedMessage>> GetPublishedMessagesOfNeedRetry()
+        {
+            var fourMinsAgo = DateTime.Now.AddMinutes(-4).ToString("O");
+            var sql =
+                $"SELECT * FROM `{_prefix}.published` WHERE `Retries`<{_capOptions.FailedRetryCount} AND `Version`='{_capOptions.Version}' AND `Added`<'{fourMinsAgo}' AND (`StatusName` = '{StatusName.Failed}' OR `StatusName` = '{StatusName.Scheduled}') LIMIT 200;";
+
+            using (var connection = new MySqlConnection(Options.ConnectionString))
+            {
+                return await connection.QueryAsync<CapPublishedMessage>(sql);
+            }
+        }
+
+        public void StoreReceivedMessage(CapReceivedMessage message)
+        {
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message));
+            }
+
+            var sql = $@"
 INSERT INTO `{_prefix}.received`(`Id`,`Version`,`Name`,`Group`,`Content`,`Retries`,`Added`,`ExpiresAt`,`StatusName`)
 VALUES(@Id,'{_capOptions.Version}',@Name,@Group,@Content,@Retries,@Added,@ExpiresAt,@StatusName);";
 
-        using (var connection = new MySqlConnection(Options.ConnectionString))
-        {
-            connection.Execute(sql, message);
+            using (var connection = new MySqlConnection(Options.ConnectionString))
+            {
+                connection.Execute(sql, message);
+            }
         }
-    }
 
-    public async Task<CapReceivedMessage> GetReceivedMessageAsync(long id)
-    {
-        var sql = $@"SELECT * FROM `{_prefix}.received` WHERE Id={id};";
-        using (var connection = new MySqlConnection(Options.ConnectionString))
+        public async Task<CapReceivedMessage> GetReceivedMessageAsync(long id)
         {
-            return await connection.QueryFirstOrDefaultAsync<CapReceivedMessage>(sql);
+            var sql = $@"SELECT * FROM `{_prefix}.received` WHERE Id={id};";
+            using (var connection = new MySqlConnection(Options.ConnectionString))
+            {
+                return await connection.QueryFirstOrDefaultAsync<CapReceivedMessage>(sql);
+            }
         }
-    }
 
-    public async Task<IEnumerable<CapReceivedMessage>> GetReceivedMessagesOfNeedRetry()
-    {
-        var fourMinsAgo = DateTime.Now.AddMinutes(-4).ToString("O");
-        var sql =
-            $"SELECT * FROM `{_prefix}.received` WHERE `Retries`<{_capOptions.FailedRetryCount} AND `Version`='{_capOptions.Version}' AND `Added`<'{fourMinsAgo}' AND (`StatusName` = '{StatusName.Failed}' OR `StatusName` = '{StatusName.Scheduled}') LIMIT 200;";
-        using (var connection = new MySqlConnection(Options.ConnectionString))
+        public async Task<IEnumerable<CapReceivedMessage>> GetReceivedMessagesOfNeedRetry()
         {
-            return await connection.QueryAsync<CapReceivedMessage>(sql);
+            var fourMinsAgo = DateTime.Now.AddMinutes(-4).ToString("O");
+            var sql =
+                $"SELECT * FROM `{_prefix}.received` WHERE `Retries`<{_capOptions.FailedRetryCount} AND `Version`='{_capOptions.Version}' AND `Added`<'{fourMinsAgo}' AND (`StatusName` = '{StatusName.Failed}' OR `StatusName` = '{StatusName.Scheduled}') LIMIT 200;";
+            using (var connection = new MySqlConnection(Options.ConnectionString))
+            {
+                return await connection.QueryAsync<CapReceivedMessage>(sql);
+            }
         }
-    }
 
-    public bool ChangePublishedState(long messageId, string state)
-    {
-        var sql =
-            $"UPDATE `{_prefix}.published` SET `Retries`=`Retries`+1,`ExpiresAt`=NULL,`StatusName` = '{state}' WHERE `Id`={messageId}";
-
-        using (var connection = new MySqlConnection(Options.ConnectionString))
+        public bool ChangePublishedState(long messageId, string state)
         {
-            return connection.Execute(sql) > 0;
+            var sql =
+                $"UPDATE `{_prefix}.published` SET `Retries`=`Retries`+1,`ExpiresAt`=NULL,`StatusName` = '{state}' WHERE `Id`={messageId}";
+
+            using (var connection = new MySqlConnection(Options.ConnectionString))
+            {
+                return connection.Execute(sql) > 0;
+            }
         }
-    }
 
-    public bool ChangeReceivedState(long messageId, string state)
-    {
-        var sql =
-            $"UPDATE `{_prefix}.received` SET `Retries`=`Retries`+1,`ExpiresAt`=NULL,`StatusName` = '{state}' WHERE `Id`={messageId}";
-
-        using (var connection = new MySqlConnection(Options.ConnectionString))
+        public bool ChangeReceivedState(long messageId, string state)
         {
-            return connection.Execute(sql) > 0;
+            var sql =
+                $"UPDATE `{_prefix}.received` SET `Retries`=`Retries`+1,`ExpiresAt`=NULL,`StatusName` = '{state}' WHERE `Id`={messageId}";
+
+            using (var connection = new MySqlConnection(Options.ConnectionString))
+            {
+                return connection.Execute(sql) > 0;
+            }
         }
     }
 }

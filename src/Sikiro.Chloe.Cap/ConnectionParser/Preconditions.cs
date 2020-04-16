@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ConnectionParser
+namespace Sikiro.Chloe.Cap.ConnectionParser
 {
     /// <summary>
     /// Collection of precondition methods for qualifying method arguments.

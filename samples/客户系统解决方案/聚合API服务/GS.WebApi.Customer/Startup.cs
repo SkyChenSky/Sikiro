@@ -1,8 +1,6 @@
 ﻿using System.Reflection;
 using GS.MicroService.Extension.SkyApm;
 using GS.Tookits.Base;
-using GS.WebApi.Customer.Attribute;
-using GS.WebApi.Customer.Extention;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -18,8 +16,10 @@ using Senparc.Weixin;
 using Senparc.Weixin.Entities;
 using Senparc.Weixin.MP.Containers;
 using Senparc.Weixin.RegisterServices;
+using Sikiro.WebApi.Customer.Attribute;
+using Sikiro.WebApi.Customer.Extention;
 
-namespace GS.WebApi.Customer
+namespace Sikiro.WebApi.Customer
 {
     public class Startup
     {

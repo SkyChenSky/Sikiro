@@ -3,7 +3,7 @@ using System.Security.Claims;
 using GS.Tookits.Extension;
 using Microsoft.AspNetCore.Http;
 
-namespace GS.Common.Utils
+namespace Sikiro.Common.Utils
 {
     public static class HttpContextExtension
     {

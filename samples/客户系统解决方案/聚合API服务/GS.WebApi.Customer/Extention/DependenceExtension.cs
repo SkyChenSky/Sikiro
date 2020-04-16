@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Runtime.Loader;
 using GS.Interface.Capital;
 using GS.Interface.CMS;
-using GS.Interface.Customer;
 using GS.Interface.Id;
 using GS.Interface.Msg;
 using GS.Interface.Warehouse;
@@ -15,9 +14,10 @@ using GS.Tookits.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
+using Sikiro.Interface.Customer;
 using WebApiClient.Extensions.DependencyInjection;
 
-namespace GS.WebApi.Customer.Extention
+namespace Sikiro.WebApi.Customer.Extention
 {
     public static class DependenceExtension
     {

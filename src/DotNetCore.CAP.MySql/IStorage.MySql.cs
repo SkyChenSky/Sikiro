@@ -6,59 +6,60 @@ using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
-using DotNetCore.CAP;
 using DotNetCore.CAP.Dashboard;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MySql.Data.MySqlClient;
 
-public class MySqlStorage : IStorage
+namespace DotNetCore.CAP.MySql
 {
-    private readonly IOptions<CapOptions> _capOptions;
-    private readonly IOptions<MySqlOptions> _options;
-    private readonly IDbConnection _existingConnection = null;
-    private readonly ILogger _logger;
-
-    public MySqlStorage(
-        ILogger<MySqlStorage> logger,
-        IOptions<MySqlOptions> options, 
-        IOptions<CapOptions> capOptions)
+    public class MySqlStorage : IStorage
     {
-        _options = options;
-        _capOptions = capOptions;
-        _logger = logger;
-    }
+        private readonly IOptions<CapOptions> _capOptions;
+        private readonly IOptions<MySqlOptions> _options;
+        private readonly IDbConnection _existingConnection = null;
+        private readonly ILogger _logger;
 
-    public IStorageConnection GetConnection()
-    {
-        return new MySqlStorageConnection(_options, _capOptions);
-    }
-
-    public IMonitoringApi GetMonitoringApi()
-    {
-        return new MySqlMonitoringApi(this, _options);
-    }
-
-    public async Task InitializeAsync(CancellationToken cancellationToken)
-    {
-        if (cancellationToken.IsCancellationRequested)
+        public MySqlStorage(
+            ILogger<MySqlStorage> logger,
+            IOptions<MySqlOptions> options, 
+            IOptions<CapOptions> capOptions)
         {
-            return;
+            _options = options;
+            _capOptions = capOptions;
+            _logger = logger;
         }
 
-        var sql = CreateDbTablesScript(_options.Value.TableNamePrefix);
-        using (var connection = new MySqlConnection(_options.Value.ConnectionString))
+        public IStorageConnection GetConnection()
         {
-            await connection.ExecuteAsync(sql);
+            return new MySqlStorageConnection(_options, _capOptions);
         }
 
-        _logger.LogDebug("Ensuring all create database tables script are applied.");
-    }
+        public IMonitoringApi GetMonitoringApi()
+        {
+            return new MySqlMonitoringApi(this, _options);
+        }
 
-    protected virtual string CreateDbTablesScript(string prefix)
-    {
-        var batchSql =
-            $@"
+        public async Task InitializeAsync(CancellationToken cancellationToken)
+        {
+            if (cancellationToken.IsCancellationRequested)
+            {
+                return;
+            }
+
+            var sql = CreateDbTablesScript(_options.Value.TableNamePrefix);
+            using (var connection = new MySqlConnection(_options.Value.ConnectionString))
+            {
+                await connection.ExecuteAsync(sql);
+            }
+
+            _logger.LogDebug("Ensuring all create database tables script are applied.");
+        }
+
+        protected virtual string CreateDbTablesScript(string prefix)
+        {
+            var batchSql =
+                $@"
 CREATE TABLE IF NOT EXISTS `{prefix}.received` (
   `Id` bigint NOT NULL,
   `Version` varchar(20) DEFAULT NULL,
@@ -84,46 +85,47 @@ CREATE TABLE IF NOT EXISTS `{prefix}.published` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ";
-        return batchSql;
-    }
-
-    internal T UseConnection<T>(Func<IDbConnection, T> func)
-    {
-        IDbConnection connection = null;
-
-        try
-        {
-            connection = CreateAndOpenConnection();
-            return func(connection);
-        }
-        finally
-        {
-            ReleaseConnection(connection);
-        }
-    }
-
-    internal IDbConnection CreateAndOpenConnection()
-    {
-        var connection = _existingConnection ?? new MySqlConnection(_options.Value.ConnectionString);
-
-        if (connection.State == ConnectionState.Closed)
-        {
-            connection.Open();
+            return batchSql;
         }
 
-        return connection;
-    }
-
-    internal bool IsExistingConnection(IDbConnection connection)
-    {
-        return connection != null && ReferenceEquals(connection, _existingConnection);
-    }
-
-    internal void ReleaseConnection(IDbConnection connection)
-    {
-        if (connection != null && !IsExistingConnection(connection))
+        internal T UseConnection<T>(Func<IDbConnection, T> func)
         {
-            connection.Dispose();
+            IDbConnection connection = null;
+
+            try
+            {
+                connection = CreateAndOpenConnection();
+                return func(connection);
+            }
+            finally
+            {
+                ReleaseConnection(connection);
+            }
+        }
+
+        internal IDbConnection CreateAndOpenConnection()
+        {
+            var connection = _existingConnection ?? new MySqlConnection(_options.Value.ConnectionString);
+
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+
+            return connection;
+        }
+
+        internal bool IsExistingConnection(IDbConnection connection)
+        {
+            return connection != null && ReferenceEquals(connection, _existingConnection);
+        }
+
+        internal void ReleaseConnection(IDbConnection connection)
+        {
+            if (connection != null && !IsExistingConnection(connection))
+            {
+                connection.Dispose();
+            }
         }
     }
 }

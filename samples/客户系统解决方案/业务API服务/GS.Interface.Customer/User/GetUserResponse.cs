@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace GS.Interface.Customer.User
+﻿namespace Sikiro.Interface.Customer.User
 {
     /// <summary>
     /// 收件人地址

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GS.WebApi.Customer.Attribute
+namespace Sikiro.WebApi.Customer.Attribute
 {
     ///<summary>
     /// 密码验证特性

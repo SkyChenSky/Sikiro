@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using ConnectionParser.Sprache;
+using Sikiro.Chloe.Cap.ConnectionParser.Sprache;
 
-namespace ConnectionParser
+namespace Sikiro.Chloe.Cap.ConnectionParser
 {
     internal interface IConnectionStringParser
     {

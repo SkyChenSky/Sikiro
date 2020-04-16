@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GS.WebApi.Customer.Models.User
+namespace Sikiro.WebApi.Customer.Models.User
 {
     /// <summary>
     /// 用户信息

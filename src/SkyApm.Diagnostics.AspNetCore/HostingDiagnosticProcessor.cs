@@ -19,19 +19,16 @@
 using System;
 using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Newtonsoft.Json;
 using SkyApm.Common;
-using SkyApm.Diagnostics;
-using SkyApm.Diagnostics.AspNetCore;
 using SkyApm.Tracing;
 using SkyApm.Tracing.Segments;
 
-namespace SkyApm.AspNetCore.Diagnostics
+namespace SkyApm.Diagnostics.AspNetCore
 {
     public class HostingTracingDiagnosticProcessor : ITracingDiagnosticProcessor
     {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using ConnectionParser.Sprache;
+using Sikiro.Chloe.Cap.ConnectionParser.Sprache;
 
-namespace ConnectionParser
+namespace Sikiro.Chloe.Cap.ConnectionParser
 {
     using UpdateConfiguration = Func<ConnectionConfiguration, ConnectionConfiguration>;
 

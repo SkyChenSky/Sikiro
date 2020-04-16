@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GS.WebApi.Customer.Attribute
+namespace Sikiro.WebApi.Customer.Attribute
 {
     ///<summary>
     /// 邮箱验证特性

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using GS.Infrastructure.Msg.Entitys;
-using GS.Infrastructure.Msg.Service;
 using GS.Nosql.Mongo;
 using GS.Nosql.Redis;
 using GS.Tookits.Base;
@@ -10,8 +8,10 @@ using GS.Tookits.Extension;
 using GS.Tookits.Helper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Sikiro.Infrastructure.Msg.Entitys;
+using Sikiro.Infrastructure.Msg.Service;
 
-namespace GS.Infrastructure.Msg.Controllers
+namespace Sikiro.Infrastructure.Msg.Controllers
 {
     /// <summary>
     /// 验证码

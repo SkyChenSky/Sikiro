@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace GS.WebApi.Customer.Models.User
+namespace Sikiro.WebApi.Customer.Models.User
 {
     public class UserLogoRequest
     {

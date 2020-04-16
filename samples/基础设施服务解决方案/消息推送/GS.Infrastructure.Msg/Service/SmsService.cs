@@ -6,7 +6,7 @@ using Aliyun.Acs.Core.Profile;
 using GS.Tookits.Base;
 using GS.Tookits.Extension;
 
-namespace GS.Infrastructure.Msg.Service
+namespace Sikiro.Infrastructure.Msg.Service
 {
     public class SmsService
     {

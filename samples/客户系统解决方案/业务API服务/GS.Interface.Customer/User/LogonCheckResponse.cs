@@ -1,4 +1,4 @@
-﻿namespace GS.Interface.Customer.User
+﻿namespace Sikiro.Interface.Customer.User
 {
     public class LogonCheckResponse
     {

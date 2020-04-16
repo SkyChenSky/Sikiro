@@ -1,6 +1,6 @@
 ﻿using WebApiClient;
 
-namespace GS.Interface.Msg
+namespace Sikiro.Interface.Msg
 {
     public interface IMsg : IHttpApi
     {

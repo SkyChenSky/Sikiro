@@ -6,7 +6,6 @@ using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 using Dapper;
-using DotNetCore.CAP;
 using DotNetCore.CAP.Abstractions;
 using DotNetCore.CAP.Models;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -14,51 +13,54 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using MySql.Data.MySqlClient;
 
-public class MySqlPublisher : CapPublisherBase, ICallbackPublisher
+namespace DotNetCore.CAP.MySql
 {
-    private readonly MySqlOptions _options;
-
-    public MySqlPublisher(IServiceProvider provider) : base(provider)
+    public class MySqlPublisher : CapPublisherBase, ICallbackPublisher
     {
-        _options = provider.GetService<IOptions<MySqlOptions>>().Value;
-    }
+        private readonly MySqlOptions _options;
 
-    public async Task PublishCallbackAsync(CapPublishedMessage message)
-    {
-        await PublishAsyncInternal(message);
-    }
-
-    protected override async Task ExecuteAsync(CapPublishedMessage message,
-        ICapTransaction transaction = null,
-        CancellationToken cancel = default(CancellationToken))
-    {
-        if (transaction == null)
+        public MySqlPublisher(IServiceProvider provider) : base(provider)
         {
-            using (var connection = new MySqlConnection(_options.ConnectionString))
+            _options = provider.GetService<IOptions<MySqlOptions>>().Value;
+        }
+
+        public async Task PublishCallbackAsync(CapPublishedMessage message)
+        {
+            await PublishAsyncInternal(message);
+        }
+
+        protected override async Task ExecuteAsync(CapPublishedMessage message,
+            ICapTransaction transaction = null,
+            CancellationToken cancel = default(CancellationToken))
+        {
+            if (transaction == null)
             {
-                await connection.ExecuteAsync(PrepareSql(), message);
-                return;
+                using (var connection = new MySqlConnection(_options.ConnectionString))
+                {
+                    await connection.ExecuteAsync(PrepareSql(), message);
+                    return;
+                }
             }
+
+            var dbTrans = transaction.DbTransaction as IDbTransaction;
+            if (dbTrans == null && transaction.DbTransaction is IDbContextTransaction dbContextTrans)
+            {
+                dbTrans = dbContextTrans.GetDbTransaction();
+            }
+
+            var conn = dbTrans?.Connection;
+            await conn.ExecuteAsync(PrepareSql(), message, dbTrans);
         }
 
-        var dbTrans = transaction.DbTransaction as IDbTransaction;
-        if (dbTrans == null && transaction.DbTransaction is IDbContextTransaction dbContextTrans)
+        #region private methods
+
+        private string PrepareSql()
         {
-            dbTrans = dbContextTrans.GetDbTransaction();
+            return
+                $"INSERT INTO `{_options.TableNamePrefix}.published` (`Id`,`Version`,`Name`,`Content`,`Retries`,`Added`,`ExpiresAt`,`StatusName`)" +
+                $"VALUES(@Id,'{_options.Version}',@Name,@Content,@Retries,@Added,@ExpiresAt,@StatusName);";
         }
 
-        var conn = dbTrans?.Connection;
-        await conn.ExecuteAsync(PrepareSql(), message, dbTrans);
+        #endregion private methods
     }
-
-    #region private methods
-
-    private string PrepareSql()
-    {
-        return
-            $"INSERT INTO `{_options.TableNamePrefix}.published` (`Id`,`Version`,`Name`,`Content`,`Retries`,`Added`,`ExpiresAt`,`StatusName`)" +
-            $"VALUES(@Id,'{_options.Version}',@Name,@Content,@Retries,@Added,@ExpiresAt,@StatusName);";
-    }
-
-    #endregion private methods
 }

@@ -2,7 +2,7 @@
 using System.Text;
 using GS.Nosql.Redis;
 
-namespace GS.Infrastructure.Id.Models
+namespace Sikiro.Infrastructure.Id.Models
 {
     public class FormatConvert
     {

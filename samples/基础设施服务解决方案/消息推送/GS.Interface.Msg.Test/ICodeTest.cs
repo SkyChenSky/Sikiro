@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using WebApiClient;
 
-namespace GS.Interface.Msg.Test
+namespace Sikiro.Interface.Msg.Test
 {
     public class ICodeTest
     {

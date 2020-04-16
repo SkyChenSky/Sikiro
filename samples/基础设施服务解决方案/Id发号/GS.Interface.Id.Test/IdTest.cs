@@ -1,11 +1,10 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using WebApiClient;
 
-namespace GS.Interface.Id.Test
+namespace Sikiro.Interface.Id.Test
 {
     public class IdTest
     {

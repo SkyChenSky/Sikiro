@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace GS.WebApi.Customer.Models.PageList
+namespace Sikiro.WebApi.Customer.Models.PageList
 {
     /// <summary>
     /// 分页实体类

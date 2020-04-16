@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ConnectionParser.Sprache
+namespace Sikiro.Chloe.Cap.ConnectionParser.Sprache
 {
     internal sealed class Failure<T> : IFailure<T>
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace GS.InnerApi.Customer
+namespace Sikiro.InnerApi.Customer
 {
     public class Program
     {

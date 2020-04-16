@@ -4,12 +4,12 @@
         <name>GS.Infrastructure.Msg</name>
     </assembly>
     <members>
-        <member name="T:GS.Infrastructure.Msg.Controllers.CodeController">
+        <member name="T:Sikiro.Infrastructure.Msg.Controllers.CodeController">
             <summary>
             验证码
             </summary>
         </member>
-        <member name="M:GS.Infrastructure.Msg.Controllers.CodeController.Create(System.String,System.Int32,System.String,System.Int32)">
+        <member name="M:Sikiro.Infrastructure.Msg.Controllers.CodeController.Create(System.String,System.Int32,System.String,System.Int32)">
             <summary>
             创建验证码
             </summary>
@@ -19,7 +19,7 @@
             <param name="repeatSeconds">重复时间（秒）默认60秒</param>
             <returns></returns>
         </member>
-        <member name="M:GS.Infrastructure.Msg.Controllers.CodeController.Vaild(System.String,System.String)">
+        <member name="M:Sikiro.Infrastructure.Msg.Controllers.CodeController.Vaild(System.String,System.String)">
             <summary>
             验证验证码
             </summary>
@@ -27,27 +27,27 @@
             <param name="inputCode">验证码</param>
             <returns></returns>
         </member>
-        <member name="T:GS.Infrastructure.Msg.Entitys.SmsRecord">
+        <member name="T:Sikiro.Infrastructure.Msg.Entitys.SmsRecord">
             <summary>
             发送短信
             </summary>
         </member>
-        <member name="P:GS.Infrastructure.Msg.Entitys.SmsRecord.PhoneNum">
+        <member name="P:Sikiro.Infrastructure.Msg.Entitys.SmsRecord.PhoneNum">
             <summary>
             接收的手机号码
             </summary>
         </member>
-        <member name="P:GS.Infrastructure.Msg.Entitys.SmsRecord.Content">
+        <member name="P:Sikiro.Infrastructure.Msg.Entitys.SmsRecord.Content">
             <summary>
             短信内容，例如验证码等 
             </summary>
         </member>
-        <member name="P:GS.Infrastructure.Msg.Entitys.SmsRecord.SendTime">
+        <member name="P:Sikiro.Infrastructure.Msg.Entitys.SmsRecord.SendTime">
             <summary>
             发送时间
             </summary>
         </member>
-        <member name="P:GS.Infrastructure.Msg.Entitys.SmsRecord.IpAddress">
+        <member name="P:Sikiro.Infrastructure.Msg.Entitys.SmsRecord.IpAddress">
             <summary>
             Ip地址
             </summary>

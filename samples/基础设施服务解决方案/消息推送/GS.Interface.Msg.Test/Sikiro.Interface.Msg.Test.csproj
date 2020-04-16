@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GS.Interface.Msg\GS.Interface.Msg.csproj" />
+    <ProjectReference Include="..\GS.Interface.Msg\Sikiro.Interface.Msg.csproj" />
   </ItemGroup>
 
 </Project>

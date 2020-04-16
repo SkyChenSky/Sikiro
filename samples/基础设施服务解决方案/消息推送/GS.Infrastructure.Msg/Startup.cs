@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using GS.Infrastructure.Msg.Service;
 using GS.MicroService.Extension;
 using GS.MicroService.Extension.Attributes;
 using GS.MicroService.Extension.SkyApm;
@@ -11,8 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Sikiro.Infrastructure.Msg.Service;
 
-namespace GS.Infrastructure.Msg
+namespace Sikiro.Infrastructure.Msg
 {
     public class Startup
     {

@@ -1,7 +1,7 @@
 ﻿using WebApiClient;
 using WebApiClient.Attributes;
 
-namespace GS.Interface.Id
+namespace Sikiro.Interface.Id
 {
     /// <summary>
     /// Id生成(GS|D10)

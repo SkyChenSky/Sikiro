@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace GS.Interface.Customer.User
+namespace Sikiro.Interface.Customer.User
 {
     public class SearchUserResponse
     {

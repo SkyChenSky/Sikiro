@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using GS.Chloe.Extension;
-using GS.Common.Utils;
-using GS.Entity.Customer;
-using GS.Entity.Customer.DBContext;
-using GS.Service.Customer.Bo;
-using GS.Service.Customer.Enums;
 using GS.Tookits.Base;
 using GS.Tookits.Extension;
 using GS.Tookits.Helper;
 using Microsoft.Extensions.Configuration;
+using Sikiro.Common.Utils;
+using Sikiro.Entity.Customer;
+using Sikiro.Entity.Customer.DBContext;
+using Sikiro.Service.Customer.Enums;
 
-namespace GS.Service.Customer
+namespace Sikiro.Service.Customer
 {
     public class UserService : BaseService
     {

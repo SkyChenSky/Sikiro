@@ -4,15 +4,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using GS.Common.Utils;
-using GS.Interface.Customer;
-using GS.Interface.Customer.User;
 using GS.Interface.Id;
 using GS.Interface.Msg;
 using GS.Tookits.Base;
 using GS.Tookits.Extension;
-using GS.WebApi.Customer.Extention;
-using GS.WebApi.Customer.Models.User;
 using IdentityModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -21,8 +16,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Senparc.Weixin;
 using Senparc.Weixin.MP.AdvancedAPIs;
+using Sikiro.Common.Utils;
+using Sikiro.Interface.Customer;
+using Sikiro.Interface.Customer.User;
+using Sikiro.WebApi.Customer.Extention;
+using Sikiro.WebApi.Customer.Models.User;
 
-namespace GS.WebApi.Customer.Controllers
+namespace Sikiro.WebApi.Customer.Controllers
 {
     /// <summary>
     /// 用户接口

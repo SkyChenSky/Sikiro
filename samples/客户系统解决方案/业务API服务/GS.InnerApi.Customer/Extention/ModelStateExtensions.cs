@@ -1,7 +1,7 @@
 using System.Text;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace GS.InnerApi.Customer.Extention
+namespace Sikiro.InnerApi.Customer.Extention
 {
     public static class ModelStateExtensions
     {

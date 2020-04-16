@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using GS.WebApi.Customer.Attribute;
 
-namespace GS.WebApi.Customer.Models.User
+namespace Sikiro.WebApi.Customer.Models.User
 {
     /// <summary>
     /// 

@@ -9,105 +9,108 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 
+namespace DotNetCore.CAP.MySql
+{
 // ReSharper disable once CheckNamespace
-public class MySqlCapTransaction : CapTransactionBase
-{
-    public MySqlCapTransaction(
-        IDispatcher dispatcher) : base(dispatcher)
+    public class MySqlCapTransaction : CapTransactionBase
     {
-    }
-
-    public override void Commit()
-    {
-        Debug.Assert(DbTransaction != null);
-
-        switch (DbTransaction)
+        public MySqlCapTransaction(
+            IDispatcher dispatcher) : base(dispatcher)
         {
-            case IDbTransaction dbTransaction:
-                dbTransaction.Commit();
-                break;
-            case IDbContextTransaction dbContextTransaction:
-                dbContextTransaction.Commit();
-                break;
-        }
-        Flush();
-    }
-
-    public override void Rollback()
-    {
-        Debug.Assert(DbTransaction != null);
-
-        switch (DbTransaction)
-        {
-            case IDbTransaction dbTransaction:
-                dbTransaction.Rollback();
-                break;
-            case IDbContextTransaction dbContextTransaction:
-                dbContextTransaction.Rollback();
-                break;
-        }
-    }
-
-    public override void Dispose()
-    {
-        (DbTransaction as IDbTransaction)?.Dispose();
-        DbTransaction = null;
-    }
-}
-
-public static class CapTransactionExtensions
-{
-    public static ICapTransaction Begin(this ICapTransaction transaction,
-        IDbContextTransaction dbTransaction, bool autoCommit = false)
-    {
-        transaction.DbTransaction = dbTransaction;
-        transaction.AutoCommit = autoCommit;
-
-        return transaction;
-    }
-
-    public static ICapTransaction Begin(this ICapTransaction transaction,
-        IDbTransaction dbTransaction, bool autoCommit = false)
-    {
-        transaction.DbTransaction = dbTransaction;
-        transaction.AutoCommit = autoCommit;
-
-        return transaction;
-    }
-
-    /// <summary>
-    /// Start the CAP transaction
-    /// </summary>
-    /// <param name="database">The <see cref="DatabaseFacade" />.</param>
-    /// <param name="publisher">The <see cref="ICapPublisher" />.</param>
-    /// <param name="autoCommit">Whether the transaction is automatically committed when the message is published</param>
-    /// <returns>The <see cref="IDbContextTransaction" /> of EF dbcontext transaction object.</returns>
-    public static IDbContextTransaction BeginTransaction(this DatabaseFacade database,
-        ICapPublisher publisher, bool autoCommit = false)
-    {
-        var trans = database.BeginTransaction();
-        publisher.Transaction.Value = publisher.ServiceProvider.GetService<CapTransactionBase>();
-        var capTrans = publisher.Transaction.Value.Begin(trans, autoCommit);
-        return new CapEFDbTransaction(capTrans);
-    }
-
-    /// <summary>
-    /// Start the CAP transaction
-    /// </summary>
-    /// <param name="dbConnection">The <see cref="IDbConnection" />.</param>
-    /// <param name="publisher">The <see cref="ICapPublisher" />.</param>
-    /// <param name="autoCommit">Whether the transaction is automatically committed when the message is published</param>
-    /// <returns>The <see cref="ICapTransaction" /> object.</returns>
-    public static ICapTransaction BeginTransaction(this IDbConnection dbConnection,
-        ICapPublisher publisher, bool autoCommit = false)
-    {
-        if (dbConnection.State == ConnectionState.Closed)
-        {
-            dbConnection.Open();
         }
 
-        var dbTransaction = dbConnection.BeginTransaction();
-        publisher.Transaction.Value = publisher.ServiceProvider.GetService<CapTransactionBase>();
-        return publisher.Transaction.Value.Begin(dbTransaction, autoCommit);
+        public override void Commit()
+        {
+            Debug.Assert(DbTransaction != null);
+
+            switch (DbTransaction)
+            {
+                case IDbTransaction dbTransaction:
+                    dbTransaction.Commit();
+                    break;
+                case IDbContextTransaction dbContextTransaction:
+                    dbContextTransaction.Commit();
+                    break;
+            }
+            Flush();
+        }
+
+        public override void Rollback()
+        {
+            Debug.Assert(DbTransaction != null);
+
+            switch (DbTransaction)
+            {
+                case IDbTransaction dbTransaction:
+                    dbTransaction.Rollback();
+                    break;
+                case IDbContextTransaction dbContextTransaction:
+                    dbContextTransaction.Rollback();
+                    break;
+            }
+        }
+
+        public override void Dispose()
+        {
+            (DbTransaction as IDbTransaction)?.Dispose();
+            DbTransaction = null;
+        }
+    }
+
+    public static class CapTransactionExtensions
+    {
+        public static ICapTransaction Begin(this ICapTransaction transaction,
+            IDbContextTransaction dbTransaction, bool autoCommit = false)
+        {
+            transaction.DbTransaction = dbTransaction;
+            transaction.AutoCommit = autoCommit;
+
+            return transaction;
+        }
+
+        public static ICapTransaction Begin(this ICapTransaction transaction,
+            IDbTransaction dbTransaction, bool autoCommit = false)
+        {
+            transaction.DbTransaction = dbTransaction;
+            transaction.AutoCommit = autoCommit;
+
+            return transaction;
+        }
+
+        /// <summary>
+        /// Start the CAP transaction
+        /// </summary>
+        /// <param name="database">The <see cref="DatabaseFacade" />.</param>
+        /// <param name="publisher">The <see cref="ICapPublisher" />.</param>
+        /// <param name="autoCommit">Whether the transaction is automatically committed when the message is published</param>
+        /// <returns>The <see cref="IDbContextTransaction" /> of EF dbcontext transaction object.</returns>
+        public static IDbContextTransaction BeginTransaction(this DatabaseFacade database,
+            ICapPublisher publisher, bool autoCommit = false)
+        {
+            var trans = database.BeginTransaction();
+            publisher.Transaction.Value = publisher.ServiceProvider.GetService<CapTransactionBase>();
+            var capTrans = publisher.Transaction.Value.Begin(trans, autoCommit);
+            return new CapEFDbTransaction(capTrans);
+        }
+
+        /// <summary>
+        /// Start the CAP transaction
+        /// </summary>
+        /// <param name="dbConnection">The <see cref="IDbConnection" />.</param>
+        /// <param name="publisher">The <see cref="ICapPublisher" />.</param>
+        /// <param name="autoCommit">Whether the transaction is automatically committed when the message is published</param>
+        /// <returns>The <see cref="ICapTransaction" /> object.</returns>
+        public static ICapTransaction BeginTransaction(this IDbConnection dbConnection,
+            ICapPublisher publisher, bool autoCommit = false)
+        {
+            if (dbConnection.State == ConnectionState.Closed)
+            {
+                dbConnection.Open();
+            }
+
+            var dbTransaction = dbConnection.BeginTransaction();
+            publisher.Transaction.Value = publisher.ServiceProvider.GetService<CapTransactionBase>();
+            return publisher.Transaction.Value.Begin(dbTransaction, autoCommit);
+        }
     }
 }

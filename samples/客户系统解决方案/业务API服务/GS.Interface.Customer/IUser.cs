@@ -1,9 +1,9 @@
-﻿using GS.Interface.Customer.User;
-using GS.Tookits.Base;
+﻿using GS.Tookits.Base;
+using Sikiro.Interface.Customer.User;
 using WebApiClient;
 using WebApiClient.Attributes;
 
-namespace GS.Interface.Customer
+namespace Sikiro.Interface.Customer
 {
     /// <summary>
     /// 用户操作接口

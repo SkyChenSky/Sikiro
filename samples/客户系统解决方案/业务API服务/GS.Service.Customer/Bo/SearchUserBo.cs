@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GS.Service.Customer.Bo
+namespace Sikiro.Service.Customer.Bo
 {
     public class SearchUserBo
     {

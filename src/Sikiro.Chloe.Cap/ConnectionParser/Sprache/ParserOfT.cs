@@ -1,4 +1,4 @@
-﻿namespace ConnectionParser.Sprache
+﻿namespace Sikiro.Chloe.Cap.ConnectionParser.Sprache
 {
     internal delegate IResult<T> Parser<out T>(Input input);
 

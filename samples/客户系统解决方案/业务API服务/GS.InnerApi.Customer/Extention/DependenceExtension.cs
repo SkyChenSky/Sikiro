@@ -7,7 +7,7 @@ using GS.Tookits.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
 
-namespace GS.InnerApi.Customer.Extention
+namespace Sikiro.InnerApi.Customer.Extention
 {
     public static class DependenceExtension
     {

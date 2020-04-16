@@ -5,33 +5,36 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-public class MySqlOptions : EFOptions
+namespace DotNetCore.CAP.MySql
 {
-    /// <summary>
-    /// Gets or sets the database's connection string that will be used to store database entities.
-    /// </summary>
-    public string ConnectionString { get; set; }
-}
-
-internal class ConfigureMySqlOptions : IConfigureOptions<MySqlOptions>
-{
-    private readonly IServiceScopeFactory _serviceScopeFactory;
-
-    public ConfigureMySqlOptions(IServiceScopeFactory serviceScopeFactory)
+    public class MySqlOptions : EFOptions
     {
-        _serviceScopeFactory = serviceScopeFactory;
+        /// <summary>
+        /// Gets or sets the database's connection string that will be used to store database entities.
+        /// </summary>
+        public string ConnectionString { get; set; }
     }
 
-    public void Configure(MySqlOptions options)
+    internal class ConfigureMySqlOptions : IConfigureOptions<MySqlOptions>
     {
-        if (options.DbContextType != null)
+        private readonly IServiceScopeFactory _serviceScopeFactory;
+
+        public ConfigureMySqlOptions(IServiceScopeFactory serviceScopeFactory)
         {
-            using (var scope = _serviceScopeFactory.CreateScope())
+            _serviceScopeFactory = serviceScopeFactory;
+        }
+
+        public void Configure(MySqlOptions options)
+        {
+            if (options.DbContextType != null)
             {
-                var provider = scope.ServiceProvider;
-                using (var dbContext = (DbContext)provider.GetRequiredService(options.DbContextType))
+                using (var scope = _serviceScopeFactory.CreateScope())
                 {
-                    options.ConnectionString = dbContext.Database.GetDbConnection().ConnectionString;
+                    var provider = scope.ServiceProvider;
+                    using (var dbContext = (DbContext)provider.GetRequiredService(options.DbContextType))
+                    {
+                        options.ConnectionString = dbContext.Database.GetDbConnection().ConnectionString;
+                    }
                 }
             }
         }

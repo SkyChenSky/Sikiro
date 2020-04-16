@@ -1,7 +1,7 @@
-﻿using GS.Entity.Customer.DBContext;
-using GS.Tookits.Interfaces;
+﻿using GS.Tookits.Interfaces;
+using Sikiro.Entity.Customer.DBContext;
 
-namespace GS.Service.Customer
+namespace Sikiro.Service.Customer
 {
     /// <summary>
     /// 基础服务类

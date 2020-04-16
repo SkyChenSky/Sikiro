@@ -1,7 +1,7 @@
 ﻿using System;
 using GS.Nosql.Mongo.Base;
 
-namespace GS.Infrastructure.Msg.Entitys
+namespace Sikiro.Infrastructure.Msg.Entitys
 {
     /// <summary>
     /// 发送短信

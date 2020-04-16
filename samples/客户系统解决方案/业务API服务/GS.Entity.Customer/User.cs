@@ -6,7 +6,7 @@
 using System;
 using Chloe.Annotations;
 
-namespace GS.Entity.Customer
+namespace Sikiro.Entity.Customer
 {
     [Table("user")]
     public class User

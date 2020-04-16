@@ -1,4 +1,4 @@
-﻿namespace GS.Common.Utils
+﻿namespace Sikiro.Common.Utils
 {
 
     /// <summary>

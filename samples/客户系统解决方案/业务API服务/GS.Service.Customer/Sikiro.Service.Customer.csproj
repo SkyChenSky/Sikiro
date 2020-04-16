@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\GS.Common.Utils\GS.Common.Utils.csproj" />
-    <ProjectReference Include="..\GS.Entity.Customer\GS.Entity.Customer.csproj" />
+    <ProjectReference Include="..\..\GS.Common.Utils\Sikiro.Common.Utils.csproj" />
+    <ProjectReference Include="..\GS.Entity.Customer\Sikiro.Entity.Customer.csproj" />
   </ItemGroup>
 
 </Project>

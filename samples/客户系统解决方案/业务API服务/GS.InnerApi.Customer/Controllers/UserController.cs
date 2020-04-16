@@ -1,14 +1,13 @@
-﻿using GS.Common.Utils;
-using GS.Entity.Customer;
-using GS.Interface.Customer.User;
-using GS.Service.Customer;
-using GS.Service.Customer.Bo;
-using GS.Service.Customer.Enums;
-using GS.Tookits.Base;
+﻿using GS.Tookits.Base;
 using GS.Tookits.Extension;
 using Microsoft.AspNetCore.Mvc;
+using Sikiro.Common.Utils;
+using Sikiro.Entity.Customer;
+using Sikiro.Interface.Customer.User;
+using Sikiro.Service.Customer;
+using Sikiro.Service.Customer.Enums;
 
-namespace GS.InnerApi.Customer.Controllers
+namespace Sikiro.InnerApi.Customer.Controllers
 {
     /// <summary>
     /// 快运单接口

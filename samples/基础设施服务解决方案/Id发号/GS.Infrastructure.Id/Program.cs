@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace GS.Infrastructure.Id
+namespace Sikiro.Infrastructure.Id
 {
     public class Program
     {

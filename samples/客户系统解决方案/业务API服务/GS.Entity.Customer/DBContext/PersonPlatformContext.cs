@@ -1,7 +1,7 @@
 ﻿using Chloe.Infrastructure;
 using Chloe.MySql;
 
-namespace GS.Entity.Customer.DBContext
+namespace Sikiro.Entity.Customer.DBContext
 {
     public class PersonPlatformContext : MySqlContext
     {

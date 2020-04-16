@@ -4,12 +4,12 @@
         <name>Sikiro.Infrastructure.Id</name>
     </assembly>
     <members>
-        <member name="T:GS.Infrastructure.Id.Controllers.IdController">
+        <member name="T:Sikiro.Infrastructure.Id.Controllers.IdController">
             <summary>
             分布式id
             </summary>
         </member>
-        <member name="M:GS.Infrastructure.Id.Controllers.IdController.Generate(System.String)">
+        <member name="M:Sikiro.Infrastructure.Id.Controllers.IdController.Generate(System.String)">
             <summary>
             
             </summary>

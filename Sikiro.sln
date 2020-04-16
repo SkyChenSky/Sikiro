@@ -45,11 +45,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Interface.Id", "samp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Interface.Id.Test", "samples\基础设施服务解决方案\Id发号\GS.Interface.Id.Test\Sikiro.Interface.Id.Test.csproj", "{E878439B-0C30-451A-AAA4-3BB2CFDF032C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GS.Infrastructure.Msg", "samples\基础设施服务解决方案\消息推送\GS.Infrastructure.Msg\GS.Infrastructure.Msg.csproj", "{EE7C69EA-C3CA-423E-AC1C-B0D474A9C89F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Infrastructure.Msg", "samples\基础设施服务解决方案\消息推送\GS.Infrastructure.Msg\Sikiro.Infrastructure.Msg.csproj", "{EE7C69EA-C3CA-423E-AC1C-B0D474A9C89F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GS.Interface.Msg", "samples\基础设施服务解决方案\消息推送\GS.Interface.Msg\GS.Interface.Msg.csproj", "{61EC5CC9-26B9-43E2-8F22-8FB96CA3A46D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Interface.Msg", "samples\基础设施服务解决方案\消息推送\GS.Interface.Msg\Sikiro.Interface.Msg.csproj", "{61EC5CC9-26B9-43E2-8F22-8FB96CA3A46D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GS.Interface.Msg.Test", "samples\基础设施服务解决方案\消息推送\GS.Interface.Msg.Test\GS.Interface.Msg.Test.csproj", "{AA7EFB9A-64D0-40D0-A421-160AB675E565}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Interface.Msg.Test", "samples\基础设施服务解决方案\消息推送\GS.Interface.Msg.Test\Sikiro.Interface.Msg.Test.csproj", "{AA7EFB9A-64D0-40D0-A421-160AB675E565}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "客户系统解决方案", "客户系统解决方案", "{51800CBB-1DDF-49C8-BDF0-0BB81DD067DC}"
 EndProject
@@ -57,17 +57,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "聚合API服务", "聚合AP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "业务API服务", "业务API服务", "{50662C29-51E1-4989-8C2B-8FA438E45A18}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GS.WebApi.Customer", "samples\客户系统解决方案\聚合API服务\GS.WebApi.Customer\GS.WebApi.Customer.csproj", "{208BCA15-21C6-4A3E-9D36-1A0298C0A36C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.WebApi.Customer", "samples\客户系统解决方案\聚合API服务\GS.WebApi.Customer\Sikiro.WebApi.Customer.csproj", "{208BCA15-21C6-4A3E-9D36-1A0298C0A36C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GS.Entity.Customer", "samples\客户系统解决方案\业务API服务\GS.Entity.Customer\GS.Entity.Customer.csproj", "{14D29F1E-63F6-4994-A905-C04932FA1293}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Entity.Customer", "samples\客户系统解决方案\业务API服务\GS.Entity.Customer\Sikiro.Entity.Customer.csproj", "{14D29F1E-63F6-4994-A905-C04932FA1293}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GS.Service.Customer", "samples\客户系统解决方案\业务API服务\GS.Service.Customer\GS.Service.Customer.csproj", "{BBA4440D-215B-477F-BA11-8FF4795A0C42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Service.Customer", "samples\客户系统解决方案\业务API服务\GS.Service.Customer\Sikiro.Service.Customer.csproj", "{BBA4440D-215B-477F-BA11-8FF4795A0C42}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GS.InnerApi.Customer", "samples\客户系统解决方案\业务API服务\GS.InnerApi.Customer\GS.InnerApi.Customer.csproj", "{7D8C15E7-33EE-4F90-BC51-1C7CB761715A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.InnerApi.Customer", "samples\客户系统解决方案\业务API服务\GS.InnerApi.Customer\Sikiro.InnerApi.Customer.csproj", "{7D8C15E7-33EE-4F90-BC51-1C7CB761715A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GS.Common.Utils", "samples\客户系统解决方案\GS.Common.Utils\GS.Common.Utils.csproj", "{6A281984-1EAE-49EB-B956-1BE570E36748}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Common.Utils", "samples\客户系统解决方案\GS.Common.Utils\Sikiro.Common.Utils.csproj", "{6A281984-1EAE-49EB-B956-1BE570E36748}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GS.Interface.Customer", "samples\客户系统解决方案\业务API服务\GS.Interface.Customer\GS.Interface.Customer.csproj", "{5A384DE7-5F97-4FB7-BD70-B1AB2E48A0DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Interface.Customer", "samples\客户系统解决方案\业务API服务\GS.Interface.Customer\Sikiro.Interface.Customer.csproj", "{5A384DE7-5F97-4FB7-BD70-B1AB2E48A0DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

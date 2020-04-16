@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using GS.Common.Utils;
-using GS.WebApi.Customer.Attribute;
+using Sikiro.Common.Utils;
 
-namespace GS.WebApi.Customer.Models.User
+namespace Sikiro.WebApi.Customer.Models.User
 {
     /// <summary>
     /// 注册请求

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ConnectionParser.Sprache
+namespace Sikiro.Chloe.Cap.ConnectionParser.Sprache
 {
     internal interface IFailure<out T> : IResult<T>
     {

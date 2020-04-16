@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using GS.Common.Utils;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Sikiro.Common.Utils;
 
-namespace GS.WebApi.Customer.Extention
+namespace Sikiro.WebApi.Customer.Extention
 {
     /// <summary>
     /// 字符串去除空格

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
-namespace GS.WebApi.Customer.Extention
+namespace Sikiro.WebApi.Customer.Extention
 {
     public static class StartupExtension
     {

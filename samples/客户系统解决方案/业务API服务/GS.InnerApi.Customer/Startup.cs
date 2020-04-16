@@ -1,12 +1,9 @@
 ﻿using System.Reflection;
 using GS.Chloe.Cap;
 using GS.Chloe.Extension;
-using GS.Entity.Customer.DBContext;
-using GS.InnerApi.Customer.Extention;
 using GS.MicroService.Extension;
 using GS.MicroService.Extension.Attributes;
 using GS.MicroService.Extension.SkyApm;
-using GS.Nosql.Mongo;
 using GS.Tookits.Base;
 using GS.Tookits.Helper;
 using Microsoft.AspNetCore.Builder;
@@ -15,8 +12,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Sikiro.Entity.Customer.DBContext;
+using Sikiro.InnerApi.Customer.Extention;
 
-namespace GS.InnerApi.Customer
+namespace Sikiro.InnerApi.Customer
 {
     public class Startup
     {

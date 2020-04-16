@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace GS.InnerApi.Customer.Controllers
+namespace Sikiro.InnerApi.Customer.Controllers
 {
     [Route("[controller]/[action]")] 
     [ApiController]

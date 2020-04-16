@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GS.Infrastructure.Id.Models
+namespace Sikiro.Infrastructure.Id.Models
 {
     public static class FormatType
     {

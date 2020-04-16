@@ -1,7 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace GS.Interface.Customer.User
+namespace Sikiro.Interface.Customer.User
 {
     /// <summary>
     /// 

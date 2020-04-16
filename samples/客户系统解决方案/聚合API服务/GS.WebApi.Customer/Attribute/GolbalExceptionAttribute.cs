@@ -3,7 +3,7 @@ using GS.Tookits.Extension;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace GS.WebApi.Customer.Attribute
+namespace Sikiro.WebApi.Customer.Attribute
 {
     /// <summary>
     /// 全局异常捕获

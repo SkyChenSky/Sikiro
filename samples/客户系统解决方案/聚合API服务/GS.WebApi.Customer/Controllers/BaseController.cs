@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using System.Security.Claims;
-using GS.Common.Utils;
 using GS.Tookits.Extension;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Sikiro.Common.Utils;
 
-namespace GS.WebApi.Customer.Controllers
+namespace Sikiro.WebApi.Customer.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]

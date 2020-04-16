@@ -2,34 +2,36 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using System;
-using DotNetCore.CAP;
 using DotNetCore.CAP.Processor;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 // ReSharper disable once CheckNamespace
-internal class MySqlCapOptionsExtension : ICapOptionsExtension
+namespace DotNetCore.CAP.MySql
 {
-    private readonly Action<MySqlOptions> _configure;
-
-    public MySqlCapOptionsExtension(Action<MySqlOptions> configure)
+    internal class MySqlCapOptionsExtension : ICapOptionsExtension
     {
-        _configure = configure;
+        private readonly Action<MySqlOptions> _configure;
+
+        public MySqlCapOptionsExtension(Action<MySqlOptions> configure)
+        {
+            _configure = configure;
+        }
+
+        public void AddServices(IServiceCollection services)
+        {
+            services.AddSingleton<CapStorageMarkerService>();
+            services.AddSingleton<IStorage, MySqlStorage>();
+            services.AddSingleton<IStorageConnection, MySqlStorageConnection>();
+            services.AddSingleton<ICapPublisher, MySqlPublisher>();
+            services.AddSingleton<ICallbackPublisher>(provider => (MySqlPublisher)provider.GetService<ICapPublisher>());
+            services.AddSingleton<ICollectProcessor, MySqlCollectProcessor>();
+
+            services.AddTransient<CapTransactionBase, MySqlCapTransaction>();
+
+            //Add MySqlOptions
+            services.Configure(_configure);
+            services.AddSingleton<IConfigureOptions<MySqlOptions>, ConfigureMySqlOptions>();
+        } 
     }
-
-    public void AddServices(IServiceCollection services)
-    {
-        services.AddSingleton<CapStorageMarkerService>();
-        services.AddSingleton<IStorage, MySqlStorage>();
-        services.AddSingleton<IStorageConnection, MySqlStorageConnection>();
-        services.AddSingleton<ICapPublisher, MySqlPublisher>();
-        services.AddSingleton<ICallbackPublisher>(provider => (MySqlPublisher)provider.GetService<ICapPublisher>());
-        services.AddSingleton<ICollectProcessor, MySqlCollectProcessor>();
-
-        services.AddTransient<CapTransactionBase, MySqlCapTransaction>();
-
-        //Add MySqlOptions
-        services.Configure(_configure);
-        services.AddSingleton<IConfigureOptions<MySqlOptions>, ConfigureMySqlOptions>();
-    } 
 }

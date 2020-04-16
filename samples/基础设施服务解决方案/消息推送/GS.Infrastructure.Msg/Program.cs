@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace GS.Infrastructure.Msg
+namespace Sikiro.Infrastructure.Msg
 {
     public class Program
     {

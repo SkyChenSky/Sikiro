@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using RabbitMQ.Client;
 
-namespace ConnectionParser
+namespace Sikiro.Chloe.Cap.ConnectionParser
 {
     internal class ConnectionConfiguration
     {

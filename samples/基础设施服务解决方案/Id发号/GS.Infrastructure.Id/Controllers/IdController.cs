@@ -1,10 +1,9 @@
-﻿using GS.Infrastructure.Id.Models;
-using GS.Tookits.Base;
-using GS.Tookits.Extension;
+﻿using GS.Tookits.Extension;
 using GS.Tookits.Helper;
 using Microsoft.AspNetCore.Mvc;
+using Sikiro.Infrastructure.Id.Models;
 
-namespace GS.Infrastructure.Id.Controllers
+namespace Sikiro.Infrastructure.Id.Controllers
 {
     /// <summary>
     /// 分布式id

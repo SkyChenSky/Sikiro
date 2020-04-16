@@ -5,57 +5,59 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 using Dapper;
-using DotNetCore.CAP;
 using DotNetCore.CAP.Models;
 using MySql.Data.MySqlClient;
 
-public class MySqlStorageTransaction : IStorageTransaction
+namespace DotNetCore.CAP.MySql
 {
-    private readonly IDbConnection _dbConnection;
-
-    private readonly string _prefix;
-
-    public MySqlStorageTransaction(MySqlStorageConnection connection)
+    public class MySqlStorageTransaction : IStorageTransaction
     {
-        var options = connection.Options;
-        _prefix = options.TableNamePrefix;
+        private readonly IDbConnection _dbConnection;
 
-        _dbConnection = new MySqlConnection(options.ConnectionString);
-    }
+        private readonly string _prefix;
 
-    public void UpdateMessage(CapPublishedMessage message)
-    {
-        if (message == null)
+        public MySqlStorageTransaction(MySqlStorageConnection connection)
         {
-            throw new ArgumentNullException(nameof(message));
+            var options = connection.Options;
+            _prefix = options.TableNamePrefix;
+
+            _dbConnection = new MySqlConnection(options.ConnectionString);
         }
 
-        var sql =
-            $"UPDATE `{_prefix}.published` SET `Retries` = @Retries,`Content`= @Content,`ExpiresAt` = @ExpiresAt,`StatusName`=@StatusName WHERE `Id`=@Id;";
-        _dbConnection.Execute(sql, message);
-    }
-
-    public void UpdateMessage(CapReceivedMessage message)
-    {
-        if (message == null)
+        public void UpdateMessage(CapPublishedMessage message)
         {
-            throw new ArgumentNullException(nameof(message));
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message));
+            }
+
+            var sql =
+                $"UPDATE `{_prefix}.published` SET `Retries` = @Retries,`Content`= @Content,`ExpiresAt` = @ExpiresAt,`StatusName`=@StatusName WHERE `Id`=@Id;";
+            _dbConnection.Execute(sql, message);
         }
 
-        var sql =
-            $"UPDATE `{_prefix}.received` SET `Retries` = @Retries,`Content`= @Content,`ExpiresAt` = @ExpiresAt,`StatusName`=@StatusName WHERE `Id`=@Id;";
-        _dbConnection.Execute(sql, message);
-    }
+        public void UpdateMessage(CapReceivedMessage message)
+        {
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message));
+            }
 
-    public Task CommitAsync()
-    {
-        _dbConnection.Close();
-        _dbConnection.Dispose();
-        return Task.CompletedTask;
-    }
+            var sql =
+                $"UPDATE `{_prefix}.received` SET `Retries` = @Retries,`Content`= @Content,`ExpiresAt` = @ExpiresAt,`StatusName`=@StatusName WHERE `Id`=@Id;";
+            _dbConnection.Execute(sql, message);
+        }
 
-    public void Dispose()
-    {
-        _dbConnection.Dispose();
+        public Task CommitAsync()
+        {
+            _dbConnection.Close();
+            _dbConnection.Dispose();
+            return Task.CompletedTask;
+        }
+
+        public void Dispose()
+        {
+            _dbConnection.Dispose();
+        }
     }
 }

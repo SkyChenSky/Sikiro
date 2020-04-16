@@ -3,7 +3,7 @@ using System.Text.Encodings.Web;
 using GS.Tookits.Extension;
 using Microsoft.AspNetCore.Html;
 
-namespace GS.Common.Utils
+namespace Sikiro.Common.Utils
 {
     public static class StringExtension
     {

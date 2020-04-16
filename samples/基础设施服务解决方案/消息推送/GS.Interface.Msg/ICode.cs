@@ -2,7 +2,7 @@
 using WebApiClient;
 using WebApiClient.Attributes;
 
-namespace GS.Interface.Msg
+namespace Sikiro.Interface.Msg
 {
     /// <summary>
     /// 验证码

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConnectionParser.Sprache
+namespace Sikiro.Chloe.Cap.ConnectionParser.Sprache
 {
     internal static class ResultHelper
     {

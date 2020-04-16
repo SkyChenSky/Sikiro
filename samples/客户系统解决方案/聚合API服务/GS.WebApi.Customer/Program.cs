@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace GS.WebApi.Customer
+namespace Sikiro.WebApi.Customer
 {
 
     /// <summary>

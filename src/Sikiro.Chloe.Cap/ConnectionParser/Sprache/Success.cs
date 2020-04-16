@@ -1,4 +1,4 @@
-﻿namespace ConnectionParser.Sprache
+﻿namespace Sikiro.Chloe.Cap.ConnectionParser.Sprache
 {
     internal sealed class Success<T> : ISuccess<T>
     {
