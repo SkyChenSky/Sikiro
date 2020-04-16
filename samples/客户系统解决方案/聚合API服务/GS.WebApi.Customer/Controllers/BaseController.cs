@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Security.Claims;
-using GS.Tookits.Extension;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sikiro.Common.Utils;
+using Sikiro.Tookits.Extension;
 
 namespace Sikiro.WebApi.Customer.Controllers
 {

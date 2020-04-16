@@ -190,13 +190,6 @@
             <param name="services"></param>
             <param name="configuration"></param>
         </member>
-        <member name="M:Sikiro.WebApi.Customer.Extention.DependenceExtension.AddWarehouseOrderApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            注册仓储服务内部api
-            </summary>
-            <param name="services"></param>
-            <param name="configuration"></param>
-        </member>
         <member name="M:Sikiro.WebApi.Customer.Extention.DependenceExtension.AddInfrastructureApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             注册基础设施服务Api
@@ -207,20 +200,6 @@
         <member name="M:Sikiro.WebApi.Customer.Extention.DependenceExtension.AddMsgApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             注册消息服务内部api
-            </summary>
-            <param name="services"></param>
-            <param name="configuration"></param>
-        </member>
-        <member name="M:Sikiro.WebApi.Customer.Extention.DependenceExtension.AddCmsApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            注册企业信息服务内部api
-            </summary>
-            <param name="services"></param>
-            <param name="configuration"></param>
-        </member>
-        <member name="M:Sikiro.WebApi.Customer.Extention.DependenceExtension.AddCapitalApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            注册资金服务Api
             </summary>
             <param name="services"></param>
             <param name="configuration"></param>

@@ -6,7 +6,7 @@
     <members>
         <member name="T:Sikiro.Infrastructure.Id.Controllers.IdController">
             <summary>
-            分布式id
+            id发号器
             </summary>
         </member>
         <member name="M:Sikiro.Infrastructure.Id.Controllers.IdController.Generate(System.String)">

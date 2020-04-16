@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
-using GS.Interface.Capital;
-using GS.Interface.CMS;
-using GS.Interface.Id;
-using GS.Interface.Msg;
-using GS.Interface.Warehouse;
-using GS.MicroService.Extension.Rpc;
-using GS.Tookits.Extension;
-using GS.Tookits.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
 using Sikiro.Interface.Customer;
+using Sikiro.Interface.Id;
+using Sikiro.Interface.Msg;
+using Sikiro.MicroService.Extension.Rpc;
+using Sikiro.Tookits.Extension;
+using Sikiro.Tookits.Interfaces;
 using WebApiClient.Extensions.DependencyInjection;
 
 namespace Sikiro.WebApi.Customer.Extention
@@ -54,20 +51,6 @@ namespace Sikiro.WebApi.Customer.Extention
         }
 
         /// <summary>
-        /// 注册仓储服务内部api
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="configuration"></param>
-        private static void AddWarehouseOrderApi(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddHttpApis<IWarehouse>().ConfigureHttpApiConfig(c =>
-            {
-                c.HttpHost = new Uri(configuration["WarehouseInnerApiUrl"]);
-                c.FormatOptions.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
-            });
-        }
-
-        /// <summary>
         /// 注册基础设施服务Api
         /// </summary>
         /// <param name="services"></param>
@@ -97,34 +80,6 @@ namespace Sikiro.WebApi.Customer.Extention
         }
 
         /// <summary>
-        /// 注册企业信息服务内部api
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="configuration"></param>
-        private static void AddCmsApi(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddHttpApis<ICMS>().ConfigureHttpApiConfig(c =>
-            {
-                c.HttpHost = new Uri(configuration["CmsInnerApiUrl"]);
-                c.FormatOptions.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
-            });
-        }
-        /// <summary>
-        /// 注册资金服务Api
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="configuration"></param>
-        private static void AddCapitalApi(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddHttpApi<IPay>().ConfigureHttpApiConfig(c =>
-            {
-                c.HttpHost = new Uri(configuration["CapitalInnerApiUrl"]);
-                c.FormatOptions.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
-                c.HttpClient.Timeout = TimeSpan.FromSeconds(configuration["TimeoutSeconds"].TryDouble(3));
-            });
-        }
-
-        /// <summary>
         /// 注册Rpc服务
         /// </summary>
         /// <param name="services"></param>
@@ -132,11 +87,8 @@ namespace Sikiro.WebApi.Customer.Extention
         public static void AddRpc(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddCustomerApi(configuration);
-            services.AddWarehouseOrderApi(configuration);
             services.AddMsgApi(configuration);
             services.AddInfrastructureApi(configuration);
-            services.AddCmsApi(configuration);
-            services.AddCapitalApi(configuration);
         }
     }
 }

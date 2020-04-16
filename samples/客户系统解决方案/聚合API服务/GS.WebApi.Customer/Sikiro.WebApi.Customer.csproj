@@ -28,15 +28,6 @@
 
 
   <ItemGroup>
-    <PackageReference Include="GS.Chloe.Extension" Version="1.0.1.8" />
-    <PackageReference Include="GS.Interface.Capital" Version="1.0.0.6" />
-    <PackageReference Include="GS.Interface.CMS" Version="1.1.3.9" />
-    <PackageReference Include="GS.Interface.Id" Version="1.0.0.4" />
-    <PackageReference Include="GS.Interface.Msg" Version="1.0.0.9" />
-    <PackageReference Include="GS.Interface.Warehouse" Version="1.1.0.7" />
-    <PackageReference Include="GS.MicroService.Extension" Version="1.0.0.9" />
-    <PackageReference Include="GS.Nosql.Redis" Version="1.0.0.5" />
-    <PackageReference Include="GS.Tookits" Version="1.0.6.4" />
     <PackageReference Include="IdentityModel" Version="4.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
@@ -45,13 +36,14 @@
     <PackageReference Include="Senparc.Weixin.MP" Version="16.9.104.1" />
     <PackageReference Include="Senparc.Weixin.TenPay" Version="1.5.104" />
     <PackageReference Include="SkyAPM.Agent.AspNetCore" Version="0.9.0" />
-    <PackageReference Include="SkyAPM.Diagnostics.AspNetCore" Version="0.10.13" />
-    <PackageReference Include="SkyAPM.Diagnostics.HttpClient" Version="0.10.13" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Sikiro.MicroService.Extension\Sikiro.MicroService.Extension.csproj" />
     <ProjectReference Include="..\..\..\..\src\Sikiro.Tookits\Sikiro.Tookits.csproj" />
+    <ProjectReference Include="..\..\..\..\src\SkyApm.Diagnostics.AspNetCore\SkyApm.Diagnostics.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\..\src\SkyApm.Diagnostics.HttpClient\SkyApm.Diagnostics.HttpClient.csproj" />
     <ProjectReference Include="..\..\..\基础设施服务解决方案\Id发号\GS.Interface.Id\Sikiro.Interface.Id.csproj" />
     <ProjectReference Include="..\..\..\基础设施服务解决方案\消息推送\GS.Interface.Msg\Sikiro.Interface.Msg.csproj" />
     <ProjectReference Include="..\..\GS.Common.Utils\Sikiro.Common.Utils.csproj" />

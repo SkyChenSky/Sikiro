@@ -1,4 +1,5 @@
 ﻿using System;
+using DotNetCore.CAP.MySql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
