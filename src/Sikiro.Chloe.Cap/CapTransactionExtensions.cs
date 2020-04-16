@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using DotNetCore.CAP;
+using DotNetCore.CAP.MySql;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Sikiro.Chloe.Cap

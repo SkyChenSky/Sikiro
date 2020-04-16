@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GS.Chloe.Extension" Version="1.0.1.8" />
+    <ProjectReference Include="..\..\..\..\src\Sikiro.Chloe.Extension\Sikiro.Chloe.Extension.csproj" />
   </ItemGroup>
 
 </Project>

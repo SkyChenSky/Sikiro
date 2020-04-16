@@ -38,16 +38,19 @@
 
   <ItemGroup>
     <PackageReference Include="aliyun-net-sdk-core" Version="1.5.3" />
-    <PackageReference Include="GS.MicroService.Extension" Version="1.0.0.9" />
-    <PackageReference Include="GS.Nosql.Mongo" Version="1.0.4.7" />
-    <PackageReference Include="GS.Nosql.Redis" Version="1.0.0.4" />
-    <PackageReference Include="GS.Tookits" Version="1.0.6.3" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="NSwag.AspNetCore" Version="13.0.6" />
     <PackageReference Include="SkyAPM.Agent.AspNetCore" Version="0.9.0" />
-    <PackageReference Include="SkyAPM.Diagnostics.AspNetCore" Version="0.10.13" />
-    <PackageReference Include="SkyAPM.Diagnostics.HttpClient" Version="0.10.13" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Sikiro.MicroService.Extension\Sikiro.MicroService.Extension.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Sikiro.Nosql.Mongo\Sikiro.Nosql.Mongo.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Sikiro.Nosql.Redis\Sikiro.Nosql.Redis.csproj" />
+    <ProjectReference Include="..\..\..\..\src\SkyApm.Diagnostics.AspNetCore\SkyApm.Diagnostics.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\..\src\SkyApm.Diagnostics.HttpClient\SkyApm.Diagnostics.HttpClient.csproj" />
   </ItemGroup>
 
 

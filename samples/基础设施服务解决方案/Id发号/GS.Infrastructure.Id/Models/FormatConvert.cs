@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using GS.Nosql.Redis;
+using Sikiro.Nosql.Redis;
 
 namespace Sikiro.Infrastructure.Id.Models
 {

@@ -3,8 +3,8 @@ using System.Text;
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Profile;
-using GS.Tookits.Base;
-using GS.Tookits.Extension;
+using Sikiro.Tookits.Base;
+using Sikiro.Tookits.Extension;
 
 namespace Sikiro.Infrastructure.Msg.Service
 {

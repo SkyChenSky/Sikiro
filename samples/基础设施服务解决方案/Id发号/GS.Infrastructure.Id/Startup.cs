@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
-using GS.MicroService.Extension;
-using GS.MicroService.Extension.Attributes;
-using GS.MicroService.Extension.SkyApm;
-using GS.Nosql.Redis;
+using Sikiro.MicroService.Extension;
+using Sikiro.MicroService.Extension.Attributes;
+using Sikiro.MicroService.Extension.SkyApm;
+using Sikiro.Nosql.Redis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;

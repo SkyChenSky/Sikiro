@@ -1,5 +1,5 @@
-﻿using GS.Tookits.Base;
-using Sikiro.Interface.Customer.User;
+﻿using Sikiro.Interface.Customer.User;
+using Sikiro.Tookits.Base;
 using WebApiClient;
 using WebApiClient.Attributes;
 

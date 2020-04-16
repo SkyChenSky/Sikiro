@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text.Encodings.Web;
-using GS.Tookits.Extension;
 using Microsoft.AspNetCore.Html;
+using Sikiro.Tookits.Extension;
 
 namespace Sikiro.Common.Utils
 {

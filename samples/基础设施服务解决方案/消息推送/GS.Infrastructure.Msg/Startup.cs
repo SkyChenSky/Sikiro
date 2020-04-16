@@ -1,9 +1,4 @@
 ﻿using System.Reflection;
-using GS.MicroService.Extension;
-using GS.MicroService.Extension.Attributes;
-using GS.MicroService.Extension.SkyApm;
-using GS.Nosql.Mongo;
-using GS.Nosql.Redis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Sikiro.Infrastructure.Msg.Service;
+using Sikiro.MicroService.Extension;
+using Sikiro.MicroService.Extension.Attributes;
+using Sikiro.MicroService.Extension.SkyApm;
+using Sikiro.Nosql.Mongo;
+using Sikiro.Nosql.Redis;
 
 namespace Sikiro.Infrastructure.Msg
 {

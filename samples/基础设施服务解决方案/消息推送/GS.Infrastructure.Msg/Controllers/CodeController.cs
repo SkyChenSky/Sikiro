@@ -1,15 +1,15 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using GS.Nosql.Mongo;
-using GS.Nosql.Redis;
-using GS.Tookits.Base;
-using GS.Tookits.Extension;
-using GS.Tookits.Helper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Sikiro.Infrastructure.Msg.Entitys;
 using Sikiro.Infrastructure.Msg.Service;
+using Sikiro.Nosql.Mongo;
+using Sikiro.Nosql.Redis;
+using Sikiro.Tookits.Base;
+using Sikiro.Tookits.Extension;
+using Sikiro.Tookits.Helper;
 
 namespace Sikiro.Infrastructure.Msg.Controllers
 {

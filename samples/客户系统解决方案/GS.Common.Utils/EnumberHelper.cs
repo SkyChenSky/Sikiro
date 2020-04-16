@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
-using GS.Tookits.Base;
-using GS.Tookits.Extension;
+using Sikiro.Tookits.Base;
+using Sikiro.Tookits.Extension;
 
 namespace Sikiro.Common.Utils
 {

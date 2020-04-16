@@ -5,12 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GS.Chloe.Extension" Version="1.0.1.8" />
-    <PackageReference Include="GS.Tookits" Version="1.0.6.4" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Sikiro.Chloe.Extension\Sikiro.Chloe.Extension.csproj" />
     <ProjectReference Include="..\..\GS.Common.Utils\Sikiro.Common.Utils.csproj" />
     <ProjectReference Include="..\GS.Entity.Customer\Sikiro.Entity.Customer.csproj" />
   </ItemGroup>

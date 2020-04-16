@@ -1,19 +1,20 @@
 ﻿using System.Reflection;
-using GS.Chloe.Cap;
-using GS.Chloe.Extension;
-using GS.MicroService.Extension;
-using GS.MicroService.Extension.Attributes;
-using GS.MicroService.Extension.SkyApm;
-using GS.Tookits.Base;
-using GS.Tookits.Helper;
+using DotNetCore.CAP.MySql;
+using Sikiro.Chloe.Extension;
+using Sikiro.Tookits.Base;
+using Sikiro.Tookits.Helper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Sikiro.Chloe.Cap;
 using Sikiro.Entity.Customer.DBContext;
 using Sikiro.InnerApi.Customer.Extention;
+using Sikiro.MicroService.Extension;
+using Sikiro.MicroService.Extension.Attributes;
+using Sikiro.MicroService.Extension.SkyApm;
 
 namespace Sikiro.InnerApi.Customer
 {

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using GS.Tookits.Base;
-using GS.Tookits.Extension;
-using GS.Tookits.Helper;
 using Microsoft.Extensions.Configuration;
 using Sikiro.Common.Utils;
 using Sikiro.Entity.Customer;
 using Sikiro.Entity.Customer.DBContext;
 using Sikiro.Service.Customer.Enums;
+using Sikiro.Tookits.Base;
+using Sikiro.Tookits.Extension;
+using Sikiro.Tookits.Helper;
 
 namespace Sikiro.Service.Customer
 {

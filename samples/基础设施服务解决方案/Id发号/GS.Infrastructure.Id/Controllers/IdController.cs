@@ -1,12 +1,11 @@
-﻿using GS.Tookits.Extension;
-using GS.Tookits.Helper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Sikiro.Infrastructure.Id.Models;
+using Sikiro.Tookits.Helper;
 
 namespace Sikiro.Infrastructure.Id.Controllers
 {
     /// <summary>
-    /// 分布式id
+    /// id发号器
     /// </summary>
     [Route("[controller]/[action]")]
     [ApiController]

@@ -34,21 +34,20 @@
 
 
   <ItemGroup>
-    <PackageReference Include="GS.Chloe.Cap" Version="1.1.1.4" />
-    <PackageReference Include="GS.MicroService.Extension" Version="1.0.0.9" />
-    <PackageReference Include="GS.Tookits" Version="1.0.6.4" />
     <PackageReference Include="IdentityModel" Version="4.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="NSwag.AspNetCore" Version="13.0.6" />
     <PackageReference Include="SkyAPM.Agent.AspNetCore" Version="0.9.0" />
-    <PackageReference Include="SkyAPM.Diagnostics.AspNetCore" Version="0.10.13" />
-    <PackageReference Include="SkyAPM.Diagnostics.HttpClient" Version="0.10.13" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Sikiro.Chloe.Cap\Sikiro.Chloe.Cap.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Sikiro.MicroService.Extension\Sikiro.MicroService.Extension.csproj" />
+    <ProjectReference Include="..\..\..\..\src\SkyApm.Diagnostics.AspNetCore\SkyApm.Diagnostics.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\..\src\SkyApm.Diagnostics.HttpClient\SkyApm.Diagnostics.HttpClient.csproj" />
     <ProjectReference Include="..\..\GS.Common.Utils\Sikiro.Common.Utils.csproj" />
     <ProjectReference Include="..\GS.Interface.Customer\Sikiro.Interface.Customer.csproj" />
     <ProjectReference Include="..\GS.Service.Customer\Sikiro.Service.Customer.csproj" />

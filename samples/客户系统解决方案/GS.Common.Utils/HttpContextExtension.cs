@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Security.Claims;
-using GS.Tookits.Extension;
 using Microsoft.AspNetCore.Http;
+using Sikiro.Tookits.Extension;
 
 namespace Sikiro.Common.Utils
 {

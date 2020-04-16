@@ -1,5 +1,5 @@
-﻿using GS.Tookits.Interfaces;
-using Sikiro.Entity.Customer.DBContext;
+﻿using Sikiro.Entity.Customer.DBContext;
+using Sikiro.Tookits.Interfaces;
 
 namespace Sikiro.Service.Customer
 {

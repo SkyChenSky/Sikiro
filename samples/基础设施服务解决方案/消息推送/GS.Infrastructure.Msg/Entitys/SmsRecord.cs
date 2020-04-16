@@ -1,5 +1,5 @@
 ﻿using System;
-using GS.Nosql.Mongo.Base;
+using Sikiro.Nosql.Mongo.Base;
 
 namespace Sikiro.Infrastructure.Msg.Entitys
 {
