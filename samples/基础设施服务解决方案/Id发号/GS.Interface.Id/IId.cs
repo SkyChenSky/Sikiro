@@ -8,6 +8,7 @@ namespace Sikiro.Interface.Id
     /// </summary>
     public interface IId : IHttpApi
     {
+
         [HttpPost("Id/Generate")]
         ITask<string> Create(string format = null);
     }
