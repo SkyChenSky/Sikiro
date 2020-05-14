@@ -10,5 +10,6 @@ namespace Sikiro.Interface.Id
     {
         [HttpPost("Id/Generate")]
         ITask<string> Create(string format = null);
+
     }
 }
