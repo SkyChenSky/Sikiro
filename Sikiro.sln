@@ -69,6 +69,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Common.Utils", "samp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Interface.Customer", "samples\客户系统解决方案\业务API服务\GS.Interface.Customer\Sikiro.Interface.Customer.csproj", "{5A384DE7-5F97-4FB7-BD70-B1AB2E48A0DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sikiro.MongoDB.Demo", "samples\Sikiro.MongoDB.Demo\Sikiro.MongoDB.Demo.csproj", "{A310FD2B-59B3-48FD-9AF6-D2D9AF6215EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -269,6 +271,14 @@ Global
 		{5A384DE7-5F97-4FB7-BD70-B1AB2E48A0DC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A384DE7-5F97-4FB7-BD70-B1AB2E48A0DC}.Release|x86.ActiveCfg = Release|Any CPU
 		{5A384DE7-5F97-4FB7-BD70-B1AB2E48A0DC}.Release|x86.Build.0 = Release|Any CPU
+		{A310FD2B-59B3-48FD-9AF6-D2D9AF6215EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A310FD2B-59B3-48FD-9AF6-D2D9AF6215EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A310FD2B-59B3-48FD-9AF6-D2D9AF6215EF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A310FD2B-59B3-48FD-9AF6-D2D9AF6215EF}.Debug|x86.Build.0 = Debug|Any CPU
+		{A310FD2B-59B3-48FD-9AF6-D2D9AF6215EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A310FD2B-59B3-48FD-9AF6-D2D9AF6215EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A310FD2B-59B3-48FD-9AF6-D2D9AF6215EF}.Release|x86.ActiveCfg = Release|Any CPU
+		{A310FD2B-59B3-48FD-9AF6-D2D9AF6215EF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -305,6 +315,7 @@ Global
 		{7D8C15E7-33EE-4F90-BC51-1C7CB761715A} = {50662C29-51E1-4989-8C2B-8FA438E45A18}
 		{6A281984-1EAE-49EB-B956-1BE570E36748} = {51800CBB-1DDF-49C8-BDF0-0BB81DD067DC}
 		{5A384DE7-5F97-4FB7-BD70-B1AB2E48A0DC} = {50662C29-51E1-4989-8C2B-8FA438E45A18}
+		{A310FD2B-59B3-48FD-9AF6-D2D9AF6215EF} = {12B7C9C6-B296-4A8D-B169-A540F49E928E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A9F9AB70-D643-48C7-94B4-26D7A87B6263}
