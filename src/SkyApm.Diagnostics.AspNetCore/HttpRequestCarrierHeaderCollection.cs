@@ -22,7 +22,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using SkyApm.Tracing;
 
-namespace SkyApm.Diagnostics.AspNetCore
+namespace SkyApm.AspNetCore.Diagnostics
 {
     public class HttpRequestCarrierHeaderCollection : ICarrierHeaderCollection
     {

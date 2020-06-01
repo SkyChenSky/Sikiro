@@ -69,7 +69,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Common.Utils", "samp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Interface.Customer", "samples\客户系统解决方案\业务API服务\GS.Interface.Customer\Sikiro.Interface.Customer.csproj", "{5A384DE7-5F97-4FB7-BD70-B1AB2E48A0DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sikiro.MongoDB.Demo", "samples\Sikiro.MongoDB.Demo\Sikiro.MongoDB.Demo.csproj", "{A310FD2B-59B3-48FD-9AF6-D2D9AF6215EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.MongoDB.Demo", "samples\Sikiro.MongoDB.Demo\Sikiro.MongoDB.Demo.csproj", "{A310FD2B-59B3-48FD-9AF6-D2D9AF6215EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

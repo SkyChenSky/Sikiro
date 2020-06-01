@@ -16,7 +16,7 @@
  *
  */
 
-namespace SkyApm.Diagnostics.AspNetCore
+namespace SkyApm.AspNetCore.Diagnostics
 {
     internal static class HttpContextDiagnosticStrings
     {

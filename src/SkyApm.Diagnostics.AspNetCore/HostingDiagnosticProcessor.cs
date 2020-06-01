@@ -25,10 +25,12 @@ using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Newtonsoft.Json;
 using SkyApm.Common;
+using SkyApm.Diagnostics;
+using SkyApm.Diagnostics.AspNetCore;
 using SkyApm.Tracing;
 using SkyApm.Tracing.Segments;
 
-namespace SkyApm.Diagnostics.AspNetCore
+namespace SkyApm.AspNetCore.Diagnostics
 {
     public class HostingTracingDiagnosticProcessor : ITracingDiagnosticProcessor
     {

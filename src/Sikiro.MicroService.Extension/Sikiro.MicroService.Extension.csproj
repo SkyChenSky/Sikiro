@@ -24,6 +24,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Sikiro.Nosql.Mongo\Sikiro.Nosql.Mongo.csproj" />
     <ProjectReference Include="..\Sikiro.Tookits\Sikiro.Tookits.csproj" />
+    <ProjectReference Include="..\SkyApm.Diagnostics.AspNetCore\SkyApm.Diagnostics.AspNetCore.csproj" />
+    <ProjectReference Include="..\SkyApm.Diagnostics.HttpClient\SkyApm.Diagnostics.HttpClient.csproj" />
   </ItemGroup>
 
 </Project>
