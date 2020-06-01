@@ -49,8 +49,6 @@
     <ProjectReference Include="..\..\..\..\src\Sikiro.MicroService.Extension\Sikiro.MicroService.Extension.csproj" />
     <ProjectReference Include="..\..\..\..\src\Sikiro.Nosql.Mongo\Sikiro.Nosql.Mongo.csproj" />
     <ProjectReference Include="..\..\..\..\src\Sikiro.Nosql.Redis\Sikiro.Nosql.Redis.csproj" />
-    <ProjectReference Include="..\..\..\..\src\SkyApm.Diagnostics.AspNetCore\SkyApm.Diagnostics.AspNetCore.csproj" />
-    <ProjectReference Include="..\..\..\..\src\SkyApm.Diagnostics.HttpClient\SkyApm.Diagnostics.HttpClient.csproj" />
   </ItemGroup>
 
 

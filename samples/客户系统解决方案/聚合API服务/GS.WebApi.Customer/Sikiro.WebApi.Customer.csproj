@@ -35,15 +35,12 @@
     <PackageReference Include="NSwag.AspNetCore" Version="13.0.6" />
     <PackageReference Include="Senparc.Weixin.MP" Version="16.9.104.1" />
     <PackageReference Include="Senparc.Weixin.TenPay" Version="1.5.104" />
-    <PackageReference Include="SkyAPM.Agent.AspNetCore" Version="0.9.0" />
   </ItemGroup>
 
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Sikiro.MicroService.Extension\Sikiro.MicroService.Extension.csproj" />
     <ProjectReference Include="..\..\..\..\src\Sikiro.Tookits\Sikiro.Tookits.csproj" />
-    <ProjectReference Include="..\..\..\..\src\SkyApm.Diagnostics.AspNetCore\SkyApm.Diagnostics.AspNetCore.csproj" />
-    <ProjectReference Include="..\..\..\..\src\SkyApm.Diagnostics.HttpClient\SkyApm.Diagnostics.HttpClient.csproj" />
     <ProjectReference Include="..\..\..\基础设施服务解决方案\Id发号\GS.Interface.Id\Sikiro.Interface.Id.csproj" />
     <ProjectReference Include="..\..\..\基础设施服务解决方案\消息推送\GS.Interface.Msg\Sikiro.Interface.Msg.csproj" />
     <ProjectReference Include="..\..\GS.Common.Utils\Sikiro.Common.Utils.csproj" />

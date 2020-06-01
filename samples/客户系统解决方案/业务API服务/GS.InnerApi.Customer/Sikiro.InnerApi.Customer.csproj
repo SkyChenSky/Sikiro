@@ -46,8 +46,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Sikiro.Chloe.Cap\Sikiro.Chloe.Cap.csproj" />
     <ProjectReference Include="..\..\..\..\src\Sikiro.MicroService.Extension\Sikiro.MicroService.Extension.csproj" />
-    <ProjectReference Include="..\..\..\..\src\SkyApm.Diagnostics.AspNetCore\SkyApm.Diagnostics.AspNetCore.csproj" />
-    <ProjectReference Include="..\..\..\..\src\SkyApm.Diagnostics.HttpClient\SkyApm.Diagnostics.HttpClient.csproj" />
     <ProjectReference Include="..\..\GS.Common.Utils\Sikiro.Common.Utils.csproj" />
     <ProjectReference Include="..\GS.Interface.Customer\Sikiro.Interface.Customer.csproj" />
     <ProjectReference Include="..\GS.Service.Customer\Sikiro.Service.Customer.csproj" />
