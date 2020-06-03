@@ -18,7 +18,7 @@ namespace Sikiro.InnerApi.Customer.Extention
 
         public static void AddService(this IServiceCollection services)
         {
-            var defaultAssemblyNames = DependencyContext.Default.GetDefaultAssemblyNames().Where(a => a.FullName.Contains("GS.")).ToList();
+            var defaultAssemblyNames = DependencyContext.Default.GetDefaultAssemblyNames().Where(a => a.FullName.Contains("Sikiro.")).ToList();
 
             var assemblies = defaultAssemblyNames.SelectMany(a => a.GetTypeOfISerice()).ToList();
 
