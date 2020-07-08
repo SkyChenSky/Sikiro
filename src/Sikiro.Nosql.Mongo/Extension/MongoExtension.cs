@@ -70,28 +70,7 @@ namespace Sikiro.Nosql.Mongo.Extension
 
                     var filedName = propertyInfo.Name;
 
-                    if (propertyInfo.PropertyType.IsArray)
-                    {
-                        switch (propertyInfo.PropertyType.Name)
-                        {
-                            case "String[]": updateDefinitionList.Add(Builders<T>.Update.Set(filedName, (string[])value)); break;
-                            case "Int32[]": updateDefinitionList.Add(Builders<T>.Update.Set(filedName, (int[])value)); break;
-                            case "Int64[]": updateDefinitionList.Add(Builders<T>.Update.Set(filedName, (long[])value)); break;
-                            case "ObjectId[]": updateDefinitionList.Add(Builders<T>.Update.Set(filedName, (ObjectId[])value)); break;
-                            default: throw new Exception("This array type is not supported");
-                        }
-                    }
-                    else
-                    {
-                        switch (propertyInfo.PropertyType.GenericTypeArguments[0].Name)
-                        {
-                            case "String": updateDefinitionList.Add(Builders<T>.Update.Set(filedName, (List<string>)value)); break;
-                            case "Int32": updateDefinitionList.Add(Builders<T>.Update.Set(filedName, (List<int>)value)); break;
-                            default:
-                                updateDefinitionList.Add(Builders<T>.Update.Set(filedName, (IList)value));
-                                break;
-                        }
-                    }
+                    updateDefinitionList.Add(Builders<T>.Update.Set(filedName, value));
                 }
                 else
                 {

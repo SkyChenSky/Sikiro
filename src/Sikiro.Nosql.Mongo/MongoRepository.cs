@@ -532,7 +532,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>();
 
-            var updateDefinitionList = MongoExpression<T>.GetUpdateDefinition(updateExpression);
+            var updateDefinitionList = MongoUpdateExpression<T>.GetUpdateDefinition(updateExpression);
 
             var updateDefinitionBuilder = new UpdateDefinitionBuilder<T>().Combine(updateDefinitionList);
 
@@ -574,7 +574,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>(database, collection);
 
-            var updateDefinitionList = MongoExpression<T>.GetUpdateDefinition(updateExpression);
+            var updateDefinitionList = MongoUpdateExpression<T>.GetUpdateDefinition(updateExpression);
 
             var updateDefinitionBuilder = new UpdateDefinitionBuilder<T>().Combine(updateDefinitionList);
 
@@ -654,7 +654,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>(database, collection);
 
-            var updateDefinitionList = MongoExpression<T>.GetUpdateDefinition(lambda);
+            var updateDefinitionList = MongoUpdateExpression<T>.GetUpdateDefinition(lambda);
 
             var updateDefinitionBuilder = new UpdateDefinitionBuilder<T>().Combine(updateDefinitionList);
 
@@ -674,7 +674,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>();
 
-            var updateDefinitionList = MongoExpression<T>.GetUpdateDefinition(lambda);
+            var updateDefinitionList = MongoUpdateExpression<T>.GetUpdateDefinition(lambda);
 
             var updateDefinitionBuilder = new UpdateDefinitionBuilder<T>().Combine(updateDefinitionList);
 
@@ -1267,7 +1267,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>(database, collection);
 
-            var updateDefinitionList = MongoExpression<T>.GetUpdateDefinition(updateExpression);
+            var updateDefinitionList = MongoUpdateExpression<T>.GetUpdateDefinition(updateExpression);
 
             var updateDefinitionBuilder = new UpdateDefinitionBuilder<T>().Combine(updateDefinitionList);
 
@@ -1287,7 +1287,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>();
 
-            var updateDefinitionList = MongoExpression<T>.GetUpdateDefinition(updateExpression);
+            var updateDefinitionList = MongoUpdateExpression<T>.GetUpdateDefinition(updateExpression);
 
             var updateDefinitionBuilder = new UpdateDefinitionBuilder<T>().Combine(updateDefinitionList);
 
