@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Reflection;
 using Sikiro.Tookits.Extension;
 
@@ -8,27 +11,24 @@ namespace Sikiro.Tookits.Helper
     /// <summary>
     /// 特性扩展类
     /// </summary>
-    public static class AttributeHelper<T> where T : class
+    public static class AttributeHelper<TAttribute> where TAttribute : class
     {
-        private static readonly ConcurrentDictionary<Type, T> AttributeDic =
-            new ConcurrentDictionary<Type, T>();
+        private static readonly ConcurrentDictionary<Type, TAttribute> AttributeDic =
+            new ConcurrentDictionary<Type, TAttribute>();
 
         /// <summary>
         /// 获取实体特性信息
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="type"></param>
+        /// <typeparam name="TAttribute">所需要的Attribute</typeparam>
+        /// <param name="objectOfType">某值、对象</param>
         /// <returns></returns>
-        public static T GetAttribute(Type type)
+        public static TAttribute GetAttribute(Type objectOfType)
         {
-            return AttributeDic.GetOrAdd(type, item =>
+            return AttributeDic.GetOrAdd(objectOfType, item =>
              {
-                 var customAttribute = type.GetCustomAttribute(typeof(T));
+                 var customAttribute = objectOfType.GetCustomAttribute(typeof(TAttribute));
 
-                 if (customAttribute.IsNotNull())
-                     return customAttribute as T;
-
-                 return null;
+                 return customAttribute as TAttribute;
              });
 
         }
