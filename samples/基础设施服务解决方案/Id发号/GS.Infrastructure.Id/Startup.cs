@@ -1,14 +1,10 @@
 ﻿using System.Reflection;
-using Sikiro.MicroService.Extension;
-using Sikiro.MicroService.Extension.Attributes;
-using Sikiro.MicroService.Extension.SkyApm;
 using Sikiro.Nosql.Redis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
+using Microsoft.Extensions.Hosting;
 using Sikiro.Infrastructure.Id.Models;
 
 namespace Sikiro.Infrastructure.Id
@@ -24,15 +20,7 @@ namespace Sikiro.Infrastructure.Id
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options =>
-            {
-                options.Filters.Add(new RpcGolbalExceptionAttribute());
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options =>
-                {
-                    options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-                    options.SerializerSettings.Formatting = Formatting.Indented;
-                }
-            );
+            services.AddControllers();
 
             services.AddHealthChecks();
 
@@ -44,7 +32,7 @@ namespace Sikiro.Infrastructure.Id
 
             services.AddHttpContextAccessor();
 
-            services.UseSkyApm();
+            //services.UseSkyApm();
 
             services.AddSwaggerDocument(config =>
             {
@@ -57,7 +45,7 @@ namespace Sikiro.Infrastructure.Id
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime lifetime)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime)
         {
             app.UseHealthChecks("/health");
 
@@ -69,9 +57,13 @@ namespace Sikiro.Infrastructure.Id
 
             app.UseSwaggerUi3();
 
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
-            app.UseConsul(lifetime, Configuration);
+            //app.UseConsul(lifetime, Configuration);
         }
     }
 }

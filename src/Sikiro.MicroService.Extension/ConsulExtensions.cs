@@ -6,6 +6,7 @@ using Consul;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Sikiro.Tookits.Extension;
 
 namespace Sikiro.MicroService.Extension
@@ -22,7 +23,7 @@ namespace Sikiro.MicroService.Extension
         /// <param name="lifetime"></param>
         /// <param name="configuration"></param>
         /// <returns></returns>
-        public static IApplicationBuilder UseConsul(this IApplicationBuilder app, IApplicationLifetime lifetime, IConfiguration configuration)
+        public static IApplicationBuilder UseConsul(this IApplicationBuilder app, IHostApplicationLifetime lifetime, IConfiguration configuration)
         {
             var option = configuration.GetSection("Consul").Get<ConsulOption>();
             option.ThrowIfNull();

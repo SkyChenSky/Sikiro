@@ -22,10 +22,17 @@ namespace Sikiro.Nosql.Mongo
     {
         #region 初始化
         private readonly MongoClient _mongoClient;
+        private string DataBaseName;
 
         public MongoRepository(string connectionString)
         {
             _mongoClient = new MongoClient(connectionString);
+        }
+
+        public MongoRepository(string connectionString, string dataBaseName)
+        {
+            _mongoClient = new MongoClient(connectionString);
+            DataBaseName = dataBaseName;
         }
 
         static MongoRepository()
@@ -57,6 +64,9 @@ namespace Sikiro.Nosql.Mongo
 
         public IMongoCollection<T> GetCollection<T>()
         {
+            if (!string.IsNullOrEmpty(DataBaseName))
+                return GetCollection<T>(DataBaseName, typeof(T).Name);
+
             var mongoAttribute = GetMongoAttribute<T>();
 
             return GetCollection<T>(mongoAttribute.Database, mongoAttribute.Collection ?? typeof(T).Name);
@@ -172,7 +182,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>(database, collection);
 
-            if (coll.Count(predicate) > 0)
+            if (coll.CountDocuments(predicate) > 0)
                 return false;
 
             coll.InsertOne(entity);
@@ -200,7 +210,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>();
 
-            if (coll.Count(a => a.Id == entity.Id) > 0)
+            if (coll.CountDocuments(a => a.Id == entity.Id) > 0)
                 return false;
 
             coll.InsertOne(entity);
@@ -217,7 +227,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>();
 
-            if (coll.Count(predicate) > 0)
+            if (coll.CountDocuments(predicate) > 0)
                 return false;
 
             coll.InsertOne(entity);
@@ -236,14 +246,14 @@ namespace Sikiro.Nosql.Mongo
         /// <param name="database">库</param>
         /// <param name="collection">集合（表）</param>
         /// <param name="entity">实体(文档)</param>
-        public Task BatchAddAsync<T>(string database, string collection, List<T> entity) where T : MongoEntity
+        public async Task BatchAddAsync<T>(string database, string collection, List<T> entity) where T : MongoEntity
         {
             if (!entity.Any())
-                return Task.CompletedTask;
+                return;
 
             var coll = GetCollection<T>(database, collection);
 
-            return coll.InsertManyAsync(entity);
+            await coll.InsertManyAsync(entity);
         }
 
         /// <summary>
@@ -251,14 +261,14 @@ namespace Sikiro.Nosql.Mongo
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity">实体(文档)</param>
-        public Task BatchAddAsync<T>(List<T> entity) where T : MongoEntity
+        public async Task BatchAddAsync<T>(List<T> entity) where T : MongoEntity
         {
             if (!entity.Any())
-                return Task.CompletedTask;
+                return;
 
             var coll = GetCollection<T>();
 
-            return coll.InsertManyAsync(entity);
+            await coll.InsertManyAsync(entity);
         }
 
         #endregion
@@ -315,7 +325,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>(database, collection);
 
-            var reuslt = coll.ReplaceOne(predicate, t, new UpdateOptions { IsUpsert = true });
+            var reuslt = coll.ReplaceOne(predicate, t, new ReplaceOptions { IsUpsert = true });
 
             return reuslt.ModifiedCount;
         }
@@ -341,7 +351,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>();
 
-            var reuslt = coll.ReplaceOne(a => a.Id == t.Id, t, new UpdateOptions { IsUpsert = true });
+            var reuslt = coll.ReplaceOne(a => a.Id == t.Id, t, new ReplaceOptions { IsUpsert = true });
 
             return reuslt.ModifiedCount;
         }
@@ -360,7 +370,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>(database, collection);
 
-            var reuslt = await coll.ReplaceOneAsync(predicate, t, new UpdateOptions { IsUpsert = true });
+            var reuslt = await coll.ReplaceOneAsync(predicate, t, new ReplaceOptions { IsUpsert = true });
 
             return reuslt.ModifiedCount;
         }
@@ -386,7 +396,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>();
 
-            var reuslt = await coll.ReplaceOneAsync(a => a.Id == t.Id, t, new UpdateOptions { IsUpsert = true });
+            var reuslt = await coll.ReplaceOneAsync(a => a.Id == t.Id, t, new ReplaceOptions { IsUpsert = true });
 
             return reuslt.ModifiedCount;
         }
@@ -1009,7 +1019,7 @@ namespace Sikiro.Nosql.Mongo
 
         #endregion
 
-        #region 分页
+        #region 分页（采用了skip在数据量大了后会有性能问题，建议使用瀑布流加载+条件索引）
 
         #region 分页（同步）
 
@@ -1030,7 +1040,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>(database, collection);
 
-            var count = (int)coll.Count<T>(predicate);
+            var count = (int)coll.CountDocuments<T>(predicate);
 
             var find = coll.Find(predicate);
 
@@ -1059,7 +1069,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>();
 
-            var count = (int)coll.Count<T>(predicate);
+            var count = (int)coll.CountDocuments<T>(predicate);
 
             var find = coll.Find(predicate);
 
@@ -1132,7 +1142,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>();
 
-            var count = (int)await coll.CountAsync<T>(predicate);
+            var count = (int)await coll.CountDocumentsAsync<T>(predicate);
 
             var find = coll.Find(predicate);
 
@@ -1168,7 +1178,7 @@ namespace Sikiro.Nosql.Mongo
         {
             var coll = GetCollection<T>(database, collection);
 
-            var count = (int)await coll.CountAsync<T>(predicate);
+            var count = (int)await coll.CountDocumentsAsync<T>(predicate);
 
             var find = coll.Find(predicate);
 
@@ -1197,11 +1207,11 @@ namespace Sikiro.Nosql.Mongo
         /// <typeparam name="T"></typeparam>
         /// <param name="predicate">查询条件</param>
         /// <returns></returns>
-        public bool Exists<T>(Expression<Func<T, bool>> predicate) where T : MongoEntity
+        public bool Exists<T>(Expression<Func<T, bool>> predicate = null) where T : MongoEntity
         {
             var coll = GetCollection<T>();
 
-            var result = coll.Count(predicate);
+            var result = predicate != null ? coll.CountDocuments(predicate) : coll.EstimatedDocumentCount();
 
             return result > 0;
         }
@@ -1214,11 +1224,11 @@ namespace Sikiro.Nosql.Mongo
         /// <param name="collection">集合</param>
         /// <param name="predicate">查询条件</param>
         /// <returns></returns>
-        public bool Exists<T>(string database, string collection, Expression<Func<T, bool>> predicate) where T : MongoEntity
+        public bool Exists<T>(string database, string collection, Expression<Func<T, bool>> predicate = null) where T : MongoEntity
         {
             var coll = GetCollection<T>(database, collection);
 
-            var result = coll.Count(predicate);
+            var result = predicate != null ? coll.CountDocuments(predicate) : coll.EstimatedDocumentCount();
 
             return result > 0;
         }
@@ -1230,11 +1240,11 @@ namespace Sikiro.Nosql.Mongo
         /// </summary>
         /// <param name="predicate">条件</param>
         /// <returns></returns>
-        public long Count<T>(Expression<Func<T, bool>> predicate) where T : MongoEntity
+        public long Count<T>(Expression<Func<T, bool>> predicate = null) where T : MongoEntity
         {
             var coll = GetCollection<T>();
 
-            return coll.Count(predicate);
+            return predicate != null ? coll.CountDocuments(predicate) : coll.EstimatedDocumentCount();
         }
 
         /// <summary>
@@ -1244,11 +1254,11 @@ namespace Sikiro.Nosql.Mongo
         /// <param name="collection">集合</param>
         /// <param name="predicate">条件</param>
         /// <returns></returns>
-        public long Count<T>(string database, string collection, Expression<Func<T, bool>> predicate) where T : MongoEntity
+        public long Count<T>(string database, string collection, Expression<Func<T, bool>> predicate = null) where T : MongoEntity
         {
             var coll = GetCollection<T>(database, collection);
 
-            return coll.Count(predicate);
+            return predicate != null ? coll.CountDocuments(predicate) : coll.EstimatedDocumentCount();
         }
         #endregion
 

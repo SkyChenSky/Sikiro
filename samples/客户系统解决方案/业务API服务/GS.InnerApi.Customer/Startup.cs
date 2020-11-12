@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Sikiro.Chloe.Cap;
 using Sikiro.Entity.Customer.DBContext;
@@ -32,12 +33,10 @@ namespace Sikiro.InnerApi.Customer
             services.AddMvc(options =>
             {
                 options.Filters.Add(new RpcGolbalExceptionAttribute());
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options =>
-                {
-                    options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-                    options.SerializerSettings.Formatting = Formatting.Indented;
-                }
-            );
+            }).AddMvcOptions(options =>
+            {
+                options.EnableEndpointRouting = false;
+            });
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -84,7 +83,7 @@ namespace Sikiro.InnerApi.Customer
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime lifetime)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime)
         {
             app.UseHealthChecks("/health");
 

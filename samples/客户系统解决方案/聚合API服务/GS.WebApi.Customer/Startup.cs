@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using NSwag;
@@ -36,12 +37,7 @@ namespace Sikiro.WebApi.Customer
             {
                 options.Filters.Add(new GolbalExceptionAttribute());
                 options.ModelBinderProviders.Insert(0, new TrimModelBinderProvider());
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(options =>
-                {
-                    options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
-                    options.SerializerSettings.Formatting = Formatting.Indented;
-                }
-            );
+            });
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -84,18 +80,10 @@ namespace Sikiro.WebApi.Customer
                     document.Info.Description = Assembly.GetExecutingAssembly().GetName(true).Name;
                 };
             });
-
-            services.AddSenparcGlobalServices(Configuration) //Senparc.CO2NET 全局注册
-                .AddSenparcWeixinServices(Configuration); //Senparc.Weixin 注册
-
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime lifetime, IOptions<SenparcSetting> senparcSetting, IOptions<SenparcWeixinSetting> senparcWeixinSetting)
+        public void Configure(IApplicationBuilder app)
         {
-            IRegisterService register = RegisterService.Start(env, senparcSetting.Value).UseSenparcGlobal();// 启动 CO2NET 全局注册，必须！
-
-            register.UseSenparcWeixin(senparcWeixinSetting.Value, senparcSetting.Value);//微信全局注册，必须！
-            AccessTokenContainer.Register(Configuration["wechat:appid"], Configuration["wechat:appSecret"]);
             app.UseHealthChecks("/health");
 
             app.UseDeveloperExceptionPage();

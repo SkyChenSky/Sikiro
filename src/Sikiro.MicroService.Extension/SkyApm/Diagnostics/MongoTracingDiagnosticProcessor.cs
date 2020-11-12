@@ -33,9 +33,9 @@ namespace Sikiro.MicroService.Extension.SkyApm.Diagnostics
             {
                 context.Span.Peer = new StringOrIntValue(mongoClient.Settings.Server.ToString());
             }
-            if (mongoClient.Settings.Credentials.Any())
+            if (string.IsNullOrEmpty(mongoClient.Settings.Credential.Source))
             {
-                context.Span.AddTag(Tags.DB_INSTANCE, mongoClient.Settings.Credentials.FirstOrDefault()?.Source);
+                context.Span.AddTag(Tags.DB_INSTANCE, mongoClient.Settings.Credential.Source);
             }
         }
         private SegmentContext CreateSmartSqlLocalSegmentContext(string operation)
@@ -48,14 +48,14 @@ namespace Sikiro.MicroService.Extension.SkyApm.Diagnostics
         }
 
         [DiagnosticName(MongoDiagnosticListenerExtensions.MONGO_EXCUTE_BEFORE)]
-        public void ExcuteBefore([Object]ExcuteData eventData)
+        public void ExcuteBefore([Object] ExcuteData eventData)
         {
             var context = CreateSmartSqlLocalSegmentContext("mongo");
             AddConnectionTag(context, eventData.MongoClient);
         }
 
         [DiagnosticName(MongoDiagnosticListenerExtensions.MONGO_EXCUTE_AFTER)]
-        public void ExcuteAfter([Object]ExcuteData eventData)
+        public void ExcuteAfter([Object] ExcuteData eventData)
         {
             var context = _localSegmentContextAccessor.Context;
             if (context != null)
@@ -65,7 +65,7 @@ namespace Sikiro.MicroService.Extension.SkyApm.Diagnostics
         }
 
         [DiagnosticName(MongoDiagnosticListenerExtensions.MONGO_EXCUTE_ERROR)]
-        public void ExcuteError([Object]ExcuteExceptionData eventData)
+        public void ExcuteError([Object] ExcuteExceptionData eventData)
         {
             var context = _localSegmentContextAccessor.Context;
             if (context != null)

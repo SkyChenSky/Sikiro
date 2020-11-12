@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Mapster;
+using MapsterMapper;
 
 namespace Sikiro.Tookits.Extension
 {
@@ -17,7 +18,7 @@ namespace Sikiro.Tookits.Extension
         /// <returns></returns>
         public static TResult MapTo<TFrom, TResult>(this TFrom obj)
         {
-            return new Adapter().Adapt<TFrom, TResult>(obj);
+            return new Mapper().Map<TFrom, TResult>(obj);
         }
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace Sikiro.Tookits.Extension
         /// <returns></returns>
         public static TResult MapTo<TResult>(this object obj)
         {
-            return new Adapter().Adapt<TResult>(obj);
+            return new Mapper().Map<TResult>(obj);
         }
 
         /// <summary>

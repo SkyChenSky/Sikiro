@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>GS.Infrastructure.Id.xml</DocumentationFile>
+    <DocumentationFile>F:\work\Sikiro\samples\基础设施服务解决方案\Id发号\GS.Infrastructure.Id\Sikiro.Infrastructure.Id.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
     <OutputPath></OutputPath>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
@@ -32,14 +32,12 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+	  <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.0" />
     <PackageReference Include="NSwag.AspNetCore" Version="13.0.6" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\Sikiro.MicroService.Extension\Sikiro.MicroService.Extension.csproj" />
     <ProjectReference Include="..\..\..\..\src\Sikiro.Nosql.Redis\Sikiro.Nosql.Redis.csproj" />
     <ProjectReference Include="..\..\..\..\src\Sikiro.Tookits\Sikiro.Tookits.csproj" />
   </ItemGroup>
