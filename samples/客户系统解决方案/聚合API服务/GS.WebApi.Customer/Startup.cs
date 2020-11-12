@@ -2,21 +2,11 @@
 using Sikiro.MicroService.Extension.SkyApm;
 using Sikiro.Tookits.Base;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using NSwag;
 using NSwag.Generation.Processors.Security;
-using Senparc.CO2NET;
-using Senparc.CO2NET.RegisterServices;
-using Senparc.Weixin;
-using Senparc.Weixin.Entities;
-using Senparc.Weixin.MP.Containers;
-using Senparc.Weixin.RegisterServices;
 using Sikiro.WebApi.Customer.Attribute;
 using Sikiro.WebApi.Customer.Extention;
 
@@ -35,8 +25,11 @@ namespace Sikiro.WebApi.Customer
         {
             services.AddMvc(options =>
             {
-                options.Filters.Add(new GolbalExceptionAttribute());
+                options.Filters.Add<GolbalExceptionAttribute>();
                 options.ModelBinderProviders.Insert(0, new TrimModelBinderProvider());
+            }).AddMvcOptions(options =>
+            {
+                options.EnableEndpointRouting = false;
             });
 
             services.Configure<ApiBehaviorOptions>(options =>
@@ -91,6 +84,7 @@ namespace Sikiro.WebApi.Customer
             app.UseStaticFiles();
 
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseOpenApi();
 

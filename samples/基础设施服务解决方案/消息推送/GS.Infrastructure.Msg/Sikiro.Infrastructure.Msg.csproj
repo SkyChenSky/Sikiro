@@ -39,7 +39,7 @@
   <ItemGroup>
     <PackageReference Include="aliyun-net-sdk-core" Version="1.5.10" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
-    <PackageReference Include="NSwag.AspNetCore" Version="13.0.6" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.9.0" />
   </ItemGroup>
 
 

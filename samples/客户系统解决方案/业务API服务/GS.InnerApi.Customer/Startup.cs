@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
 using Sikiro.Chloe.Cap;
 using Sikiro.Entity.Customer.DBContext;
 using Sikiro.InnerApi.Customer.Extention;
@@ -30,9 +29,9 @@ namespace Sikiro.InnerApi.Customer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options =>
+            services.AddControllers(options =>
             {
-                options.Filters.Add(new RpcGolbalExceptionAttribute());
+                options.Filters.Add<RpcGolbalExceptionAttribute>();
             }).AddMvcOptions(options =>
             {
                 options.EnableEndpointRouting = false;
@@ -92,10 +91,13 @@ namespace Sikiro.InnerApi.Customer
             app.UseStaticFiles();
 
             app.UseOpenApi();
-
             app.UseSwaggerUi3();
 
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             app.UseConsul(lifetime, Configuration);
         }

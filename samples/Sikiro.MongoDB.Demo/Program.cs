@@ -1,5 +1,4 @@
-﻿using System;
-using Sikiro.Nosql.Mongo;
+﻿using Sikiro.Nosql.Mongo;
 
 namespace Sikiro.MongoDB.Demo
 {

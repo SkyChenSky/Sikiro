@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Sikiro.Infrastructure.Id.Models;
+using Sikiro.MicroService.Extension;
+using Sikiro.MicroService.Extension.Attributes;
+using Sikiro.MicroService.Extension.SkyApm;
 
 namespace Sikiro.Infrastructure.Id
 {
@@ -20,7 +23,10 @@ namespace Sikiro.Infrastructure.Id
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Filters.Add<RpcGolbalExceptionAttribute>();
+            });
 
             services.AddHealthChecks();
 
@@ -32,7 +38,7 @@ namespace Sikiro.Infrastructure.Id
 
             services.AddHttpContextAccessor();
 
-            //services.UseSkyApm();
+            services.UseSkyApm();
 
             services.AddSwaggerDocument(config =>
             {
@@ -63,7 +69,7 @@ namespace Sikiro.Infrastructure.Id
                 endpoints.MapControllers();
             });
 
-            //app.UseConsul(lifetime, Configuration);
+            app.UseConsul(lifetime, Configuration);
         }
     }
 }

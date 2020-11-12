@@ -36,7 +36,7 @@
   <ItemGroup>
     <PackageReference Include="IdentityModel" Version="4.4.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
-    <PackageReference Include="NSwag.AspNetCore" Version="13.0.6" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.9.0" />
   </ItemGroup>
 
 

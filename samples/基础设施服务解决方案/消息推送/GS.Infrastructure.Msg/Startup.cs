@@ -1,11 +1,8 @@
 ﻿using System.Reflection;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
 using Sikiro.Infrastructure.Msg.Service;
 using Sikiro.MicroService.Extension;
 using Sikiro.MicroService.Extension.Attributes;
@@ -26,9 +23,9 @@ namespace Sikiro.Infrastructure.Msg
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options =>
+            services.AddControllers(options =>
             {
-                options.Filters.Add(new RpcGolbalExceptionAttribute());
+                options.Filters.Add<RpcGolbalExceptionAttribute>();
             });
 
             services.AddHealthChecks();
@@ -68,7 +65,11 @@ namespace Sikiro.Infrastructure.Msg
 
             app.UseSwaggerUi3();
 
-            app.UseMvc();
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             app.UseConsul(lifetime, Configuration);
         }

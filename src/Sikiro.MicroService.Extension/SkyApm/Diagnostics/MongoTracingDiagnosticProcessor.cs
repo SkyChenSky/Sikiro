@@ -1,4 +1,3 @@
-using System.Linq;
 using MongoDB.Driver;
 using Sikiro.Nosql.Mongo.Diagnostics;
 using SkyApm;

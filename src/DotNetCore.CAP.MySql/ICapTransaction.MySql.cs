@@ -3,8 +3,6 @@
 
 using System.Data;
 using System.Diagnostics;
-using System.Threading;
-using DotNetCore.CAP;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;

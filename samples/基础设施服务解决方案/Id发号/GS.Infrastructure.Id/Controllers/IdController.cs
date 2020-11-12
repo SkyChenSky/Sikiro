@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using Sikiro.Infrastructure.Id.Models;
 using Sikiro.Tookits.Extension;
 using Sikiro.Tookits.Helper;
@@ -27,6 +28,7 @@ namespace Sikiro.Infrastructure.Id.Controllers
         [HttpPost]
         public string Generate(string format = null)
         {
+            throw new Exception("asdas");
             if (format.IsNullOrWhiteSpace())
                 return GuidHelper.GenerateComb().ToString();
 
