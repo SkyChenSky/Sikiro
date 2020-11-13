@@ -32,9 +32,6 @@ namespace Sikiro.InnerApi.Customer
             services.AddControllers(options =>
             {
                 options.Filters.Add<RpcGolbalExceptionAttribute>();
-            }).AddMvcOptions(options =>
-            {
-                options.EnableEndpointRouting = false;
             });
 
             services.Configure<ApiBehaviorOptions>(options =>

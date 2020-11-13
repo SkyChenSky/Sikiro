@@ -1,32 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <Authors>陈珙</Authors>
-    <Company>葛氏</Company>
-    <Description>RPC注册,微服务框架-服务注册,终端跟踪忽略</Description>
-    <Version>1.0.0.9</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<Authors>陈珙</Authors>
+		<Company>葛氏</Company>
+		<Description>RPC注册,微服务框架-服务注册,终端跟踪忽略</Description>
+		<Version>1.0.0.9</Version>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <WarningLevel>0</WarningLevel>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<WarningLevel>0</WarningLevel>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Consul" Version="0.7.2.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-    <PackageReference Include="SkyAPM.Agent.AspNetCore" Version="0.9.0" />
-    <PackageReference Include="SkyAPM.Utilities.DependencyInjection" Version="0.9.0" />
-    <PackageReference Include="WebApiClient.JIT" Version="1.1.4" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Consul" Version="0.7.2.6" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+		<PackageReference Include="SkyAPM.Agent.AspNetCore" Version="1.0.0" />
+		<PackageReference Include="SkyAPM.Utilities.DependencyInjection" Version="1.0.0" />
+		<PackageReference Include="WebApiClient.JIT" Version="1.1.4" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Sikiro.Nosql.Mongo\Sikiro.Nosql.Mongo.csproj" />
-    <ProjectReference Include="..\Sikiro.Tookits\Sikiro.Tookits.csproj" />
-    <ProjectReference Include="..\SkyApm.Diagnostics.AspNetCore\SkyApm.Diagnostics.AspNetCore.csproj" />
-    <ProjectReference Include="..\SkyApm.Diagnostics.HttpClient\SkyApm.Diagnostics.HttpClient.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Sikiro.Nosql.Mongo\Sikiro.Nosql.Mongo.csproj" />
+		<ProjectReference Include="..\Sikiro.Tookits\Sikiro.Tookits.csproj" />
+		<ProjectReference Include="..\SkyApm.Diagnostics.AspNetCore\SkyApm.Diagnostics.AspNetCore.csproj" />
+		<ProjectReference Include="..\SkyApm.Diagnostics.HttpClient\SkyApm.Diagnostics.HttpClient.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 
 </Project>

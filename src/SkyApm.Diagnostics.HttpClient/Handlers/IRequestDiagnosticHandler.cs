@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Licensed to the SkyAPM under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -16,36 +16,15 @@
  *
  */
 
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using SkyApm.Tracing;
 
-namespace SkyApm.Diagnostics.HttpClient
+namespace SkyApm.Diagnostics.HttpClient.Filters
 {
-    public class HttpClientICarrierHeaderCollection : ICarrierHeaderCollection
+    public interface IRequestDiagnosticHandler
     {
-        private readonly HttpRequestMessage _request;
+        bool OnlyMatch(HttpRequestMessage request);
 
-        public HttpClientICarrierHeaderCollection(HttpRequestMessage request)
-        {
-            _request = request;
-        }
-
-        public void Add(string key, string value)
-        {
-            _request.Headers.Add(key, value);
-        }
-
-        public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
-        {
-            return _request.Headers.Select(x => new KeyValuePair<string, string>(x.Key, x.Value.FirstOrDefault())).GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        void Handle(ITracingContext tracingContext, HttpRequestMessage request);
     }
 }

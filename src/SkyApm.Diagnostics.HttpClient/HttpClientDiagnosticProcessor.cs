@@ -17,11 +17,12 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
-using Newtonsoft.Json;
 using SkyApm.Common;
+using SkyApm.Diagnostics.HttpClient.Filters;
 using SkyApm.Tracing;
-using SkyApm.Tracing.Segments;
 
 namespace SkyApm.Diagnostics.HttpClient
 {
@@ -31,40 +32,37 @@ namespace SkyApm.Diagnostics.HttpClient
 
         //private readonly IContextCarrierFactory _contextCarrierFactory;
         private readonly ITracingContext _tracingContext;
+
         private readonly IExitSegmentContextAccessor _contextAccessor;
-        private SegmentContext _segmentContext;
+
+        private readonly IEnumerable<IRequestDiagnosticHandler> _requestDiagnosticHandlers;
 
         public HttpClientTracingDiagnosticProcessor(ITracingContext tracingContext,
-            IExitSegmentContextAccessor contextAccessor)
+            IExitSegmentContextAccessor contextAccessor,
+            IEnumerable<IRequestDiagnosticHandler> requestDiagnosticHandlers)
         {
             _tracingContext = tracingContext;
             _contextAccessor = contextAccessor;
+            _requestDiagnosticHandlers = requestDiagnosticHandlers.Reverse();
         }
 
         [DiagnosticName("System.Net.Http.Request")]
         public void HttpRequest([Property(Name = "Request")] HttpRequestMessage request)
         {
-            _segmentContext = _tracingContext.CreateExitSegmentContext(request.RequestUri.ToString(),
-                $"{request.RequestUri.Host}:{request.RequestUri.Port}",
-                new HttpClientICarrierHeaderCollection(request));
-            var context = _segmentContext;
-
-            if (request.Content != null)
+            foreach (var handler in _requestDiagnosticHandlers)
             {
-                var requestStr = request.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
-                context.Span.AddTag(TagsExtension.REQUEST, requestStr);
+                if (handler.OnlyMatch(request))
+                {
+                    handler.Handle(_tracingContext, request);
+                    return;
+                }
             }
-            context.Span.SpanLayer = SpanLayer.HTTP;
-            context.Span.Component = Components.HTTPCLIENT;
-            context.Span.AddTag(Tags.URL, request.RequestUri.ToString());
-            context.Span.AddTag(Tags.HTTP_METHOD, request.Method.ToString());
-            context.Span.AddTag(TagsExtension.HEADERS, JsonConvert.SerializeObject(request.Headers));
         }
 
         [DiagnosticName("System.Net.Http.Response")]
         public void HttpResponse([Property(Name = "Response")] HttpResponseMessage response)
         {
-            var context = _segmentContext;
+            var context = _contextAccessor.Context;
             if (context == null)
             {
                 return;
@@ -78,12 +76,6 @@ namespace SkyApm.Diagnostics.HttpClient
                     context.Span.ErrorOccurred();
                 }
 
-                if (response.Content != null)
-                {
-                    var responseStr = response.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
-                    context.Span.AddTag(TagsExtension.RESPONSE, responseStr);
-                }
-
                 context.Span.AddTag(Tags.STATUS_CODE, statusCode);
             }
 
@@ -94,7 +86,7 @@ namespace SkyApm.Diagnostics.HttpClient
         public void HttpException([Property(Name = "Request")] HttpRequestMessage request,
             [Property(Name = "Exception")] Exception exception)
         {
-            _segmentContext?.Span?.ErrorOccurred(exception);
+            _contextAccessor.Context?.Span?.ErrorOccurred(exception);
         }
     }
 }

@@ -35,7 +35,10 @@ namespace Sikiro.Chloe.Cap.SamplesB
                 };
             });
 
-            services.AddMvc();
+            services.AddMvc().AddMvcOptions(options =>
+            {
+                options.EnableEndpointRouting = false;
+            });
         }
 
         public void Configure(IApplicationBuilder app)

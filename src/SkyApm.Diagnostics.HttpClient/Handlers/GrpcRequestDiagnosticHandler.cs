@@ -16,27 +16,24 @@
  *
  */
 
-using System;
-using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
+using System.Net.Http;
 using SkyApm.Diagnostics.HttpClient.Filters;
-using SkyApm.Diagnostics.HttpClient.Handlers;
-using SkyApm.Utilities.DependencyInjection;
+using SkyApm.Tracing;
 
-namespace SkyApm.Diagnostics.HttpClient
+namespace SkyApm.Diagnostics.HttpClient.Handlers
 {
-    public static class SkyWalkingBuilderExtensions
+    internal class GrpcRequestDiagnosticHandler : IRequestDiagnosticHandler
     {
-        public static SkyApmExtensions AddHttpClient(this SkyApmExtensions extensions)
+        public bool OnlyMatch(HttpRequestMessage request)
         {
-            if (extensions == null)
-            {
-                throw new ArgumentNullException(nameof(extensions));
-            }
+            return request.Headers.TryGetValues("User-Agent", out var values) &&
+                   values.Any(x => x.Contains("grpc-dotnet"));
+        }
 
-            extensions.Services.AddSingleton<ITracingDiagnosticProcessor, HttpClientTracingDiagnosticProcessor>();
-            extensions.Services.AddSingleton<IRequestDiagnosticHandler, DefaultRequestDiagnosticHandler>();
-            extensions.Services.AddSingleton<IRequestDiagnosticHandler, GrpcRequestDiagnosticHandler>();
-            return extensions;
+        public void Handle(ITracingContext tracingContext, HttpRequestMessage request)
+        {
+            //has handled in the grpc-dotnet client diagnostics
         }
     }
 }

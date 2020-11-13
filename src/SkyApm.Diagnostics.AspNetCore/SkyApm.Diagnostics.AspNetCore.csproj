@@ -1,26 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <Description>$(PackagePrefix).Diagnostics.AspNetCore notifies Web Http requests.</Description>
-        <AssemblyTitle>$(PackagePrefix).Diagnostics.AspNetCore</AssemblyTitle>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <AssemblyName>SkyApm.Diagnostics.AspNetCore</AssemblyName>
-        <PackageId>SkyAPM.Diagnostics.AspNetCore</PackageId>
-        <PackageTags>SkyWalking;APM;Diagnostics;AspNetCore</PackageTags>
-        <PackageReleaseNotes>
-        </PackageReleaseNotes>
-        <RootNamespace>SkyApm.Diagnostics.AspNetCore</RootNamespace>
-        <Version>0.10.13</Version>
-        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    </PropertyGroup>
+	<PropertyGroup>
+		<Description>$(PackagePrefix).Diagnostics.AspNetCore notifies Web Http requests.</Description>
+		<AssemblyTitle>$(PackagePrefix).Diagnostics.AspNetCore</AssemblyTitle>
+		<TargetFramework>net5.0</TargetFramework>
+		<AssemblyName>SkyApm.Diagnostics.AspNetCore</AssemblyName>
+		<PackageId>SkyAPM.Diagnostics.AspNetCore</PackageId>
+		<PackageTags>SkyWalking;APM;Diagnostics;AspNetCore</PackageTags>
+		<PackageReleaseNotes>
+		</PackageReleaseNotes>
+		<RootNamespace>SkyApm.Diagnostics.AspNetCore</RootNamespace>
+		<Version>0.10.13</Version>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	</PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-      <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.2.0" PrivateAssets="All" />
-      <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.0.0" PrivateAssets="All" />
-      <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-      <PackageReference Include="SkyAPM.Abstractions" Version="0.9.0" />
-      <PackageReference Include="SkyAPM.Utilities.DependencyInjection" Version="0.9.0" />
-    </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="SkyAPM.Abstractions" Version="1.0.0" />
+		<PackageReference Include="SkyAPM.Utilities.DependencyInjection" Version="1.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 </Project>
