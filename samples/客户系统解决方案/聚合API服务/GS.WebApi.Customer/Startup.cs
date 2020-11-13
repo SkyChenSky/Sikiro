@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Reflection;
 using Sikiro.MicroService.Extension.SkyApm;
 using Sikiro.Tookits.Base;
 using Microsoft.AspNetCore.Builder;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NSwag;
+using NSwag.AspNetCore;
 using NSwag.Generation.Processors.Security;
 using Sikiro.WebApi.Customer.Attribute;
 using Sikiro.WebApi.Customer.Extention;
@@ -87,8 +89,10 @@ namespace Sikiro.WebApi.Customer
             app.UseAuthorization();
 
             app.UseOpenApi();
-
-            app.UseSwaggerUi3();
+            app.UseSwaggerUi3(options =>
+            {
+                options.Path = "";
+            });
 
             app.UseMvc();
         }

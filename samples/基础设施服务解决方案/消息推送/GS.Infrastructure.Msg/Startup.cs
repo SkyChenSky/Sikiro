@@ -62,8 +62,10 @@ namespace Sikiro.Infrastructure.Msg
             app.UseStaticFiles();
 
             app.UseOpenApi();
-
-            app.UseSwaggerUi3();
+            app.UseSwaggerUi3(options =>
+            {
+                options.Path = "";
+            });
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>
