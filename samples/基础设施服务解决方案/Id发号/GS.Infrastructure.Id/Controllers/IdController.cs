@@ -28,7 +28,6 @@ namespace Sikiro.Infrastructure.Id.Controllers
         [HttpPost]
         public string Generate(string format = null)
         {
-            throw new Exception("asdas");
             if (format.IsNullOrWhiteSpace())
                 return GuidHelper.GenerateComb().ToString();
 
