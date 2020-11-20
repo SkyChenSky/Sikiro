@@ -55,19 +55,17 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <returns></returns>
         [HttpPost("logon")]
         [AllowAnonymous]
-        public async Task<ServiceResult<UserLogonResponse>> Logon(UserLogonRequest logonRequest)
+        public async Task<ApiResult<UserLogonResponse>> Logon(UserLogonRequest logonRequest)
         {
             var logonResult = await _iUser.LogonCheck(logonRequest.MapTo<LogonCheckRequest>());
-            if (logonResult.Success)
-            {
-                var token = BuildJwt(logonResult.Data.MapTo<AdministratorData>());
-                var response = logonResult.Data.MapTo<UserLogonResponse>();
-                response.Token = token;
+            if (logonResult.Failed)
+                return logonResult.ToApiResult<UserLogonResponse>();
 
-                return ServiceResult<UserLogonResponse>.IsSuccess("登录成功", response);
-            }
+            var token = BuildJwt(logonResult.Data.MapTo<AdministratorData>());
+            var response = logonResult.Data.MapTo<UserLogonResponse>();
+            response.Token = token;
 
-            return ServiceResult<UserLogonResponse>.IsFailed(logonResult.Message);
+            return ApiResult<UserLogonResponse>.IsSuccess("登录", response);
         }
 
         /// <summary>
@@ -77,26 +75,25 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <returns></returns>
         [HttpPost("Register")]
         [AllowAnonymous]
-        public async Task<ServiceResult<UserLogonResponse>> RegisterUser(UserRegisterRequest registerRequest)
+        public async Task<ApiResult<UserLogonResponse>> RegisterUser(UserRegisterRequest registerRequest)
         {
             //手机验证
             var codeVaildResult = await _iCode.Vaild(registerRequest.CountryCode + registerRequest.Phone, registerRequest.Code);
             if (codeVaildResult.Failed)
-                return ServiceResult<UserLogonResponse>.IsFailed(codeVaildResult.Message);
+                return codeVaildResult.ToApiResult<UserLogonResponse>();
 
             registerRequest.UserNo = await _id.Create("D4");
             registerRequest.UserName = "GS" + registerRequest.UserName;
-            var result = await _iUser.RegisterUser(registerRequest.MapTo<RegisterUserRequest>());
-            if (result.Success)
-            {
-                var token = BuildJwt(result.Data.MapTo<AdministratorData>());
-                var response = result.Data.MapTo<UserLogonResponse>();
-                response.Token = token;
+            var registerResult = await _iUser.RegisterUser(registerRequest.MapTo<RegisterUserRequest>());
 
-                return ServiceResult<UserLogonResponse>.IsSuccess("登录成功", response);
-            }
+            if (registerResult.Failed)
+                return registerResult.ToApiResult<UserLogonResponse>();
 
-            return ServiceResult<UserLogonResponse>.IsFailed(result.Message);
+            var token = BuildJwt(registerResult.Data.MapTo<AdministratorData>());
+            var response = registerResult.Data.MapTo<UserLogonResponse>();
+            response.Token = token;
+
+            return ApiResult<UserLogonResponse>.IsSuccess("注册成功", response);
         }
 
         /// <summary>
@@ -106,17 +103,13 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <returns></returns>
         [HttpPost("GetPhoneUser")]
         [AllowAnonymous]
-        public async Task<ServiceResult> GetPhoneUser(UserGetPhoneResponse request)
+        public async Task<ApiResult> GetPhoneUser(UserGetPhoneResponse request)
         {
             var item = await _iUser.GetPhoneUser(request.MapTo<GetPhoneUserRequest>());
             if (item.Success)
-            {
-                return ServiceResult.IsSuccess("获取成功", item.Data);
-            }
-            else
-            {
-                return ServiceResult.IsFailed(item.Message);
-            }
+                return ApiResult.IsSuccess(item.Data);
+
+            return ApiResult.IsFailed(item.Message);
         }
 
         /// <summary>
@@ -126,9 +119,11 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <returns></returns>
         [HttpPost("SendSms")]
         [AllowAnonymous]
-        public async Task<ServiceResult> SendSms(SendSmsRequest request)
+        public async Task<ApiResult> SendSms(SendSmsRequest request)
         {
-            return await _iCode.Create(request.Phone, 300, _httpContextAccessor.HttpContext.Request.GetClientIp());
+            var result = await _iCode.Create(request.Phone, 300, _httpContextAccessor.HttpContext.Request.GetClientIp());
+
+            return result.ToApiResult();
         }
 
         /// <summary>
@@ -138,16 +133,12 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <returns></returns>
         [HttpPost("VaildSms")]
         [AllowAnonymous]
-        public async Task<ServiceResult> VaildSms(VaildSmsRequest request)
+        public async Task<ApiResult> VaildSms(VaildSmsRequest request)
         {
             //手机验证
             var codeVaildResult = await _iCode.Vaild(request.Phone, request.Code);
-            if (codeVaildResult.Success)
-            {
-                return ServiceResult.IsSuccess("验证成功");
-            }
 
-            return ServiceResult.IsFailed("验证失败");
+            return codeVaildResult.ToApiResult();
         }
 
         /// <summary>
@@ -157,9 +148,11 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <returns></returns>
         [HttpPost("UpdatePwdUser")]
         [AllowAnonymous]
-        public async Task<ServiceResult> UpdatePwdUser(UserUpdatePwdRequest request)
+        public async Task<ApiResult> UpdatePwdUser(UserUpdatePwdRequest request)
         {
-            return await _iUser.ChangePassword(request.MapTo<UpdatePwdUserRequest>());
+            var result = await _iUser.ChangePassword(request.MapTo<UpdatePwdUserRequest>());
+
+            return result.ToApiResult();
         }
 
         /// <summary>
@@ -169,25 +162,25 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <returns></returns>
         [HttpPost("WxLogonCheck")]
         [AllowAnonymous]
-        public async Task<ServiceResult<UserLogonResponse>> WxLogonCheck(UserWxLogonCheckRequest request)
+        public async Task<ApiResult<UserLogonResponse>> WxLogonCheck(UserWxLogonCheckRequest request)
         {
             //获取OPENID
             var result = OAuthApi.GetAccessToken(_appId, _appSecret, request.WxCode);
 
             if (result.errcode != ReturnCode.请求成功)
-                return ServiceResult<UserLogonResponse>.IsFailed(result.errmsg);
-            var logonResult = await _iUser.WxLogonCheck(new WxLogonCheckRequest() { OpenId = result.openid, CompanyId = request.CompanyId });
-            if (logonResult.Success)
-            {
-                var token = BuildJwt(logonResult.Data.MapTo<AdministratorData>());
-                var response = logonResult.Data.MapTo<UserLogonResponse>();
-                response.Token = token;
+                return ApiResult<UserLogonResponse>.IsFailed(result.errmsg);
 
-                return ServiceResult<UserLogonResponse>.IsSuccess("登录成功", response);
-            }
+            var logonResult = await _iUser.WxLogonCheck(new WxLogonCheckRequest { OpenId = result.openid, CompanyId = request.CompanyId });
+            if (logonResult.Failed)
+                return logonResult.ToApiResult<UserLogonResponse>();
 
-            return ServiceResult<UserLogonResponse>.IsFailed(logonResult.Message, new UserLogonResponse() { AccessToken = result.access_token, OpenId = result.openid });
+            var token = BuildJwt(logonResult.Data.MapTo<AdministratorData>());
+            var response = logonResult.Data.MapTo<UserLogonResponse>();
+            response.Token = token;
+
+            return ApiResult<UserLogonResponse>.IsSuccess("登录成功", response);
         }
+
         /// <summary>
         /// 微信注册
         /// </summary>
@@ -195,7 +188,7 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <returns></returns>
         [HttpPost("WxRegister")]
         [AllowAnonymous]
-        public async Task<ServiceResult<UserLogonResponse>> WxRegister(UserWxRegisterRequest request)
+        public async Task<ApiResult<UserLogonResponse>> WxRegister(UserWxRegisterRequest request)
         {
             //获取微信用户信息
             var userInfo = OAuthApi.GetUserInfo(request.AccessToken, request.OpenId);
@@ -203,25 +196,53 @@ namespace Sikiro.WebApi.Customer.Controllers
             //手机验证
             var codeVaildResult = await _iCode.Vaild(request.CountryCode + request.Phone, request.Code);
             if (codeVaildResult.Failed)
-                return ServiceResult<UserLogonResponse>.IsFailed(codeVaildResult.Message);
+                return codeVaildResult.ToApiResult<UserLogonResponse>();
+
             var user = request.MapTo<RegisterWxUserRequest>();
+
             user.UserName = "gs" + user.Phone;
-            user.Password = "123456789";
+            user.Password = Guid.NewGuid().ToString("N");
             user.UserNo = await _id.Create("D4");
             user.OpenId = request.OpenId;
             user.WxName = userInfo.nickname;
             user.ImgUrl = userInfo.headimgurl;
+
             var registerResult = await _iUser.RegisterWxUser(user);
-            if (registerResult.Success)
+            if (registerResult.Failed)
+                return registerResult.ToApiResult<UserLogonResponse>();
+
+            var token = BuildJwt(registerResult.Data.MapTo<AdministratorData>());
+            var response = registerResult.Data.MapTo<UserLogonResponse>();
+            response.Token = token;
+
+            return ApiResult<UserLogonResponse>.IsSuccess("登录成功", response);
+        }
+
+        /// <summary>
+        /// 绑定微信
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost("BindingWx")]
+        public async Task<ApiResult> BindingWx(UserBindingWxRequest request)
+        {
+            //获取OPENID
+            var token = OAuthApi.GetAccessToken(_appId, _appSecret, request.WxCode);
+
+            if (token.errcode != ReturnCode.请求成功)
+                return ApiResult.IsFailed(token.errmsg);
+
+            //获取微信用户信息
+            var userInfo = OAuthApi.GetUserInfo(token.access_token, token.openid);
+            var result = await _iUser.BindingWx(new BindingWxRequest
             {
-                var token = BuildJwt(registerResult.Data.MapTo<AdministratorData>());
-                var response = registerResult.Data.MapTo<UserLogonResponse>();
-                response.Token = token;
+                OpenId = token.openid,
+                UserId = CurrentUserData.UserId,
+                WxName = userInfo.nickname,
+                CompanyId = CurrentUserData.CompanyId
+            });
 
-                return ServiceResult<UserLogonResponse>.IsSuccess("登录成功", response);
-            }
-
-            return ServiceResult<UserLogonResponse>.IsFailed(registerResult.Message);
+            return result.ToApiResult();
         }
 
         #endregion
@@ -235,15 +256,11 @@ namespace Sikiro.WebApi.Customer.Controllers
         [HttpPost("GetUser")]
         public async Task<ServiceResult<UserGetResponse>> GetUser()
         {
-            var user = await _iUser.GetUser(new GetUserRequest()
-            { CompanyId = CurrentUserData.CompanyId, UserNo = CurrentUserData.UserNo });
+            var user = await _iUser.GetUser(new GetUserRequest { CompanyId = CurrentUserData.CompanyId, UserNo = CurrentUserData.UserNo });
             var userInfo = new UserGetResponse();
             if (user.Success)
-            {
                 userInfo = user.Data.MapTo<UserGetResponse>();
-                userInfo.Id = user.Data.UserId;
-                userInfo.UserLogo = user.Data.ImgUrl;
-            }
+
             return ServiceResult<UserGetResponse>.IsSuccess("获取成功", userInfo);
         }
 
@@ -259,9 +276,11 @@ namespace Sikiro.WebApi.Customer.Controllers
             var codeVaildResult = await _iCode.Vaild(request.CountryCode + request.Phone, request.Code);
             if (codeVaildResult.Failed)
                 return ServiceResult.IsFailed(codeVaildResult.Message);
+
             var ret = request.MapTo<UpdatePhoneUserRequest>();
             ret.UserId = CurrentUserData.UserId;
             ret.CompanyId = CurrentUserData.CompanyId;
+
             return await _iUser.UpdatePhone(ret);
         }
 
@@ -271,11 +290,14 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("SetPayPassword")]
-        public async Task<ServiceResult> SetPayPassword(UserSetPayPwdRequest request)
+        public async Task<ApiResult> SetPayPassword(UserSetPayPwdRequest request)
         {
             var ret = request.MapTo<SetPayPwdUserRequest>();
             ret.UserId = CurrentUserData.UserId;
-            return await _iUser.SetPayPassword(ret);
+
+            var result = await _iUser.SetPayPassword(ret);
+
+            return result.ToApiResult();
         }
 
         /// <summary>
@@ -284,11 +306,14 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("ChangePayPassword")]
-        public async Task<ServiceResult> ChangePayPassword(UserChangePayPwdRequest request)
+        public async Task<ApiResult> ChangePayPassword(UserChangePayPwdRequest request)
         {
             var ret = request.MapTo<ChangePayPwdUserRequest>();
             ret.UserId = CurrentUserData.UserId;
-            return await _iUser.ChangePayPassword(ret);
+
+            var result = await _iUser.ChangePayPassword(ret);
+
+            return result.ToApiResult();
         }
         /// <summary>
         /// 验证支付密码
@@ -296,29 +321,13 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("CheckingPayPassword")]
-        public async Task<ServiceResult> CheckingPayPassword(UserCheckingPayPasswordRequest request)
+        public async Task<ApiResult> CheckingPayPassword(UserCheckingPayPasswordRequest request)
         {
             var ret = request.MapTo<CheckingPayPasswordRequest>();
             ret.UserId = CurrentUserData.UserId;
-            return await _iUser.CheckingPayPassword(ret);
-        }
+            var result = await _iUser.CheckingPayPassword(ret);
 
-        /// <summary>
-        /// 绑定微信
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost("BindingWx")]
-        public async Task<ServiceResult> BindingWx(UserBindingWxRequest request)
-        {
-            //获取OPENID
-            var result = OAuthApi.GetAccessToken(_appId, _appSecret, request.WxCode);
-
-            if (result.errcode != ReturnCode.请求成功)
-                return ServiceResult.IsFailed(result.errmsg);
-            //获取微信用户信息
-            var userInfo = OAuthApi.GetUserInfo(result.access_token, result.openid);
-            return await _iUser.BindingWx(new BindingWxRequest() { OpenId = result.openid, UserId = CurrentUserData.UserId, WxName = userInfo.nickname, CompanyId = CurrentUserData.CompanyId });
+            return result.ToApiResult();
         }
         #endregion
 
@@ -362,16 +371,15 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("EditUserLogo")]
-        public async Task<ServiceResult> EditUserLogo(UserLogoRequest request)
+        public async Task<ApiResult> EditUserLogo(UserLogoRequest request)
         {
             var model = request.MapTo<UpdateUserLogoRequest>();
-            model.ImgUrl = request.UserLogo;
+
             var result = await _iUser.UpdateUserLogo(model);
             if (result.Success)
-            {
-                return ServiceResult.IsSuccess("修改成功");
-            }
-            return ServiceResult.IsFailed(result.Message);
+                return ApiResult.IsSuccess("修改成功");
+
+            return ApiResult.IsFailed(result.Message);
         }
 
         /// <summary>
@@ -380,14 +388,13 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("EditNickName")]
-        public async Task<ServiceResult> EditNickName(NickNameRequest request)
+        public async Task<ApiResult> EditNickName(NickNameRequest request)
         {
             var result = await _iUser.EditNickName(request.MapTo<UpdateNickNameRequest>());
             if (result.Success)
-            {
-                return ServiceResult.IsSuccess("修改成功");
-            }
-            return ServiceResult.IsFailed(result.Message);
+                return ApiResult.IsSuccess("修改成功");
+
+            return ApiResult.IsFailed(result.Message);
         }
 
         /// <summary>
@@ -396,16 +403,16 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("EditUserName")]
-        public async Task<ServiceResult> EditUserName(UserNameRequest request)
+        public async Task<ApiResult> EditUserName(UserNameRequest request)
         {
             var model = request.MapTo<UpdateUserNameRequest>();
             model.CompanyId = CurrentUserData.CompanyId;
+
             var result = await _iUser.EditUserName(model);
             if (result.Success)
-            {
-                return ServiceResult.IsSuccess("修改成功");
-            }
-            return ServiceResult.IsFailed(result.Message);
+                return ApiResult.IsSuccess("修改成功");
+
+            return ApiResult.IsFailed(result.Message);
         }
 
         /// <summary>
@@ -414,14 +421,13 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("EditRealName")]
-        public async Task<ServiceResult> EditRealName(RealNameRequest request)
+        public async Task<ApiResult> EditRealName(RealNameRequest request)
         {
             var result = await _iUser.EditRealName(request.MapTo<UpdateRealNameRequest>());
             if (result.Success)
-            {
-                return ServiceResult.IsSuccess("修改成功");
-            }
-            return ServiceResult.IsFailed(result.Message);
+                return ApiResult.IsSuccess("修改成功");
+
+            return ApiResult.IsFailed(result.Message);
         }
 
         /// <summary>
@@ -430,14 +436,11 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("EditEmail")]
-        public async Task<ServiceResult> EditEmail(EmailRequest request)
+        public async Task<ApiResult> EditEmail(EmailRequest request)
         {
             var result = await _iUser.EditEmail(request.MapTo<UpdateEmailRequest>());
-            if (result.Success)
-            {
-                return ServiceResult.IsSuccess("修改成功");
-            }
-            return ServiceResult.IsFailed(result.Message);
+
+            return result.ToApiResult();
         }
 
         #endregion

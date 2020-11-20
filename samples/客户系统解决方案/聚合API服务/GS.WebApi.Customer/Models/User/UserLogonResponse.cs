@@ -5,13 +5,11 @@
     /// </summary>
     public class UserLogonResponse
     {
-        
         /// <summary>
         /// 用户id
         /// </summary>
         public string UserId { get; set; }
         
-
         /// <summary>
         /// 授权码
         /// </summary>
@@ -21,7 +19,6 @@
         /// 用户WXid
         /// </summary>
         public string OpenId { get; set; }
-
 
         /// <summary>
         /// 公司ID

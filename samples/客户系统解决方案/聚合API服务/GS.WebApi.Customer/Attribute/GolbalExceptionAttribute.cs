@@ -18,7 +18,8 @@ namespace Sikiro.WebApi.Customer.Attribute
                 exception.WriteToFile("全局异常捕抓");
 
                 context.ExceptionHandled = true;
-                context.Result = new OkObjectResult(ServiceResult.IsError("服务器正在开小差～请稍后重试～"));
+                context.Result = new ObjectResult(ApiResult.IsError("服务器正在开小差～请稍后重试～"));
+                context.HttpContext.Response.StatusCode = 500;
             }
         }
     }

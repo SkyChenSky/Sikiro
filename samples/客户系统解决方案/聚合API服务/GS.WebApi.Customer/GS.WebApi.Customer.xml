@@ -100,6 +100,13 @@
             <param name="request"></param>
             <returns></returns>
         </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.BindingWx(Sikiro.WebApi.Customer.Models.User.UserBindingWxRequest)">
+            <summary>
+            绑定微信
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
         <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.GetUser">
             <summary>
             获取用户信息
@@ -130,13 +137,6 @@
         <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.CheckingPayPassword(Sikiro.WebApi.Customer.Models.User.UserCheckingPayPasswordRequest)">
             <summary>
             验证支付密码
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.BindingWx(Sikiro.WebApi.Customer.Models.User.UserBindingWxRequest)">
-            <summary>
-            绑定微信
             </summary>
             <param name="request"></param>
             <returns></returns>
@@ -454,7 +454,7 @@
             用户信息
             </summary>
         </member>
-        <member name="P:Sikiro.WebApi.Customer.Models.User.UserGetResponse.Id">
+        <member name="P:Sikiro.WebApi.Customer.Models.User.UserGetResponse.UserId">
             <summary>
             用户ID
             </summary>
@@ -484,7 +484,7 @@
             微信名称
             </summary>
         </member>
-        <member name="P:Sikiro.WebApi.Customer.Models.User.UserGetResponse.UserLogo">
+        <member name="P:Sikiro.WebApi.Customer.Models.User.UserGetResponse.ImgUrl">
             <summary>
             LOGO
             </summary>

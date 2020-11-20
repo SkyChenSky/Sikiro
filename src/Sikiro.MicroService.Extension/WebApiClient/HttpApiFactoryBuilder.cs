@@ -4,7 +4,7 @@ using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 using WebApiClient;
 
-namespace Sikiro.MicroService.Extension.Rpc
+namespace Sikiro.MicroService.Extension.WebApiClient
 {
     /// <summary>
     /// HttpApi实例工厂创建器
@@ -69,7 +69,7 @@ namespace Sikiro.MicroService.Extension.Rpc
             {
                 throw new ArgumentNullException(nameof(configOptions));
             }
-            return this.ConfigureHttpApiConfig((c, p) => configOptions.Invoke(c));
+            return ConfigureHttpApiConfig((c, p) => configOptions.Invoke(c));
         }
 
 
@@ -81,7 +81,7 @@ namespace Sikiro.MicroService.Extension.Rpc
         /// <returns></returns>
         public HttpApiFactoryBuilder<TInterface> ConfigureHttpApiConfig(Action<HttpApiConfig, IServiceProvider> configOptions)
         {
-            this._configOptions = configOptions ?? throw new ArgumentNullException(nameof(configOptions));
+            _configOptions = configOptions ?? throw new ArgumentNullException(nameof(configOptions));
             return this;
         }
 
@@ -97,7 +97,7 @@ namespace Sikiro.MicroService.Extension.Rpc
             {
                 throw new ArgumentNullException(nameof(handlerFactory));
             }
-            return this.ConfigureHttpMessageHandler(p => handlerFactory.Invoke());
+            return ConfigureHttpMessageHandler(p => handlerFactory.Invoke());
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Sikiro.MicroService.Extension.Rpc
             {
                 throw new ArgumentOutOfRangeException(nameof(lifeTime));
             }
-            this._lifeTime = lifeTime;
+            _lifeTime = lifeTime;
             return this;
         }
 
@@ -152,7 +152,7 @@ namespace Sikiro.MicroService.Extension.Rpc
         /// <returns></returns>
         public HttpApiFactoryBuilder<TInterface> SetKeepCookieContainer(bool keep)
         {
-            this._keepCookieContainer = keep;
+            _keepCookieContainer = keep;
             return this;
         }
     }

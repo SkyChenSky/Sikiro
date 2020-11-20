@@ -8,44 +8,53 @@
         /// <summary>
         /// 用户ID
         /// </summary>
-        public string Id { get; set; }
+        public string UserId { get; set; }
+
         /// <summary>
         /// 用户编码
         /// </summary>
         public string UserNo { get; set; }
+
         /// <summary>
         /// 昵称
         /// </summary>
         public string NickName { get; set; }
+
         /// <summary>
         /// 用户名称
         /// </summary>
         public string UserName { get; set; }
+
         /// <summary>
         /// 用户手机
         /// </summary>
         public string Phone { get; set; }
+
         /// <summary>
         /// 微信名称
         /// </summary>
         public string WxName { get; set; }
+
         /// <summary>
         /// LOGO
         /// </summary>
-        public string UserLogo { get; set; }
+        public string ImgUrl { get; set; }
 
         /// <summary>
         /// 姓名
         /// </summary>
         public string RealName { get; set; }
+
         /// <summary>
         /// 邮箱
         /// </summary>
         public string Email { get; set; }
+
         /// <summary>
         /// 国家
         /// </summary>
         public string CountryName { get; set; }
+
         /// <summary>
         /// 城市
         /// </summary>

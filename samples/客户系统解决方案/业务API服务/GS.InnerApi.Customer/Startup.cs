@@ -40,7 +40,7 @@ namespace Sikiro.InnerApi.Customer
                 {
                     var vaildMsg = context.ModelState.GetModelStateMsg();
 
-                    return new OkObjectResult(ServiceResult.IsFailed(vaildMsg));
+                    return new BadRequestObjectResult(ApiResult.IsFailed(vaildMsg));
                 };
             });
 

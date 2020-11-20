@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Sikiro.MicroService.Extension.WebApiClient;
 using WebApiClient;
 
 namespace Sikiro.MicroService.Extension.Rpc

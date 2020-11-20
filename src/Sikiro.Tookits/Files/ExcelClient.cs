@@ -89,7 +89,7 @@ namespace Sikiro.Tookits.Files
 
                 var data = $"data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,{base64Str}";
 
-                var sr = await Post<ServiceResult>(_option.Url, new { Data = data });
+                var sr = await Post<ApiResult>(_option.Url, new { Data = data });
 
                 if (sr.Success)
                     return (string)sr.Data;

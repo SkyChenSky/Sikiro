@@ -15,7 +15,7 @@ namespace Sikiro.MicroService.Extension.SkyApm
         /// <returns></returns>
         public static IServiceCollection UseSkyApm(this IServiceCollection services)
         {
-            return services.AddSingleton<ISamplingInterceptor, IgnoreSamplingInterceptor>().AddMongo();
+            return services.AddSingleton<ISamplingInterceptor, IgnoreSamplingInterceptor>();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Sikiro.Tookits.Base.Enum;
+﻿using Sikiro.Tookits.Base.Enum;
 using Sikiro.Tookits.Extension;
 
 namespace Sikiro.Tookits.Base
@@ -11,125 +10,110 @@ namespace Sikiro.Tookits.Base
     public class ServiceResult
     {
         #region 初始化
-        public ServiceResultCode ResultCode { set; get; }
-
-        private string _message;
+        public ServiceResultCode Code { get; protected set; }
 
         /// <summary>
         /// 响应信息
         /// </summary>
-        public string Message
-        {
-            set => _message = value;
-            get
-            {
-                if (!_message.IsNullOrEmpty())
-                    return _message;
-
-                if (Exception.IsNotNull())
-                    return Exception.Message;
-
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// 异常
-        /// </summary>
-        public Exception Exception { get; set; }
+        public string Message { get; protected set; }
 
         /// <summary>
         /// 数据
         /// </summary>
-        public object Data { get; set; }
+        public object Data { get; protected set; }
 
-        public ServiceResult()
-        {
-        }
-
-        public ServiceResult(ServiceResultCode resultCode)
-        {
-            ResultCode = resultCode;
-        }
-
-        public ServiceResult(string msg, ServiceResultCode resultCode)
-        {
-            Message = msg;
-            ResultCode = resultCode;
-        }
-
-        public ServiceResult(Exception ex, ServiceResultCode resultCode)
-        {
-            Exception = ex;
-            ResultCode = resultCode;
-        }
-
-        public ServiceResult(Exception ex, string msg, ServiceResultCode resultCode, object data)
-        {
-            Message = msg;
-            Exception = ex;
-            ResultCode = resultCode;
-            Data = data;
-        }
         #endregion
 
         /// <summary>
         /// 成功
         /// </summary>
-        public bool Success => ResultCode == ServiceResultCode.Succeed;
-
-        /// <summary>
-        /// 错误
-        /// </summary>
-        public bool Error => ResultCode == ServiceResultCode.Error;
+        public bool Success => Code == ServiceResultCode.Succeed;
 
         /// <summary>
         /// 失败
         /// </summary>
-        public bool Failed => ResultCode == ServiceResultCode.Error || ResultCode == ServiceResultCode.Failed;
+        public bool Failed => Code == ServiceResultCode.Failed;
 
         /// <summary>
         /// 响应成功
         /// </summary>
-        /// <param name="msg"></param>
-        /// <param name="data"></param>
         /// <returns></returns>
-        public static ServiceResult IsSuccess(string msg, object data = null)
+        public static ServiceResult IsSuccess()
         {
-            return new ServiceResult(msg, ServiceResultCode.Succeed) { Data = data };
+            return new ServiceResult { Message = ServiceResultCode.Succeed.GetDescription(), Code = ServiceResultCode.Succeed };
         }
 
         /// <summary>
-        /// 响应错误
+        /// 响应成功
         /// </summary>
-        /// <param name="ex"></param>
-        /// <param name="data"></param>
         /// <returns></returns>
-        public static ServiceResult IsError(Exception ex, object data = null)
+        public static ServiceResult IsSuccess(string message)
         {
-            return new ServiceResult(ex, ServiceResultCode.Error) { Data = data };
-        }
-
-        /// <summary>
-        /// 响应错误
-        /// </summary>
-        /// <param name="msg"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static ServiceResult IsError(string msg, object data = null)
-        {
-            return new ServiceResult(msg, ServiceResultCode.Error) { Data = data };
+            return new ServiceResult { Message = message, Code = ServiceResultCode.Succeed };
         }
 
         /// <summary>
         /// 响应失败
         /// </summary>
-        /// <param name="msg"></param>
-        /// <param name="data"></param>
         /// <returns></returns>
-        public static ServiceResult IsFailed(string msg, object data = null)
+        public static ServiceResult IsFailed()
         {
-            return new ServiceResult(msg, ServiceResultCode.Failed) { Data = data };
+            return new ServiceResult { Message = ServiceResultCode.Succeed.GetDescription(), Code = ServiceResultCode.Failed };
+        }
+
+        /// <summary>
+        /// 响应失败
+        /// </summary>
+        /// <returns></returns>
+        public static ServiceResult IsFailed(string message)
+        {
+            return new ServiceResult { Message = message, Code = ServiceResultCode.Failed };
+        }
+
+        /// <summary>
+        /// 转换成ToApiResult
+        /// </summary>
+        /// <returns></returns>
+        public ApiResult ToApiResult()
+        {
+            return this.Success ?
+                ApiResult.IsSuccess(Message) :
+                ApiResult.IsFailed(Message);
+        }
+
+        /// <summary>
+        /// 转换成ToApiResult
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public ApiResult ToApiResult(string message)
+        {
+            return Success ?
+                ApiResult.IsSuccess(message) :
+                ApiResult.IsFailed(message);
+        }
+
+        /// <summary>
+        /// 转换成ToApiResult
+        /// </summary>
+        /// <returns></returns>
+        public ApiResult<TO> ToApiResult<TO>() where TO : class, new()
+        {
+            var data = Data.MapTo<TO>();
+            return Success ?
+                ApiResult<TO>.IsSuccess(data) :
+                ApiResult<TO>.IsFailed(data);
+        }
+
+        /// <summary>
+        /// 转换成ToApiResult
+        /// </summary>
+        /// <returns></returns>
+        public ApiResult<TO> ToApiResult<TO>(TO data) where TO : class, new()
+        {
+            return Success ?
+                ApiResult<TO>.IsSuccess(data) :
+                ApiResult<TO>.IsFailed(data);
         }
     }
     #endregion
@@ -139,72 +123,12 @@ namespace Sikiro.Tookits.Base
     /// 服务层响应实体（泛型）
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ServiceResult<T> where T : class, new()
+    public class ServiceResult<T> : ServiceResult where T : class, new()
     {
-        #region 初始化
-        public ServiceResultCode ResultCode { set; get; }
-
-        private string _message;
-
-        /// <summary>
-        /// 响应信息
-        /// </summary>
-        public string Message
-        {
-            set => _message = value;
-            get
-            {
-                if (!_message.IsNullOrEmpty())
-                    return _message;
-
-                if (Exception.IsNotNull())
-                    return Exception.Message;
-
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// 异常
-        /// </summary>
-        public Exception Exception { get; set; }
-
         /// <summary>
         /// 数据
         /// </summary>
-        public T Data { get; set; }
-
-        public ServiceResult()
-        {
-        }
-
-        public ServiceResult(string msg, ServiceResultCode resultCode)
-        {
-            Message = msg;
-            ResultCode = resultCode;
-        }
-
-        public ServiceResult(Exception ex, ServiceResultCode resultCode)
-        {
-            Exception = ex;
-            ResultCode = resultCode;
-        }
-
-        #endregion
-        /// <summary>
-        /// 成功
-        /// </summary>
-        public bool Success => ResultCode == ServiceResultCode.Succeed;
-
-        /// <summary>
-        /// 错误
-        /// </summary>
-        public bool Error => ResultCode == ServiceResultCode.Error;
-
-        /// <summary>
-        /// 失败
-        /// </summary>
-        public bool Failed => ResultCode == ServiceResultCode.Error || ResultCode == ServiceResultCode.Failed;
+        public new T Data { get; private set; }
 
         /// <summary>
         /// 响应成功
@@ -214,29 +138,17 @@ namespace Sikiro.Tookits.Base
         /// <returns></returns>
         public static ServiceResult<T> IsSuccess(string msg, T data = null)
         {
-            return new ServiceResult<T>(msg, ServiceResultCode.Succeed) { Data = data };
+            return new ServiceResult<T> { Data = data, Message = msg, Code = ServiceResultCode.Succeed };
         }
 
         /// <summary>
-        /// 响应错误
+        /// 响应成功
         /// </summary>
-        /// <param name="ex"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static ServiceResult<T> IsError(Exception ex, T data = null)
+        public static ServiceResult<T> IsSuccess(T data)
         {
-            return new ServiceResult<T>(ex, ServiceResultCode.Error) { Data = data };
-        }
-
-        /// <summary>
-        /// 响应错误
-        /// </summary>
-        /// <param name="msg"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static ServiceResult<T> IsError(string msg, T data = null)
-        {
-            return new ServiceResult<T>(msg, ServiceResultCode.Error) { Data = data };
+            return new ServiceResult<T> { Data = data, Message = ServiceResultCode.Succeed.GetDescription(), Code = ServiceResultCode.Succeed };
         }
 
         /// <summary>
@@ -247,7 +159,17 @@ namespace Sikiro.Tookits.Base
         /// <returns></returns>
         public static ServiceResult<T> IsFailed(string msg, T data = null)
         {
-            return new ServiceResult<T>(msg, ServiceResultCode.Failed) { Data = data };
+            return new ServiceResult<T> { Data = data, Message = msg, Code = ServiceResultCode.Failed };
+        }
+
+        /// <summary>
+        /// 响应失败
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static ServiceResult<T> IsFailed(T data)
+        {
+            return new ServiceResult<T> { Data = data, Message = ServiceResultCode.Succeed.GetDescription(), Code = ServiceResultCode.Failed };
         }
     }
     #endregion
