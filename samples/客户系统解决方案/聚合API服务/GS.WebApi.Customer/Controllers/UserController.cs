@@ -21,6 +21,8 @@ using Sikiro.Tookits.Base;
 using Sikiro.Tookits.Extension;
 using Sikiro.WebApi.Customer.Extention;
 using Sikiro.WebApi.Customer.Models.User;
+using Sikiro.WebApi.Customer.Models.User.Request;
+using Sikiro.WebApi.Customer.Models.User.Response;
 
 namespace Sikiro.WebApi.Customer.Controllers
 {
@@ -59,13 +61,13 @@ namespace Sikiro.WebApi.Customer.Controllers
         {
             var logonResult = await _iUser.LogonCheck(logonRequest.MapTo<LogonCheckRequest>());
             if (logonResult.Failed)
-                return logonResult.ToApiResult<UserLogonResponse>();
+                return ApiResult<UserLogonResponse>.IsFailed(logonResult.Message);
 
             var token = BuildJwt(logonResult.Data.MapTo<AdministratorData>());
             var response = logonResult.Data.MapTo<UserLogonResponse>();
             response.Token = token;
 
-            return ApiResult<UserLogonResponse>.IsSuccess("登录", response);
+            return ApiResult<UserLogonResponse>.IsSuccess(logonResult.Message, response);
         }
 
         /// <summary>
@@ -87,7 +89,7 @@ namespace Sikiro.WebApi.Customer.Controllers
             var registerResult = await _iUser.RegisterUser(registerRequest.MapTo<RegisterUserRequest>());
 
             if (registerResult.Failed)
-                return registerResult.ToApiResult<UserLogonResponse>();
+                return ApiResult<UserLogonResponse>.IsFailed("注册成功");
 
             var token = BuildJwt(registerResult.Data.MapTo<AdministratorData>());
             var response = registerResult.Data.MapTo<UserLogonResponse>();
@@ -152,7 +154,7 @@ namespace Sikiro.WebApi.Customer.Controllers
         {
             var result = await _iUser.ChangePassword(request.MapTo<UpdatePwdUserRequest>());
 
-            return result.ToApiResult();
+            return result;
         }
 
         /// <summary>
@@ -172,13 +174,13 @@ namespace Sikiro.WebApi.Customer.Controllers
 
             var logonResult = await _iUser.WxLogonCheck(new WxLogonCheckRequest { OpenId = result.openid, CompanyId = request.CompanyId });
             if (logonResult.Failed)
-                return logonResult.ToApiResult<UserLogonResponse>();
+                return ApiResult<UserLogonResponse>.IsFailed(logonResult.Message);
 
             var token = BuildJwt(logonResult.Data.MapTo<AdministratorData>());
             var response = logonResult.Data.MapTo<UserLogonResponse>();
             response.Token = token;
 
-            return ApiResult<UserLogonResponse>.IsSuccess("登录成功", response);
+            return ApiResult<UserLogonResponse>.IsSuccess(logonResult.Message, response);
         }
 
         /// <summary>
@@ -209,7 +211,7 @@ namespace Sikiro.WebApi.Customer.Controllers
 
             var registerResult = await _iUser.RegisterWxUser(user);
             if (registerResult.Failed)
-                return registerResult.ToApiResult<UserLogonResponse>();
+                return ApiResult<UserLogonResponse>.IsFailed("登录失败");
 
             var token = BuildJwt(registerResult.Data.MapTo<AdministratorData>());
             var response = registerResult.Data.MapTo<UserLogonResponse>();
@@ -242,7 +244,7 @@ namespace Sikiro.WebApi.Customer.Controllers
                 CompanyId = CurrentUserData.CompanyId
             });
 
-            return result.ToApiResult();
+            return result;
         }
 
         #endregion
@@ -254,14 +256,14 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("GetUser")]
-        public async Task<ServiceResult<UserGetResponse>> GetUser()
+        public async Task<ApiResult<UserGetResponse>> GetUser()
         {
             var user = await _iUser.GetUser(new GetUserRequest { CompanyId = CurrentUserData.CompanyId, UserNo = CurrentUserData.UserNo });
             var userInfo = new UserGetResponse();
             if (user.Success)
                 userInfo = user.Data.MapTo<UserGetResponse>();
 
-            return ServiceResult<UserGetResponse>.IsSuccess("获取成功", userInfo);
+            return ApiResult<UserGetResponse>.IsSuccess("获取成功", userInfo);
         }
 
         /// <summary>
@@ -270,18 +272,20 @@ namespace Sikiro.WebApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("UpdatePhone")]
-        public async Task<ServiceResult> UpdatePhone(UserUpdatePhoneRequest request)
+        public async Task<ApiResult> UpdatePhone(UserUpdatePhoneRequest request)
         {
             //手机验证
             var codeVaildResult = await _iCode.Vaild(request.CountryCode + request.Phone, request.Code);
             if (codeVaildResult.Failed)
-                return ServiceResult.IsFailed(codeVaildResult.Message);
+                return codeVaildResult.ToApiResult();
 
             var ret = request.MapTo<UpdatePhoneUserRequest>();
             ret.UserId = CurrentUserData.UserId;
             ret.CompanyId = CurrentUserData.CompanyId;
 
-            return await _iUser.UpdatePhone(ret);
+            var result = await _iUser.UpdatePhone(ret);
+
+            return result;
         }
 
         /// <summary>
@@ -297,7 +301,7 @@ namespace Sikiro.WebApi.Customer.Controllers
 
             var result = await _iUser.SetPayPassword(ret);
 
-            return result.ToApiResult();
+            return result;
         }
 
         /// <summary>
@@ -313,7 +317,7 @@ namespace Sikiro.WebApi.Customer.Controllers
 
             var result = await _iUser.ChangePayPassword(ret);
 
-            return result.ToApiResult();
+            return result;
         }
         /// <summary>
         /// 验证支付密码
@@ -327,7 +331,7 @@ namespace Sikiro.WebApi.Customer.Controllers
             ret.UserId = CurrentUserData.UserId;
             var result = await _iUser.CheckingPayPassword(ret);
 
-            return result.ToApiResult();
+            return result;
         }
         #endregion
 
@@ -440,7 +444,7 @@ namespace Sikiro.WebApi.Customer.Controllers
         {
             var result = await _iUser.EditEmail(request.MapTo<UpdateEmailRequest>());
 
-            return result.ToApiResult();
+            return result;
         }
 
         #endregion

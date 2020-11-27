@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Sikiro.WebApi.Customer.Models.User
+namespace Sikiro.WebApi.Customer.Models.User.Request
 {
     /// <summary>
     /// 登录请求
     /// </summary>
-    public class SendSmsRequest
+    public class VaildSmsRequest
     {
         /// <summary>
         /// 手机号码
@@ -13,5 +13,10 @@ namespace Sikiro.WebApi.Customer.Models.User
         [Required(ErrorMessage = "请输入手机号")]
         public string Phone { get; set; }
 
+        /// <summary>
+        /// 验证码
+        /// </summary>
+        [Required(ErrorMessage = "请输入验证码")]
+        public string Code { get; set; }
     }
 }

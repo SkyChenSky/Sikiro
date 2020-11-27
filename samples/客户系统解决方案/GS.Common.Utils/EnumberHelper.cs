@@ -21,10 +21,10 @@ namespace Sikiro.Common.Utils
             var result = (from object item in Enum.GetValues(type)
                     select new DropDownItem
                     {
-                        Text = item.GetType().GetField(item.ToString()).GetDisplayName(),
+                        Text = item.GetType().GetField(item.ToString()!).GetDisplayName(),
                         Value = item,
-                        Description = item.GetType().GetField(item.ToString()).GetDisplayDescription(),
-                        Prompt = item.GetType().GetField(item.ToString()).GetDisplayPrompt(),
+                        Description = item.GetType().GetField(item.ToString()!).GetDisplayDescription(),
+                        Prompt = item.GetType().GetField(item.ToString()!).GetDisplayPrompt(),
                     })
                 .ToList();
 

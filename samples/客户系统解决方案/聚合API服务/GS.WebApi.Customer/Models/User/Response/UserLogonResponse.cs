@@ -1,4 +1,4 @@
-﻿namespace Sikiro.WebApi.Customer.Models.User
+﻿namespace Sikiro.WebApi.Customer.Models.User.Response
 {
     /// <summary>
     /// 登录响应

@@ -74,7 +74,7 @@ namespace Sikiro.Service.Customer
                 user.ImgUrl = _url;
 
             user.UserId = GuidHelper.GenerateComb().ToString("N");
-            user.Status = (int)PersonEnum.Status.Open;
+            user.Status = (int)PersonEnum.EStatus.Open;
             user.CreateDatetime = DateTime.Now;
             user.Password = EncodePassword(user.UserId, user.Password);
             if(string.IsNullOrEmpty(user.WxName))
@@ -149,7 +149,7 @@ namespace Sikiro.Service.Customer
 
             if (user == null)
                 return ServiceResult<AdministratorData>.IsFailed("账户不存在");
-            if (user.Status == (int)PersonEnum.Status.Stop)
+            if (user.Status == (int)PersonEnum.EStatus.Stop)
                 return ServiceResult<AdministratorData>.IsFailed("该账户已被停用");
 
             var passwordForMd5 = EncodePassword(user.UserId, password);
@@ -254,7 +254,7 @@ namespace Sikiro.Service.Customer
             var user = Db.Query<User>().FirstOrDefault(a => a.OpenId == openId && a.CompanyId == companyId);
             if (user == null)
                 return ServiceResult<AdministratorData>.IsFailed("账户不存在");
-            if (user.Status == (int)PersonEnum.Status.Stop)
+            if (user.Status == (int)PersonEnum.EStatus.Stop)
                 return ServiceResult<AdministratorData>.IsFailed("该账户已被停用");
             return ServiceResult<AdministratorData>.IsSuccess("登录成功", new AdministratorData
             {

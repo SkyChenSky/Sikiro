@@ -14,26 +14,26 @@ namespace Sikiro.Interface.Customer
         /// 获取用户信息
         /// </summary>
         [HttpPost("User/GetUser")]
-        ITask<ServiceResult<GetUserResponse>> GetUser([JsonContent] GetUserRequest request);
+        ITask<ApiResult<GetUserResponse>> GetUser([JsonContent] GetUserRequest request);
 
         /// <summary>
         /// 获取用户信息
         /// </summary>
         [HttpPost("User/GetUserInfo")]
-        ITask<ServiceResult<GetUserInfoResponse>> GetUserInfo(string userId);
+        ITask<ApiResult<GetUserInfoResponse>> GetUserInfo(string userId);
 
         /// <summary>
         /// 根据登录名称和手机获取用户信息
         /// </summary>
         [HttpPost("User/GetPhoneUser")]
-        ITask<ServiceResult<GetPhoneUserResponse>> GetPhoneUser([JsonContent] GetPhoneUserRequest request);
+        ITask<ApiResult<GetPhoneUserResponse>> GetPhoneUser([JsonContent] GetPhoneUserRequest request);
 
         /// <summary>
         /// 登录判断
         /// </summary>
         /// <returns></returns>
         [HttpPost("User/LogonCheck")]
-        ITask<ServiceResult<LogonCheckResponse>> LogonCheck([JsonContent] LogonCheckRequest request);
+        ITask<ApiResult<LogonCheckResponse>> LogonCheck([JsonContent] LogonCheckRequest request);
 
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/RegisterUser")]
-        ITask<ServiceResult<LogonCheckResponse>> RegisterUser([JsonContent]RegisterUserRequest request);
+        ITask<ApiResult<LogonCheckResponse>> RegisterUser([JsonContent]RegisterUserRequest request);
 
         /// <summary>
         /// 微信注册
@@ -50,7 +50,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/RegisterWxUser")]
-        ITask<ServiceResult<LogonCheckResponse>> RegisterWxUser([JsonContent]RegisterWxUserRequest request);
+        ITask<ApiResult<LogonCheckResponse>> RegisterWxUser([JsonContent]RegisterWxUserRequest request);
 
         /// <summary>
         /// 修改密码
@@ -58,7 +58,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/ChangePassword")]
-        ITask<ServiceResult> ChangePassword([JsonContent]UpdatePwdUserRequest request);
+        ITask<ApiResult> ChangePassword([JsonContent]UpdatePwdUserRequest request);
 
         /// <summary>
         /// 重置密码
@@ -66,7 +66,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/RetrievePassword")]
-        ITask<ServiceResult> RetrievePassword([JsonContent]UpdateRetrievePwdUserRequest request);
+        ITask<ApiResult> RetrievePassword([JsonContent]UpdateRetrievePwdUserRequest request);
 
         /// <summary>
         /// 更换绑定手机
@@ -74,7 +74,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/UpdatePhone")]
-        ITask<ServiceResult> UpdatePhone([JsonContent]UpdatePhoneUserRequest request);
+        ITask<ApiResult> UpdatePhone([JsonContent]UpdatePhoneUserRequest request);
 
         /// <summary>
         /// 设置支付密码
@@ -82,7 +82,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/SetPayPassword")]
-        ITask<ServiceResult> SetPayPassword([JsonContent]SetPayPwdUserRequest request);
+        ITask<ApiResult> SetPayPassword([JsonContent]SetPayPwdUserRequest request);
 
         /// <summary>
         /// 修改支付密码
@@ -90,7 +90,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/ChangePayPassword")]
-        ITask<ServiceResult> ChangePayPassword([JsonContent]ChangePayPwdUserRequest request);
+        ITask<ApiResult> ChangePayPassword([JsonContent]ChangePayPwdUserRequest request);
 
         /// <summary>
         /// 修改支付密码
@@ -98,7 +98,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/CheckingPayPassword")]
-        ITask<ServiceResult> CheckingPayPassword([JsonContent]CheckingPayPasswordRequest request);
+        ITask<ApiResult> CheckingPayPassword([JsonContent]CheckingPayPasswordRequest request);
 
         /// <summary>
         /// 微信登录验证
@@ -106,7 +106,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/WxLogonCheck")]
-        ITask<ServiceResult<LogonCheckResponse>> WxLogonCheck([JsonContent]WxLogonCheckRequest request);
+        ITask<ApiResult<LogonCheckResponse>> WxLogonCheck([JsonContent]WxLogonCheckRequest request);
 
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/BindingWx")]
-        ITask<ServiceResult> BindingWx([JsonContent]BindingWxRequest request);
+        ITask<ApiResult> BindingWx([JsonContent]BindingWxRequest request);
 
         #region 修改用户信息
 
@@ -125,7 +125,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/UpdateUserLogo")]
-        ITask<ServiceResult> UpdateUserLogo([JsonContent] UpdateUserLogoRequest request);
+        ITask<ApiResult> UpdateUserLogo([JsonContent] UpdateUserLogoRequest request);
 
         /// <summary>
         /// 修改昵称
@@ -133,7 +133,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/EditNickName")]
-        ITask<ServiceResult> EditNickName([JsonContent] UpdateNickNameRequest request);
+        ITask<ApiResult> EditNickName([JsonContent] UpdateNickNameRequest request);
 
         /// <summary>
         /// 修改用户名
@@ -141,7 +141,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/EditUserName")]
-        ITask<ServiceResult> EditUserName([JsonContent] UpdateUserNameRequest request);
+        ITask<ApiResult> EditUserName([JsonContent] UpdateUserNameRequest request);
 
         /// <summary>
         /// 修改姓名
@@ -149,7 +149,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/EditRealName")]
-        ITask<ServiceResult> EditRealName([JsonContent] UpdateRealNameRequest request);
+        ITask<ApiResult> EditRealName([JsonContent] UpdateRealNameRequest request);
 
         /// <summary>
         /// 修改Email
@@ -157,7 +157,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/EditEmail")]
-        ITask<ServiceResult> EditEmail([JsonContent] UpdateEmailRequest request);
+        ITask<ApiResult> EditEmail([JsonContent] UpdateEmailRequest request);
 
         #endregion
 

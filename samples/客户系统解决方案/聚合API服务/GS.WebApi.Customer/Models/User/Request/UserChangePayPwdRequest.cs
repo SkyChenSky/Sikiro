@@ -1,26 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Sikiro.WebApi.Customer.Models.User
+namespace Sikiro.WebApi.Customer.Models.User.Request
 {
     /// <summary>
     /// 修改密码
     /// </summary>
-    public class UserUpdatePwdRequest
+    public class UserChangePayPwdRequest
     {
         /// <summary>
-        /// 用户ID
-        /// </summary>
-        [Required(ErrorMessage = "请输入用户ID")]
-        public string UserId { get; set; }
-
-        /// <summary>
-        /// 登录密码（旧）
+        /// 旧密码
         /// </summary>
         [Required(ErrorMessage = "请输入登录密码")]
         public string OldPassword { get; set; }
-
         /// <summary>
-        /// 新登录密码
+        /// 新密码
         /// </summary>
         [Required(ErrorMessage = "请输入新登录密码")]
         public string NewPassword { get; set; }

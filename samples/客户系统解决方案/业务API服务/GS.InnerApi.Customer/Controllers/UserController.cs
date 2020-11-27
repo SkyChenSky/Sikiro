@@ -26,17 +26,17 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult<GetUserResponse> GetUser(GetUserRequest request)
+        public ApiResult<GetUserResponse> GetUser(GetUserRequest request)
         {
-            var user = _userService.Get(a => a.UserNo == request.UserNo && a.CompanyId == request.CompanyId && a.Status == (int)PersonEnum.Status.Open);
+            var user = _userService.Get(a => a.UserNo == request.UserNo && a.CompanyId == request.CompanyId && a.Status == (int)PersonEnum.EStatus.Open);
             if (user == null)
-                return ServiceResult<GetUserResponse>.IsFailed("账户信息不存在");
+                return ApiResult<GetUserResponse>.IsFailed("账户信息不存在");
 
             var ret = user.MapTo<GetUserResponse>();
             ret.IsChangedUserName = user.IsChangedUsername;
             ret.IsPayPwd = !string.IsNullOrEmpty(user.PayPassword);
 
-            return ServiceResult<GetUserResponse>.IsSuccess("成功", ret);
+            return ApiResult<GetUserResponse>.IsSuccess("成功", ret);
         }
 
         /// <summary>
@@ -45,14 +45,14 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult<GetUserInfoResponse> GetUserInfo(string userId)
+        public ApiResult<GetUserInfoResponse> GetUserInfo(string userId)
         {
-            var user = _userService.Get(a => a.UserId == userId && a.Status == (int)PersonEnum.Status.Open);
+            var user = _userService.Get(a => a.UserId == userId && a.Status == (int)PersonEnum.EStatus.Open);
             if (user == null)
-                return ServiceResult<GetUserInfoResponse>.IsFailed("账户信息不存在");
+                return ApiResult<GetUserInfoResponse>.IsFailed("账户信息不存在");
 
             var ret = user.MapTo<GetUserInfoResponse>();
-            return ServiceResult<GetUserInfoResponse>.IsSuccess("成功", ret);
+            return ApiResult<GetUserInfoResponse>.IsSuccess("成功", ret);
         }
 
         /// <summary>
@@ -61,14 +61,14 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult<GetPhoneUserResponse> GetPhoneUser(GetPhoneUserRequest request)
+        public ApiResult<GetPhoneUserResponse> GetPhoneUser(GetPhoneUserRequest request)
         {
-            var user = _userService.Get(a => (a.UserName == request.UserName || a.Phone == request.UserName) && a.Status == (int)PersonEnum.Status.Open);
+            var user = _userService.Get(a => (a.UserName == request.UserName || a.Phone == request.UserName) && a.Status == (int)PersonEnum.EStatus.Open);
             if (user == null)
             {
-                return ServiceResult<GetPhoneUserResponse>.IsFailed("账户信息不存在");
+                return ApiResult<GetPhoneUserResponse>.IsFailed("账户信息不存在");
             }
-            return ServiceResult<GetPhoneUserResponse>.IsSuccess("成功", new GetPhoneUserResponse { Phone = user.Phone, CountryCode = user.CountryCode });
+            return ApiResult<GetPhoneUserResponse>.IsSuccess("成功", new GetPhoneUserResponse { Phone = user.Phone, CountryCode = user.CountryCode });
         }
 
         /// <summary>
@@ -77,11 +77,11 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult<AdministratorData> LogonCheck(LogonCheckRequest request)
+        public ApiResult<AdministratorData> LogonCheck(LogonCheckRequest request)
         {
             var result = _userService.LogonCheck(request.UserName, request.Password, request.CompanyId);
 
-            return result;
+            return result.ToApiResult<AdministratorData>();
         }
 
         /// <summary>
@@ -91,9 +91,9 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="moeny"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult UpdateBalance(string userId, decimal moeny)
+        public ApiResult UpdateBalance(string userId, decimal moeny)
         {
-            return _userService.UpdateBalance(userId, moeny);
+            return _userService.UpdateBalance(userId, moeny).ToApiResult();
         }
 
         /// <summary>
@@ -102,11 +102,11 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult<AdministratorData> RegisterUser(RegisterUserRequest request)
+        public ApiResult<AdministratorData> RegisterUser(RegisterUserRequest request)
         {
             var user = request.MapTo<User>();
             var result = _userService.RegisterUser(user);
-            return result;
+            return result.ToApiResult<AdministratorData>();
         }
 
         /// <summary>
@@ -115,11 +115,11 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult<AdministratorData> RegisterWxUser(RegisterWxUserRequest request)
+        public ApiResult<AdministratorData> RegisterWxUser(RegisterWxUserRequest request)
         {
             var user = request.MapTo<User>();
             var result = _userService.RegisterUser(user);
-            return result;
+            return result.ToApiResult<AdministratorData>();
         }
 
         /// <summary>
@@ -128,9 +128,9 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult ChangePassword(UpdatePwdUserRequest request)
+        public ApiResult ChangePassword(UpdatePwdUserRequest request)
         {
-            return _userService.ChangePassword(request.UserId, request.OldPassword, request.NewPassword);
+            return _userService.ChangePassword(request.UserId, request.OldPassword, request.NewPassword).ToApiResult();
         }
 
         /// <summary>
@@ -139,9 +139,9 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult RetrievePassword(UpdateRetrievePwdUserRequest request)
+        public ApiResult RetrievePassword(UpdateRetrievePwdUserRequest request)
         {
-            return _userService.SetPassword(request.CompanyId, request.Phone, request.NewPassword);
+            return _userService.SetPassword(request.CompanyId, request.Phone, request.NewPassword).ToApiResult();
         }
 
         /// <summary>
@@ -150,9 +150,9 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult UpdatePhone(UpdatePhoneUserRequest request)
+        public ApiResult UpdatePhone(UpdatePhoneUserRequest request)
         {
-            return _userService.UpdatePhone(request.UserId, request.Phone, request.CountryCode, request.CompanyId);
+            return _userService.UpdatePhone(request.UserId, request.Phone, request.CountryCode, request.CompanyId).ToApiResult();
         }
 
         /// <summary>
@@ -161,9 +161,9 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult SetPayPassword(SetPayPwdUserRequest request)
+        public ApiResult SetPayPassword(SetPayPwdUserRequest request)
         {
-            return _userService.SetPayPassword(request.UserId, request.PayPassword);
+            return _userService.SetPayPassword(request.UserId, request.PayPassword).ToApiResult();
         }
 
         /// <summary>
@@ -172,9 +172,9 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult ChangePayPassword(ChangePayPwdUserRequest request)
+        public ApiResult ChangePayPassword(ChangePayPwdUserRequest request)
         {
-            return _userService.ChangePayPassword(request.UserId, request.OldPassword, request.NewPassword);
+            return _userService.ChangePayPassword(request.UserId, request.OldPassword, request.NewPassword).ToApiResult();
         }
         /// <summary>
         /// 验证支付密码
@@ -182,9 +182,9 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult CheckingPayPassword(CheckingPayPasswordRequest request)
+        public ApiResult CheckingPayPassword(CheckingPayPasswordRequest request)
         {
-            return _userService.CheckingPayPassword(request.UserId, request.PayPassword);
+            return _userService.CheckingPayPassword(request.UserId, request.PayPassword).ToApiResult();
         }
         /// <summary>
         /// 微信登录验证
@@ -192,9 +192,9 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult<AdministratorData> WxLogonCheck(WxLogonCheckRequest request)
+        public ApiResult<AdministratorData> WxLogonCheck(WxLogonCheckRequest request)
         {
-            return _userService.WxLogonCheck(request.OpenId, request.CompanyId);
+            return _userService.WxLogonCheck(request.OpenId, request.CompanyId).ToApiResult<AdministratorData>();
         }
 
         /// <summary>
@@ -203,9 +203,9 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult BindingWx(BindingWxRequest request)
+        public ApiResult BindingWx(BindingWxRequest request)
         {
-            return _userService.BindingWx(request.UserId, request.OpenId, request.WxName, request.CompanyId);
+            return _userService.BindingWx(request.UserId, request.OpenId, request.WxName, request.CompanyId).ToApiResult();
         }
 
         /// <summary>
@@ -214,9 +214,9 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult UpdateUserLogo(UpdateUserLogoRequest request)
+        public ApiResult UpdateUserLogo(UpdateUserLogoRequest request)
         {
-            return _userService.UpdateUserLogo(request.Id, request.ImgUrl);
+            return _userService.UpdateUserLogo(request.Id, request.ImgUrl).ToApiResult();
         }
 
 
@@ -226,9 +226,9 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult EditNickName(UpdateNickNameRequest request)
+        public ApiResult EditNickName(UpdateNickNameRequest request)
         {
-            return _userService.UpdateNickName(request.Id, request.NickName);
+            return _userService.UpdateNickName(request.Id, request.NickName).ToApiResult();
         }
 
         /// <summary>
@@ -237,9 +237,9 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult EditUserName(UpdateUserNameRequest request)
+        public ApiResult EditUserName(UpdateUserNameRequest request)
         {
-            return _userService.UpdateUserName(request.Id, request.UserName, request.CompanyId);
+            return _userService.UpdateUserName(request.Id, request.UserName, request.CompanyId).ToApiResult();
         }
 
         /// <summary>
@@ -248,9 +248,9 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult EditRealName(UpdateRealNameRequest request)
+        public ApiResult EditRealName(UpdateRealNameRequest request)
         {
-            return _userService.UpdateRealName(request.Id, request.RealName);
+            return _userService.UpdateRealName(request.Id, request.RealName).ToApiResult();
         }
 
         /// <summary>
@@ -259,9 +259,9 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost]
-        public ServiceResult EditEmail(UpdateEmailRequest request)
+        public ApiResult EditEmail(UpdateEmailRequest request)
         {
-            return _userService.UpdateEmail(request.Id, request.Email);
+            return _userService.UpdateEmail(request.Id, request.Email).ToApiResult();
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Sikiro.WebApi.Customer.Models.User
+namespace Sikiro.WebApi.Customer.Models.User.Request
 {
-    public class UserNameRequest
+    public class EmailRequest
     {
         [Required]
         public string Id { get; set; }
 
         [Required]
-        public string UserName { get; set; }
+        public string Email { get; set; }
     }
 }
