@@ -99,7 +99,7 @@ namespace Sikiro.Tookits.Base
         /// <returns></returns>
         public ApiResult<TO> ToApiResult<TO>() where TO : class, new()
         {
-            var data = Data.MapTo<TO>();
+            var data = Data?.MapTo<TO>();
             return Success ?
                 ApiResult<TO>.IsSuccess(data) :
                 ApiResult<TO>.IsFailed(data);
@@ -179,6 +179,29 @@ namespace Sikiro.Tookits.Base
         public new static ServiceResult<T> IsFailed()
         {
             return IsFailed(null);
+        }
+
+        /// <summary>
+        /// 转换成ToApiResult
+        /// </summary>
+        /// <returns></returns>
+        public new ApiResult<TO> ToApiResult<TO>() where TO : class, new()
+        {
+            var data = Data?.MapTo<TO>();
+            return Success ?
+                ApiResult<TO>.IsSuccess(data) :
+                ApiResult<TO>.IsFailed(data);
+        }
+
+        /// <summary>
+        /// 转换成ToApiResult
+        /// </summary>
+        /// <returns></returns>
+        public new ApiResult<TO> ToApiResult<TO>(TO data) where TO : class, new()
+        {
+            return Success ?
+                ApiResult<TO>.IsSuccess(data) :
+                ApiResult<TO>.IsFailed(data);
         }
     }
     #endregion

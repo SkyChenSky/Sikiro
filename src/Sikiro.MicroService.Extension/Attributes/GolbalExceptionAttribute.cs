@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Sikiro.Tookits.Base;
 using Sikiro.Tookits.Extension;
 
 namespace Sikiro.MicroService.Extension.Attributes
@@ -14,6 +16,10 @@ namespace Sikiro.MicroService.Extension.Attributes
             {
                 var exception = context.Exception.GetDeepestException();
                 exception.WriteToFile("全局异常捕抓");
+
+                context.ExceptionHandled = true;
+                context.Result = new ObjectResult(ApiResult.IsError(exception.ToString()));
+                context.HttpContext.Response.StatusCode = 500;
             }
         }
     }
