@@ -258,7 +258,7 @@ namespace Sikiro.WebApi.Customer.Controllers
         [HttpPost("GetUser")]
         public async Task<ApiResult<UserGetResponse>> GetUser()
         {
-            var user = await _iUser.GetUser(new GetUserRequest { CompanyId = CurrentUserData.CompanyId, UserNo = CurrentUserData.UserNo });
+            var user = await _iUser.GetUserForOpenByUserId(CurrentUserData.UserNo);
             var userInfo = new UserGetResponse();
             if (user.Success)
                 userInfo = user.Data.MapTo<UserGetResponse>();

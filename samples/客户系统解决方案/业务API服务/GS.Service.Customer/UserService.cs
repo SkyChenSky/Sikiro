@@ -20,23 +20,28 @@ namespace Sikiro.Service.Customer
             var iConfiguration1 = iConfiguration;
             _url = iConfiguration1["UserLogo"];
         }
-        /// <summary>
-        /// 获取根据条件用户列表
-        /// </summary>
-        /// <param name="expression"></param>
-        /// <returns></returns>
-        public List<User> GetUserList(Expression<Func<User, bool>> expression)
-        {
-            return Db.Query<User>().Where(expression).ToList();
-        }
+
+
         /// <summary>
         /// 根据条件获取当前用户
         /// </summary>
-        /// <param name="expression"></param>
+        /// <param name="userId">用户ID</param>
         /// <returns></returns>
-        public User Get(Expression<Func<User, bool>> expression)
+        public ServiceResult<User> GetUserForOpenByUserId(string userId)
         {
-            return Db.Query<User>().FirstOrDefault(expression);
+            var user = Db.Query<User>().FirstOrDefault(a => a.UserId == userId && a.Status == (int)PersonEnum.EStatus.Open);
+            return user != null ? ServiceResult<User>.IsSuccess(user) : ServiceResult<User>.IsFailed();
+        }
+
+        /// <summary>
+        /// 根据条件获取当前用户
+        /// </summary>
+        /// <param name="logonName">登录名（用户名或手机号）</param>
+        /// <returns></returns>
+        public ServiceResult<User> GetUserForOpenByUserNameOrPhone(string logonName)
+        {
+            var user = Db.Query<User>().FirstOrDefault(a => (a.UserName == logonName || a.Phone == logonName) && a.Status == (int)PersonEnum.EStatus.Open);
+            return user != null ? ServiceResult<User>.IsSuccess(user) : ServiceResult<User>.IsFailed();
         }
 
         /// <summary>
@@ -47,12 +52,10 @@ namespace Sikiro.Service.Customer
         /// <returns></returns>
         public ServiceResult UpdateBalance(string userId, decimal money)
         {
-            var user = Get(a => a.UserId == userId);
-            var userMoney = user.Balance + money;
             Db.Update<User>(a => a.UserId == userId,
-                a => new User { Balance = userMoney });
+                a => new User { Balance = a.Balance + money });
 
-            return ServiceResult.IsSuccess("成功");
+            return ServiceResult.IsSuccess();
         }
 
         /// <summary>
@@ -77,10 +80,7 @@ namespace Sikiro.Service.Customer
             user.Status = (int)PersonEnum.EStatus.Open;
             user.CreateDatetime = DateTime.Now;
             user.Password = EncodePassword(user.UserId, user.Password);
-            if(string.IsNullOrEmpty(user.WxName))
-                user.NickName = user.UserName;
-            else
-                user.NickName = user.WxName;
+            user.NickName = string.IsNullOrEmpty(user.WxName) ? user.UserName : user.WxName;
             Db.Insert(user);
 
             var retdData = new AdministratorData

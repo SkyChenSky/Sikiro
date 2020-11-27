@@ -23,36 +23,14 @@ namespace Sikiro.InnerApi.Customer.Controllers
         /// <summary>
         /// 获取会员信息接口
         /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ApiResult<GetUserResponse> GetUser(GetUserRequest request)
-        {
-            var user = _userService.Get(a => a.UserNo == request.UserNo && a.CompanyId == request.CompanyId && a.Status == (int)PersonEnum.EStatus.Open);
-            if (user == null)
-                return ApiResult<GetUserResponse>.IsFailed("账户信息不存在");
-
-            var ret = user.MapTo<GetUserResponse>();
-            ret.IsChangedUserName = user.IsChangedUsername;
-            ret.IsPayPwd = !string.IsNullOrEmpty(user.PayPassword);
-
-            return ApiResult<GetUserResponse>.IsSuccess("成功", ret);
-        }
-
-        /// <summary>
-        /// 获取会员信息接口
-        /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpPost]
-        public ApiResult<GetUserInfoResponse> GetUserInfo(string userId)
+        public ApiResult<GetUserInfoResponse> GetUserForOpenByUserId(string userId)
         {
-            var user = _userService.Get(a => a.UserId == userId && a.Status == (int)PersonEnum.EStatus.Open);
-            if (user == null)
-                return ApiResult<GetUserInfoResponse>.IsFailed("账户信息不存在");
+            var userResult = _userService.GetUserForOpenByUserId(userId);
 
-            var ret = user.MapTo<GetUserInfoResponse>();
-            return ApiResult<GetUserInfoResponse>.IsSuccess("成功", ret);
+            return userResult.ToApiResult<GetUserInfoResponse>();
         }
 
         /// <summary>
@@ -63,12 +41,13 @@ namespace Sikiro.InnerApi.Customer.Controllers
         [HttpPost]
         public ApiResult<GetPhoneUserResponse> GetPhoneUser(GetPhoneUserRequest request)
         {
-            var user = _userService.Get(a => (a.UserName == request.UserName || a.Phone == request.UserName) && a.Status == (int)PersonEnum.EStatus.Open);
-            if (user == null)
+            var user = _userService.GetUserForOpenByUserNameOrPhone(request.UserName);
+
+            return user.ToApiResult(new GetPhoneUserResponse
             {
-                return ApiResult<GetPhoneUserResponse>.IsFailed("账户信息不存在");
-            }
-            return ApiResult<GetPhoneUserResponse>.IsSuccess("成功", new GetPhoneUserResponse { Phone = user.Phone, CountryCode = user.CountryCode });
+                Phone = user.Data.Phone,
+                CountryCode = user.Data.CountryCode
+            });
         }
 
         /// <summary>

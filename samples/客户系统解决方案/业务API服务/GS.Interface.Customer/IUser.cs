@@ -13,14 +13,8 @@ namespace Sikiro.Interface.Customer
         /// <summary>
         /// 获取用户信息
         /// </summary>
-        [HttpPost("User/GetUser")]
-        ITask<ApiResult<GetUserResponse>> GetUser([JsonContent] GetUserRequest request);
-
-        /// <summary>
-        /// 获取用户信息
-        /// </summary>
-        [HttpPost("User/GetUserInfo")]
-        ITask<ApiResult<GetUserInfoResponse>> GetUserInfo(string userId);
+        [HttpPost("User/GetUserForOpenByUserId")]
+        ITask<ApiResult<GetUserInfoResponse>> GetUserForOpenByUserId(string userId);
 
         /// <summary>
         /// 根据登录名称和手机获取用户信息
@@ -42,7 +36,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/RegisterUser")]
-        ITask<ApiResult<LogonCheckResponse>> RegisterUser([JsonContent]RegisterUserRequest request);
+        ITask<ApiResult<LogonCheckResponse>> RegisterUser([JsonContent] RegisterUserRequest request);
 
         /// <summary>
         /// 微信注册
@@ -50,7 +44,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/RegisterWxUser")]
-        ITask<ApiResult<LogonCheckResponse>> RegisterWxUser([JsonContent]RegisterWxUserRequest request);
+        ITask<ApiResult<LogonCheckResponse>> RegisterWxUser([JsonContent] RegisterWxUserRequest request);
 
         /// <summary>
         /// 修改密码
@@ -58,7 +52,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/ChangePassword")]
-        ITask<ApiResult> ChangePassword([JsonContent]UpdatePwdUserRequest request);
+        ITask<ApiResult> ChangePassword([JsonContent] UpdatePwdUserRequest request);
 
         /// <summary>
         /// 重置密码
@@ -66,7 +60,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/RetrievePassword")]
-        ITask<ApiResult> RetrievePassword([JsonContent]UpdateRetrievePwdUserRequest request);
+        ITask<ApiResult> RetrievePassword([JsonContent] UpdateRetrievePwdUserRequest request);
 
         /// <summary>
         /// 更换绑定手机
@@ -74,7 +68,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/UpdatePhone")]
-        ITask<ApiResult> UpdatePhone([JsonContent]UpdatePhoneUserRequest request);
+        ITask<ApiResult> UpdatePhone([JsonContent] UpdatePhoneUserRequest request);
 
         /// <summary>
         /// 设置支付密码
@@ -82,7 +76,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/SetPayPassword")]
-        ITask<ApiResult> SetPayPassword([JsonContent]SetPayPwdUserRequest request);
+        ITask<ApiResult> SetPayPassword([JsonContent] SetPayPwdUserRequest request);
 
         /// <summary>
         /// 修改支付密码
@@ -90,7 +84,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/ChangePayPassword")]
-        ITask<ApiResult> ChangePayPassword([JsonContent]ChangePayPwdUserRequest request);
+        ITask<ApiResult> ChangePayPassword([JsonContent] ChangePayPwdUserRequest request);
 
         /// <summary>
         /// 修改支付密码
@@ -98,7 +92,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/CheckingPayPassword")]
-        ITask<ApiResult> CheckingPayPassword([JsonContent]CheckingPayPasswordRequest request);
+        ITask<ApiResult> CheckingPayPassword([JsonContent] CheckingPayPasswordRequest request);
 
         /// <summary>
         /// 微信登录验证
@@ -106,7 +100,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/WxLogonCheck")]
-        ITask<ApiResult<LogonCheckResponse>> WxLogonCheck([JsonContent]WxLogonCheckRequest request);
+        ITask<ApiResult<LogonCheckResponse>> WxLogonCheck([JsonContent] WxLogonCheckRequest request);
 
 
         /// <summary>
@@ -115,7 +109,7 @@ namespace Sikiro.Interface.Customer
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("User/BindingWx")]
-        ITask<ApiResult> BindingWx([JsonContent]BindingWxRequest request);
+        ITask<ApiResult> BindingWx([JsonContent] BindingWxRequest request);
 
         #region 修改用户信息
 

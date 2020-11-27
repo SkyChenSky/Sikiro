@@ -9,14 +9,7 @@
             快运单接口
             </summary>
         </member>
-        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.GetUser(Sikiro.Interface.Customer.User.GetUserRequest)">
-            <summary>
-            获取会员信息接口
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.GetUserInfo(System.String)">
+        <member name="M:Sikiro.InnerApi.Customer.Controllers.UserController.GetUserForOpenByUserId(System.String)">
             <summary>
             获取会员信息接口
             </summary>

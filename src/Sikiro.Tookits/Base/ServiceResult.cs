@@ -171,6 +171,15 @@ namespace Sikiro.Tookits.Base
         {
             return new ServiceResult<T> { Data = data, Message = ServiceResultCode.Succeed.GetDescription(), Code = ServiceResultCode.Failed };
         }
+
+        /// <summary>
+        /// 响应失败
+        /// </summary>
+        /// <returns></returns>
+        public new static ServiceResult<T> IsFailed()
+        {
+            return IsFailed(null);
+        }
     }
     #endregion
 }
