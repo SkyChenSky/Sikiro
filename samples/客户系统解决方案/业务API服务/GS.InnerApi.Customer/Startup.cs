@@ -44,7 +44,6 @@ namespace Sikiro.InnerApi.Customer
                 };
             });
 
-            /*
             services.AddCap(x =>
             {
                 x.UseMySql(Configuration["PersonpPlatformDB"]);
@@ -57,9 +56,9 @@ namespace Sikiro.InnerApi.Customer
                     LoggerHelper.WriteToFile(
                         $@"cap warming:A message of type {type} failed after executing {x.FailedRetryCount} several times, requiring manual troubleshooting. Message name: {name}, message body: {content}");
                 };
-            });*/
+            });
 
-            //services.UseSkyApm();
+            services.UseSkyApm();
 
             services.AddHealthChecks();
 
@@ -100,7 +99,7 @@ namespace Sikiro.InnerApi.Customer
                 endpoints.MapControllers();
             });
 
-            // app.UseConsul(lifetime, Configuration);
+            app.UseConsul(lifetime, Configuration);
         }
     }
 }
