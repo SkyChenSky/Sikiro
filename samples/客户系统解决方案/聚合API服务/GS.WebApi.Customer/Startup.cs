@@ -51,7 +51,7 @@ namespace Sikiro.WebApi.Customer
 
             services.AddService();
 
-            services.UseSkyApm();
+            //  services.UseSkyApm();
 
             services.AddHttpContextAccessor();
 
