@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>GS.WebApi.Customer.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <OutputPath></OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="log4net\**" />
+    <Compile Remove="logs\**" />
+    <Content Remove="log4net\**" />
+    <Content Remove="logs\**" />
+    <EmbeddedResource Remove="log4net\**" />
+    <EmbeddedResource Remove="logs\**" />
+    <None Remove="log4net\**" />
+    <None Remove="logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Extention\ExceptionExtension.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="IdentityModel" Version="4.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.9.0" />
+    <PackageReference Include="Senparc.Weixin.MP" Version="16.9.104.1" />
+    <PackageReference Include="Senparc.Weixin.TenPay" Version="1.5.104" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Sikiro.Chloe.Extension\Sikiro.Chloe.Extension.csproj" />
+    <ProjectReference Include="..\..\..\src\Sikiro.MicroService.Extension\Sikiro.MicroService.Extension.csproj" />
+    <ProjectReference Include="..\..\..\src\Sikiro.Tookits\Sikiro.Tookits.csproj" />
+    <ProjectReference Include="..\..\基础设施服务解决方案\Id发号\GS.Interface.Id\Sikiro.Interface.Id.csproj" />
+    <ProjectReference Include="..\..\基础设施服务解决方案\消息推送\GS.Interface.Msg\Sikiro.Interface.Msg.csproj" />
+    <ProjectReference Include="..\GS.Common.Utils\Sikiro.Common.Utils.csproj" />
+    <ProjectReference Include="..\GS.Entity.Customer\Sikiro.Entity.Customer.csproj" />
+    <ProjectReference Include="..\GS.Interface.Customer\Sikiro.Interface.Customer.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="skyapm.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Update="GS.WebApi.Customer.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>

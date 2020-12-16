@@ -1,0 +1,16 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Sikiro.WebApi.Customer.Models.User.Request
+{
+    /// <summary>
+    /// 用户信息
+    /// </summary>
+    public class UserSetPayPwdRequest
+    {
+        /// <summary>
+        /// 支付密码
+        /// </summary>
+        [Required(ErrorMessage = "请输入支付密码")]
+        public string PayPassword { get; set; }
+    }
+}

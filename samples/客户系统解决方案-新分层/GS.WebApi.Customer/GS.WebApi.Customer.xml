@@ -1,0 +1,713 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sikiro.WebApi.Customer</name>
+    </assembly>
+    <members>
+        <member name="T:Sikiro.WebApi.Customer.Attribute.ChineseAttribute">
+            <summary>
+             中文
+             </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Attribute.EmailAttribute">
+            <summary>
+             邮箱验证特性
+             </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Attribute.GolbalExceptionAttribute">
+            <summary>
+            全局异常捕获
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Attribute.IdCardAttribute">
+            <summary>
+             邮箱验证特性
+             </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Attribute.MobileAttribute">
+            <summary>
+             手机号码
+             </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Attribute.PasswordAttribute">
+            <summary>
+             密码验证特性
+             </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Controllers.BaseController.CurrentUserData">
+            <summary>
+            获取登录用户信息
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Controllers.UserController">
+            <summary>
+            用户接口
+            </summary>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.Logon(Sikiro.WebApi.Customer.Models.User.Request.UserLogonRequest)">
+            <summary>
+            登录
+            </summary>
+            <param name="logonRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.RegisterUser(Sikiro.WebApi.Customer.Models.User.Request.UserRegisterRequest)">
+            <summary>
+            注册
+            </summary>
+            <param name="registerRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.GetPhoneUser(Sikiro.WebApi.Customer.Models.User.Response.UserGetPhoneResponse)">
+            <summary>
+            根据用户名或者手机获取用户手机
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.SendSms(Sikiro.WebApi.Customer.Models.User.Request.SendSmsRequest)">
+            <summary>
+            发送验证短信
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.VaildSms(Sikiro.WebApi.Customer.Models.User.Request.VaildSmsRequest)">
+            <summary>
+            验证验证码
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.UpdatePwdUser(Sikiro.WebApi.Customer.Models.User.Request.UserUpdatePwdRequest)">
+            <summary>
+            修改密码
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.WxLogonCheck(Sikiro.WebApi.Customer.Models.User.Request.UserWxLogonCheckRequest)">
+            <summary>
+            微信登录
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.WxRegister(Sikiro.WebApi.Customer.Models.User.Request.UserWxRegisterRequest)">
+            <summary>
+            微信注册
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.BindingWx(Sikiro.WebApi.Customer.Models.User.Request.UserBindingWxRequest)">
+            <summary>
+            绑定微信
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.GetUser">
+            <summary>
+            获取用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.UpdatePhone(Sikiro.WebApi.Customer.Models.User.Request.UserUpdatePhoneRequest)">
+            <summary>
+            更换绑定手机
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.SetPayPassword(Sikiro.WebApi.Customer.Models.User.Request.UserSetPayPwdRequest)">
+            <summary>
+            设置支付密码
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.ChangePayPassword(Sikiro.WebApi.Customer.Models.User.Request.UserChangePayPwdRequest)">
+            <summary>
+            修改支付密码
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.CheckingPayPassword(Sikiro.WebApi.Customer.Models.User.Request.UserCheckingPayPasswordRequest)">
+            <summary>
+            验证支付密码
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.BuildJwt(Sikiro.Common.Utils.AdministratorData)">
+            <summary>
+            创建JWT
+            </summary>
+            <param name="userData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.EditUserLogo(Sikiro.WebApi.Customer.Models.User.Request.UserLogoRequest)">
+            <summary>
+            更换用户头像
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.EditNickName(Sikiro.WebApi.Customer.Models.User.Request.NickNameRequest)">
+            <summary>
+            修改昵称
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.EditUserName(Sikiro.WebApi.Customer.Models.User.Request.UserNameRequest)">
+            <summary>
+            修改用户名
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.EditRealName(Sikiro.WebApi.Customer.Models.User.Request.RealNameRequest)">
+            <summary>
+            修改姓名
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.EditEmail(Sikiro.WebApi.Customer.Models.User.Request.EmailRequest)">
+            <summary>
+            修改Email
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Extention.DependenceExtension.AddCustomerApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注册个人平台内部api
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Extention.DependenceExtension.AddInfrastructureApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注册基础设施服务Api
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Extention.DependenceExtension.AddMsgApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注册消息服务内部api
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Extention.DependenceExtension.AddRpc(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注册Rpc服务
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:Sikiro.WebApi.Customer.Extention.ModelStateExtensions.GetModelStateMsg(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)">
+            <summary>
+            获取模型验证错误信息
+            </summary>
+            <param name="modelState"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Extention.TrimModelBinder">
+            <summary>
+            字符串去除空格
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.EnumDistribution">
+            <summary>
+            配送方式
+            </summary>
+        </member>
+        <member name="F:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.Status.Stop">
+            <summary>
+            已取消
+            </summary>
+        </member>
+        <member name="F:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.Status.Open">
+            <summary>
+            已创建
+            </summary>
+        </member>
+        <member name="F:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.Status.Complete">
+            <summary>
+            已完成
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.EnumPayment">
+            <summary>
+            收货入库-支付方式
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.EShipmentTimeTransport">
+            <summary>
+            发货时效-运输方式
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.EpdPayment">
+            <summary>
+            支付方式
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.EPaymentFlowType">
+            <summary>
+            支付流水类型
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.EPaymentFlowStatus">
+            <summary>
+            支付流水状态
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.EPayMethod">
+            <summary>
+            订单支付方式 1客户支付 2签收支付 3 财务支付
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.EForecastWay">
+            <summary>
+            预报方式
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.ETransportScheme">
+            <summary>
+            运输方案
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.EWharehouseOrderStatus">
+            <summary>
+            入库单状态 0:收货入库 10:入库上架 20:拣货下架 30:发货出库 40:中转 50:到点入库 60自提出库 70 自提签收 80 配送出库 90配送签收，配送失败签入
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.EWharehousePayStatus">
+            <summary>
+            支付状态
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.ECollectionGoodFeeType">
+             <summary>
+            代收货款手续费类型(0:代收款总额，1单票) 1是元 0是百分比
+             </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.EGoodCheckFeeType">
+             <summary>
+            商检费类型(单票/单件)
+             </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.EDrawbackServiceFeeType">
+            <summary>
+            退税手续费类型(0单票，1单件)
+            </summary>
+        </member>
+        <member name="F:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.SiteStatus.Stop">
+            <summary>
+            停用
+            </summary>
+        </member>
+        <member name="F:Sikiro.WebApi.Customer.Models.Enums.PersonEnum.SiteStatus.Open">
+            <summary>
+            启用
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.PageList.PageListResponse`1">
+            <summary>
+            分页实体类
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.PageList.PageListResponse`1.Total">
+            <summary>
+            总数
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.PageList.PageListResponse`1.Items">
+            <summary>
+            元素
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.PageList.PageListResponse`1.PageSize">
+            <summary>
+            页项
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.PageList.PageListResponse`1.PageIndex">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.PageList.PageListResponse`1.TotalPage">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.PageList.PageListResponse`1.HasPrev">
+            <summary>
+            是否有上一页
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.PageList.PageListResponse`1.HasNext">
+            <summary>
+            是否有下一页
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Request.SendSmsRequest">
+            <summary>
+            登录请求
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.SendSmsRequest.Phone">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Request.UserBindingWxRequest">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserBindingWxRequest.WxCode">
+            <summary>
+            微信授权CODE
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Request.UserChangePayPwdRequest">
+            <summary>
+            修改密码
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserChangePayPwdRequest.OldPassword">
+            <summary>
+            旧密码
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserChangePayPwdRequest.NewPassword">
+            <summary>
+            新密码
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Request.UserCheckingPayPasswordRequest">
+            <summary>
+            修改密码
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserCheckingPayPasswordRequest.PayPassword">
+            <summary>
+            新密码
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Request.UserLogonRequest">
+            <summary>
+            登录请求
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserLogonRequest.UserName">
+            <summary>
+            用户账户
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserLogonRequest.Password">
+            <summary>
+            用户密码
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserLogonRequest.CompanyId">
+            <summary>
+            企业Id
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Request.UserRegisterRequest">
+            <summary>
+            注册请求
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserRegisterRequest.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserRegisterRequest.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserRegisterRequest.CompanyId">
+            <summary>
+            企业ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserRegisterRequest.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserRegisterRequest.CountryCode">
+            <summary>
+            区号
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserRegisterRequest.Code">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserRegisterRequest.UserNo">
+            <summary>
+            用户编码
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Request.UserSetPayPwdRequest">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserSetPayPwdRequest.PayPassword">
+            <summary>
+            支付密码
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Request.UserUpdatePhoneRequest">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserUpdatePhoneRequest.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserUpdatePhoneRequest.Code">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserUpdatePhoneRequest.CountryCode">
+            <summary>
+            区号
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Request.UserUpdatePwdRequest">
+            <summary>
+            修改密码
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserUpdatePwdRequest.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserUpdatePwdRequest.OldPassword">
+            <summary>
+            登录密码（旧）
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserUpdatePwdRequest.NewPassword">
+            <summary>
+            新登录密码
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Request.UserWxLogonCheckRequest">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserWxLogonCheckRequest.WxCode">
+            <summary>
+            微信授权CODE
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserWxLogonCheckRequest.CompanyId">
+            <summary>
+            企业ID
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Request.UserWxRegisterRequest">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserWxRegisterRequest.CompanyId">
+            <summary>
+            企业ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserWxRegisterRequest.Phone">
+            <summary>
+            手机号
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserWxRegisterRequest.CountryCode">
+            <summary>
+            区号
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserWxRegisterRequest.AccessToken">
+            <summary>
+            授权码
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserWxRegisterRequest.OpenId">
+            <summary>
+            用户WXid
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.UserWxRegisterRequest.Code">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Request.VaildSmsRequest">
+            <summary>
+            登录请求
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.VaildSmsRequest.Phone">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Request.VaildSmsRequest.Code">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Response.UserGetPhoneResponse">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetPhoneResponse.UserName">
+            <summary>
+            用户登陆名称/手机
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.UserNo">
+            <summary>
+            用户编码
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.UserName">
+            <summary>
+            用户名称
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.Phone">
+            <summary>
+            用户手机
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.WxName">
+            <summary>
+            微信名称
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.ImgUrl">
+            <summary>
+            LOGO
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.RealName">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.CountryName">
+            <summary>
+            国家
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.CityName">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.Balance">
+            <summary>
+            余额
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.CountryCode">
+            <summary>
+            区号
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.NoReadCount">
+            <summary>
+            未读数
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.IsPayPwd">
+            <summary>
+            是否有支付密码
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserGetResponse.IsChangedUserName">
+            <summary>
+            是否修改过用户名
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Models.User.Response.UserLogonResponse">
+            <summary>
+            登录响应
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserLogonResponse.UserId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserLogonResponse.AccessToken">
+            <summary>
+            授权码
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserLogonResponse.OpenId">
+            <summary>
+            用户WXid
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserLogonResponse.CompanyId">
+            <summary>
+            公司ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.WebApi.Customer.Models.User.Response.UserLogonResponse.Token">
+            <summary>
+            登录令牌
+            </summary>
+        </member>
+        <member name="T:Sikiro.WebApi.Customer.Program">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Sikiro.Chloe.Extension\Sikiro.Chloe.Extension.csproj" />
+    <ProjectReference Include="..\..\..\src\Sikiro.Tookits\Sikiro.Tookits.csproj" />
+    <ProjectReference Include="..\GS.Common.Utils\Sikiro.Common.Utils.csproj" />
+    <ProjectReference Include="..\GS.Entity.Customer\Sikiro.Entity.Customer.csproj" />
+  </ItemGroup>
+
+</Project>
