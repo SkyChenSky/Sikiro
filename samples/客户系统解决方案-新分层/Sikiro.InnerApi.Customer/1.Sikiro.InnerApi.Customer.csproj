@@ -3,22 +3,29 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <Platforms>AnyCPU;x86</Platforms>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.1.1</AssemblyVersion>
+    <FileVersion>1.0.1.1</FileVersion>
+    <AssemblyName>Sikiro.InnerApi.Customer</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>GS.WebApi.Customer.xml</DocumentationFile>
+    <DocumentationFile>GS.InnerApi.Customer.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
     <OutputPath></OutputPath>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <DocumentationFile>GS.WebApi.Business.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+    <OutputPath />
+  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Remove="log4net\**" />
     <Compile Remove="logs\**" />
-    <Content Remove="log4net\**" />
     <Content Remove="logs\**" />
-    <EmbeddedResource Remove="log4net\**" />
     <EmbeddedResource Remove="logs\**" />
-    <None Remove="log4net\**" />
     <None Remove="logs\**" />
   </ItemGroup>
 
@@ -29,20 +36,20 @@
 
   <ItemGroup>
     <PackageReference Include="IdentityModel" Version="4.4.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="NSwag.AspNetCore" Version="13.9.0" />
-    <PackageReference Include="Senparc.Weixin.MP" Version="16.9.104.1" />
-    <PackageReference Include="Senparc.Weixin.TenPay" Version="1.5.104" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\DotNetCore.CAP.MySql\DotNetCore.CAP.MySql.csproj" />
+    <ProjectReference Include="..\..\..\src\Sikiro.Chloe.Cap\Sikiro.Chloe.Cap.csproj" />
     <ProjectReference Include="..\..\..\src\Sikiro.Chloe.Extension\Sikiro.Chloe.Extension.csproj" />
     <ProjectReference Include="..\..\..\src\Sikiro.MicroService.Extension\Sikiro.MicroService.Extension.csproj" />
     <ProjectReference Include="..\..\..\src\Sikiro.Tookits\Sikiro.Tookits.csproj" />
-    <ProjectReference Include="..\Sikiro.Common.Utils\Sikiro.Common.Utils.csproj" />
-    <ProjectReference Include="..\Sikiro.Application.Customer\Sikiro.Application.Customer.csproj" />
+    <ProjectReference Include="..\Sikiro.Common.Utils\5.Sikiro.Common.Utils.csproj" />
+    <ProjectReference Include="..\Sikiro.Interface.Customer\0.Sikiro.Interface.Customer.csproj" />
+    <ProjectReference Include="..\Sikiro.Service.Customer\3.Sikiro.Service.Customer.csproj" />
   </ItemGroup>
 
 
@@ -53,13 +60,6 @@
     <Content Update="skyapm.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <None Update="GS.WebApi.Customer.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 
