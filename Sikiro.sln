@@ -81,17 +81,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "其他DEMO", "其他DEMO", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "解决方案-客户系统-新分层", "解决方案-客户系统-新分层", "{D8F53341-8010-4B93-A1D3-B0B3041DC075}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.WebApi.Customer", "samples\客户系统解决方案-新分层\GS.WebApi.Customer\Sikiro.WebApi.Customer.csproj", "{E726BDE9-4FD9-4E4C-A1AB-6124C69D2C04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.WebApi.Customer", "samples\客户系统解决方案-新分层\Sikiro.WebApi.Customer\Sikiro.WebApi.Customer.csproj", "{E726BDE9-4FD9-4E4C-A1AB-6124C69D2C04}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Service.Customer", "samples\客户系统解决方案-新分层\GS.Service.Customer\Sikiro.Service.Customer.csproj", "{F7A9DD8F-B90E-4693-ACB9-BD794AEE2398}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Service.Customer", "samples\客户系统解决方案-新分层\Sikiro.Service.Customer\Sikiro.Service.Customer.csproj", "{F7A9DD8F-B90E-4693-ACB9-BD794AEE2398}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Interface.Customer", "samples\客户系统解决方案-新分层\GS.Interface.Customer\Sikiro.Interface.Customer.csproj", "{B3C7D236-95F1-442C-B301-8C2A56DF969B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Interface.Customer", "samples\客户系统解决方案-新分层\Sikiro.Interface.Customer\Sikiro.Interface.Customer.csproj", "{B3C7D236-95F1-442C-B301-8C2A56DF969B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Entity.Customer", "samples\客户系统解决方案-新分层\GS.Entity.Customer\Sikiro.Entity.Customer.csproj", "{D5148D97-0733-48BA-A55C-5017D4D8EDB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Entity.Customer", "samples\客户系统解决方案-新分层\Sikiro.Entity.Customer\Sikiro.Entity.Customer.csproj", "{D5148D97-0733-48BA-A55C-5017D4D8EDB0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Common.Utils", "samples\客户系统解决方案-新分层\GS.Common.Utils\Sikiro.Common.Utils.csproj", "{6FAD9943-0EEC-4846-B25F-DC3A3A2A8A82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Common.Utils", "samples\客户系统解决方案-新分层\Sikiro.Common.Utils\Sikiro.Common.Utils.csproj", "{6FAD9943-0EEC-4846-B25F-DC3A3A2A8A82}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.InnerApi.Customer", "samples\客户系统解决方案-新分层\GS.InnerApi.Customer\Sikiro.InnerApi.Customer.csproj", "{7BA32A33-B3DC-4CDD-80D4-6ED70559DB3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.InnerApi.Customer", "samples\客户系统解决方案-新分层\Sikiro.InnerApi.Customer\Sikiro.InnerApi.Customer.csproj", "{7BA32A33-B3DC-4CDD-80D4-6ED70559DB3E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Application.Customer", "samples\客户系统解决方案-新分层\Sikiro.Application.Customer\Sikiro.Application.Customer.csproj", "{4E65E43A-0869-42D0-B70E-9375B8C31043}"
 EndProject

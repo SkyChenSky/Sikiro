@@ -11,8 +11,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Sikiro.Chloe.Extension\Sikiro.Chloe.Extension.csproj" />
     <ProjectReference Include="..\..\..\src\Sikiro.Tookits\Sikiro.Tookits.csproj" />
-    <ProjectReference Include="..\GS.Common.Utils\Sikiro.Common.Utils.csproj" />
-    <ProjectReference Include="..\GS.Entity.Customer\Sikiro.Entity.Customer.csproj" />
+    <ProjectReference Include="..\Sikiro.Common.Utils\Sikiro.Common.Utils.csproj" />
+    <ProjectReference Include="..\Sikiro.Entity.Customer\Sikiro.Entity.Customer.csproj" />
   </ItemGroup>
 
 </Project>
