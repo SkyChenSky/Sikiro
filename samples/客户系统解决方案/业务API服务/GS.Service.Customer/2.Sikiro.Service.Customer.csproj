@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Sikiro.Service.Customer</RootNamespace>
+    <AssemblyName>Sikiro.Service.Customer</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,8 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Sikiro.Chloe.Extension\Sikiro.Chloe.Extension.csproj" />
-    <ProjectReference Include="..\..\GS.Common.Utils\Sikiro.Common.Utils.csproj" />
-    <ProjectReference Include="..\GS.Entity.Customer\Sikiro.Entity.Customer.csproj" />
+    <ProjectReference Include="..\..\GS.Common.Utils\4.Sikiro.Common.Utils.csproj" />
+    <ProjectReference Include="..\GS.Entity.Customer\3.Sikiro.Entity.Customer.csproj" />
   </ItemGroup>
 
 </Project>

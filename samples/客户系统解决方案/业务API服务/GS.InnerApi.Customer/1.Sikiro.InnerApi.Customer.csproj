@@ -7,10 +7,13 @@
     <Version>1.0.1</Version>
     <AssemblyVersion>1.0.1.1</AssemblyVersion>
     <FileVersion>1.0.1.1</FileVersion>
+    <RootNamespace>Sikiro.InnerApi.Customer</RootNamespace>
+    <AssemblyName>Sikiro.InnerApi.Customer</AssemblyName>
+    <Nullable>warnings</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>GS.InnerApi.Customer.xml</DocumentationFile>
+    <DocumentationFile>E:\工作\github\Sikiro\samples\客户系统解决方案\业务API服务\GS.InnerApi.Customer\Sikiro.InnerApi.Customer.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
     <OutputPath></OutputPath>
   </PropertyGroup>
@@ -43,9 +46,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Sikiro.Chloe.Cap\Sikiro.Chloe.Cap.csproj" />
     <ProjectReference Include="..\..\..\..\src\Sikiro.MicroService.Extension\Sikiro.MicroService.Extension.csproj" />
-    <ProjectReference Include="..\..\GS.Common.Utils\Sikiro.Common.Utils.csproj" />
-    <ProjectReference Include="..\GS.Interface.Customer\Sikiro.Interface.Customer.csproj" />
-    <ProjectReference Include="..\GS.Service.Customer\Sikiro.Service.Customer.csproj" />
+    <ProjectReference Include="..\..\GS.Common.Utils\4.Sikiro.Common.Utils.csproj" />
+    <ProjectReference Include="..\GS.Interface.Customer\0.Sikiro.Interface.Customer.csproj" />
+    <ProjectReference Include="..\GS.Service.Customer\2.Sikiro.Service.Customer.csproj" />
   </ItemGroup>
 
 

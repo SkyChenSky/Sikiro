@@ -42,8 +42,8 @@
     <ProjectReference Include="..\..\..\..\src\Sikiro.Tookits\Sikiro.Tookits.csproj" />
     <ProjectReference Include="..\..\..\基础设施服务解决方案\Id发号\GS.Interface.Id\Sikiro.Interface.Id.csproj" />
     <ProjectReference Include="..\..\..\基础设施服务解决方案\消息推送\GS.Interface.Msg\Sikiro.Interface.Msg.csproj" />
-    <ProjectReference Include="..\..\GS.Common.Utils\Sikiro.Common.Utils.csproj" />
-    <ProjectReference Include="..\..\业务API服务\GS.Interface.Customer\Sikiro.Interface.Customer.csproj" />
+    <ProjectReference Include="..\..\GS.Common.Utils\4.Sikiro.Common.Utils.csproj" />
+    <ProjectReference Include="..\..\业务API服务\GS.Interface.Customer\0.Sikiro.Interface.Customer.csproj" />
   </ItemGroup>
 
 

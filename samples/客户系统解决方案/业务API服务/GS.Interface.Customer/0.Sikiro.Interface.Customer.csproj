@@ -6,6 +6,8 @@
     <Authors>陈珙</Authors>
     <Company>葛氏</Company>
     <Description>个人平台内部API</Description>
+    <RootNamespace>Sikiro.Interface.Customer</RootNamespace>
+    <AssemblyName>Sikiro.Interface.Customer</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

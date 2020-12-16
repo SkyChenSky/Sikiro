@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Sikiro.Entity.Customer</RootNamespace>
+    <AssemblyName>Sikiro.Entity.Customer</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
