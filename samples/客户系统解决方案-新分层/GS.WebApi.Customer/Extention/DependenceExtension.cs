@@ -6,7 +6,6 @@ using System.Runtime.Loader;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyModel;
-using Sikiro.Interface.Customer;
 using Sikiro.Interface.Id;
 using Sikiro.Interface.Msg;
 using Sikiro.MicroService.Extension.Rpc;
@@ -32,21 +31,6 @@ namespace Sikiro.WebApi.Customer.Extention
             assemblies.ForEach(assemble =>
             {
                 services.AddScoped(assemble);
-            });
-        }
-
-        /// <summary>
-        /// 注册个人平台内部api
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="configuration"></param>
-        private static void AddCustomerApi(this IServiceCollection services, IConfiguration configuration)
-        {
-
-            services.AddHttpApis<ICustomer>().ConfigureHttpApiConfig(c =>
-            {
-                c.HttpHost = new Uri(configuration["CustomerInnerApiUrl"]);
-                c.FormatOptions.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
             });
         }
 
@@ -86,7 +70,6 @@ namespace Sikiro.WebApi.Customer.Extention
         /// <param name="configuration"></param>
         public static void AddRpc(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddCustomerApi(configuration);
             services.AddMsgApi(configuration);
             services.AddInfrastructureApi(configuration);
         }

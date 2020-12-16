@@ -58,13 +58,6 @@
             <param name="registerRequest"></param>
             <returns></returns>
         </member>
-        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.GetPhoneUser(Sikiro.WebApi.Customer.Models.User.Response.UserGetPhoneResponse)">
-            <summary>
-            根据用户名或者手机获取用户手机
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
         <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.SendSms(Sikiro.WebApi.Customer.Models.User.Request.SendSmsRequest)">
             <summary>
             发送验证短信
@@ -86,27 +79,6 @@
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.WxLogonCheck(Sikiro.WebApi.Customer.Models.User.Request.UserWxLogonCheckRequest)">
-            <summary>
-            微信登录
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.WxRegister(Sikiro.WebApi.Customer.Models.User.Request.UserWxRegisterRequest)">
-            <summary>
-            微信注册
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.BindingWx(Sikiro.WebApi.Customer.Models.User.Request.UserBindingWxRequest)">
-            <summary>
-            绑定微信
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
         <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.GetUser">
             <summary>
             获取用户信息
@@ -120,75 +92,12 @@
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.SetPayPassword(Sikiro.WebApi.Customer.Models.User.Request.UserSetPayPwdRequest)">
-            <summary>
-            设置支付密码
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.ChangePayPassword(Sikiro.WebApi.Customer.Models.User.Request.UserChangePayPwdRequest)">
-            <summary>
-            修改支付密码
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.CheckingPayPassword(Sikiro.WebApi.Customer.Models.User.Request.UserCheckingPayPasswordRequest)">
-            <summary>
-            验证支付密码
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
         <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.BuildJwt(Sikiro.Common.Utils.AdministratorData)">
             <summary>
             创建JWT
             </summary>
             <param name="userData"></param>
             <returns></returns>
-        </member>
-        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.EditUserLogo(Sikiro.WebApi.Customer.Models.User.Request.UserLogoRequest)">
-            <summary>
-            更换用户头像
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.EditNickName(Sikiro.WebApi.Customer.Models.User.Request.NickNameRequest)">
-            <summary>
-            修改昵称
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.EditUserName(Sikiro.WebApi.Customer.Models.User.Request.UserNameRequest)">
-            <summary>
-            修改用户名
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.EditRealName(Sikiro.WebApi.Customer.Models.User.Request.RealNameRequest)">
-            <summary>
-            修改姓名
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sikiro.WebApi.Customer.Controllers.UserController.EditEmail(Sikiro.WebApi.Customer.Models.User.Request.EmailRequest)">
-            <summary>
-            修改Email
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sikiro.WebApi.Customer.Extention.DependenceExtension.AddCustomerApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
-            <summary>
-            注册个人平台内部api
-            </summary>
-            <param name="services"></param>
-            <param name="configuration"></param>
         </member>
         <member name="M:Sikiro.WebApi.Customer.Extention.DependenceExtension.AddInfrastructureApi(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>

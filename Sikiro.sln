@@ -93,6 +93,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Common.Utils", "samp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.InnerApi.Customer", "samples\客户系统解决方案-新分层\GS.InnerApi.Customer\Sikiro.InnerApi.Customer.csproj", "{7BA32A33-B3DC-4CDD-80D4-6ED70559DB3E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sikiro.Application.Customer", "samples\客户系统解决方案-新分层\Sikiro.Application.Customer\Sikiro.Application.Customer.csproj", "{4E65E43A-0869-42D0-B70E-9375B8C31043}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -349,6 +351,14 @@ Global
 		{7BA32A33-B3DC-4CDD-80D4-6ED70559DB3E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7BA32A33-B3DC-4CDD-80D4-6ED70559DB3E}.Release|x86.ActiveCfg = Release|x86
 		{7BA32A33-B3DC-4CDD-80D4-6ED70559DB3E}.Release|x86.Build.0 = Release|x86
+		{4E65E43A-0869-42D0-B70E-9375B8C31043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E65E43A-0869-42D0-B70E-9375B8C31043}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E65E43A-0869-42D0-B70E-9375B8C31043}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4E65E43A-0869-42D0-B70E-9375B8C31043}.Debug|x86.Build.0 = Debug|Any CPU
+		{4E65E43A-0869-42D0-B70E-9375B8C31043}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E65E43A-0869-42D0-B70E-9375B8C31043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E65E43A-0869-42D0-B70E-9375B8C31043}.Release|x86.ActiveCfg = Release|Any CPU
+		{4E65E43A-0869-42D0-B70E-9375B8C31043}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -397,6 +407,7 @@ Global
 		{D5148D97-0733-48BA-A55C-5017D4D8EDB0} = {D8F53341-8010-4B93-A1D3-B0B3041DC075}
 		{6FAD9943-0EEC-4846-B25F-DC3A3A2A8A82} = {D8F53341-8010-4B93-A1D3-B0B3041DC075}
 		{7BA32A33-B3DC-4CDD-80D4-6ED70559DB3E} = {D8F53341-8010-4B93-A1D3-B0B3041DC075}
+		{4E65E43A-0869-42D0-B70E-9375B8C31043} = {D8F53341-8010-4B93-A1D3-B0B3041DC075}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A9F9AB70-D643-48C7-94B4-26D7A87B6263}
