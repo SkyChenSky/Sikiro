@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Sikiro.Infrastructure.Msg.Service;
 using Sikiro.MicroService.Extension;
 using Sikiro.MicroService.Extension.Attributes;
+using Sikiro.MicroService.Extension.Consul;
 using Sikiro.MicroService.Extension.SkyApm;
 using Sikiro.Nosql.Mongo;
 using Sikiro.Nosql.Redis;
@@ -30,17 +31,11 @@ namespace Sikiro.Infrastructure.Msg
 
             services.AddHealthChecks();
 
-            services.AddSingleton(new RedisRepository(Configuration["redisUrl"]));
-
             services.AddSingleton(Configuration);
-
-            services.AddSingleton(new SmsService(Configuration["Sms:key"], Configuration["Sms:secret"], Configuration["Sms:sign"], Configuration["Sms:code"], Configuration["Sms:foreignsign"], Configuration["Sms:foreigncode"]));
 
             services.AddHttpContextAccessor();
 
             services.UseSkyApm();
-
-            services.AddSingleton(new MongoRepository(Configuration["MongoDbUrl"]));
 
             services.AddSwaggerDocument(config =>
             {

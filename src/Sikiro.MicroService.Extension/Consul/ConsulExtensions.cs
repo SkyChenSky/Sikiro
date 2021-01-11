@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -8,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Sikiro.Tookits.Extension;
 
-namespace Sikiro.MicroService.Extension
+namespace Sikiro.MicroService.Extension.Consul
 {
     /// <summary>
     /// Consul扩展类
@@ -29,29 +30,35 @@ namespace Sikiro.MicroService.Extension
 
             //创建Consul客户端
             var consulClient = new ConsulClient(x => x.Address = new Uri(option.ConsulHost));//请求注册的 Consul 地址
-            var selfHost = new Uri("http://" + LocalIpAddress + ":" + option.SelfPort);
+
+            AgentServiceRegistration registration = null;
 
             //注册服务
-            var registration = new AgentServiceRegistration
+            lifetime.ApplicationStarted.Register(() =>
             {
-                Checks = new[] { new AgentServiceCheck
+                var selfHost = new Uri("http://" + LocalIpAddress + ":" + option.SelfPort);
+                registration = new AgentServiceRegistration
                 {
-                    Interval = TimeSpan.FromSeconds(option.HealthCheckInterval),
-                    HTTP = $"{selfHost.OriginalString}/health",//健康检查地址
-                    Timeout = TimeSpan.FromSeconds(3)
-                } },
-                ID = selfHost.OriginalString.EncodeMd5String(),
-                Name = option.ServiceName,
-                Address = selfHost.Host,
-                Port = selfHost.Port,
-                Tags = new[] { $"urlprefix-/{option.ServiceName} strip=/{option.ServiceName}" }//添加 urlprefix-/servicename 格式的 tag 标签，以便 Fabio 识别  
-            };
-            consulClient.Agent.ServiceRegister(registration).Wait();
+                    Checks = new[] { new AgentServiceCheck
+                    {
+                        Interval = TimeSpan.FromSeconds(option.HealthCheckInterval),
+                        HTTP = $"{selfHost.OriginalString}/health",//健康检查地址
+                        Timeout = TimeSpan.FromSeconds(3)
+                    } },
+                    ID = selfHost.OriginalString.EncodeMd5String(),
+                    Name = option.ServiceName,
+                    Address = selfHost.Host,
+                    Port = selfHost.Port,
+                    Tags = new[] { $"urlprefix-/{option.ServiceName} strip=/{option.ServiceName}" }//添加 urlprefix-/servicename 格式的 tag 标签，以便 Fabio 识别  
+                };
+                consulClient.Agent.ServiceRegister(registration).Wait();
+            });
 
             //反注册服务
             lifetime.ApplicationStopping.Register(() =>
             {
-                consulClient.Agent.ServiceDeregister(registration.ID).Wait();
+                if (registration != null)
+                    consulClient.Agent.ServiceDeregister(registration.ID).Wait();
             });
             return app;
         }
@@ -60,26 +67,11 @@ namespace Sikiro.MicroService.Extension
         {
             get
             {
-                var networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+                return NetworkInterface.GetAllNetworkInterfaces()
+                    .Select(p => p.GetIPProperties())
+                    .SelectMany(p => p.UnicastAddresses)
+                    .FirstOrDefault(p => p.Address.AddressFamily == AddressFamily.InterNetwork && !IPAddress.IsLoopback(p.Address))?.Address.ToString();
 
-                foreach (var network in networkInterfaces)
-                {
-                    if (network.OperationalStatus != OperationalStatus.Up)
-                        continue;
-                    var properties = network.GetIPProperties();
-                    if (properties.GatewayAddresses.Count == 0)
-                        continue;
-
-                    foreach (var address in properties.UnicastAddresses)
-                    {
-                        if (address.Address.AddressFamily != AddressFamily.InterNetwork)
-                            continue;
-                        if (IPAddress.IsLoopback(address.Address))
-                            continue;
-                        return address.Address.ToString();
-                    }
-                }
-                return "";
             }
         }
     }

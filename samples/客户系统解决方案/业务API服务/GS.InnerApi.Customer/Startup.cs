@@ -14,6 +14,7 @@ using Sikiro.Entity.Customer.DBContext;
 using Sikiro.InnerApi.Customer.Extention;
 using Sikiro.MicroService.Extension;
 using Sikiro.MicroService.Extension.Attributes;
+using Sikiro.MicroService.Extension.Consul;
 using Sikiro.MicroService.Extension.SkyApm;
 
 namespace Sikiro.InnerApi.Customer

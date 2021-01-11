@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Sikiro.Infrastructure.Id.Models;
 using Sikiro.MicroService.Extension;
 using Sikiro.MicroService.Extension.Attributes;
+using Sikiro.MicroService.Extension.Consul;
 using Sikiro.MicroService.Extension.SkyApm;
 
 namespace Sikiro.Infrastructure.Id
