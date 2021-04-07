@@ -185,9 +185,10 @@ namespace Sikiro.Nosql.Redis
         /// <param name="seconds">秒</param>
         /// <param name="nolockAction">无锁操作</param>
         /// <param name="lockAction">已锁操作</param>
-        public void Lock(string key, int seconds, Action nolockAction, Action lockAction = null)
+        public void Lock(string key, Action nolockAction, int seconds = 3, Action lockAction = null)
         {
-            var isLock = Db.StringSet(key, "1", seconds.ToRedisTimeSpan(), When.NotExists);
+            var lockValue = Guid.NewGuid().ToString("N");//避免A线程锁超时的误释放B线程
+            var isLock = Db.StringSet(key, lockValue, seconds.ToRedisTimeSpan(), When.NotExists);
             try
             {
                 if (isLock)
@@ -201,8 +202,23 @@ namespace Sikiro.Nosql.Redis
             }
             finally
             {
-                Remove(key);
+                RemoveLock(key, lockValue);
             }
+        }
+
+        /// <summary>
+        /// 删除锁
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="lockValue"></param>
+        private void RemoveLock(string key, string lockValue)
+        {
+            Db.ScriptEvaluate(LuaScript.Prepare(@"
+            if redis.call(""get"",@key) == @lockValue then
+            return redis.call(""del"", @key)
+            else
+            return 0
+            end"), new { key, lockValue });
         }
 
         #endregion
