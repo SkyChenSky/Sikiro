@@ -6,6 +6,8 @@
 + [.Net微服务实战之CI/CD](https://www.cnblogs.com/skychen1218/p/13384073.html)
 + [.Net微服务实战之Kubernetes的搭建与使用](https://www.cnblogs.com/skychen1218/p/13441778.html)
 + [.Net在Windows上使用Jenkins做CI/CD的那些事](https://www.cnblogs.com/skychen1218/p/13633012.html)
++ [.Net微服务实战之负载均衡（下）](https://www.cnblogs.com/skychen1218/p/14220471.html)
++ [.Net微服务实战之必须得面对的分布式问题](https://www.cnblogs.com/skychen1218/p/14346459.html)
 # Sikiro.Tookits 
 Sikiro.Tookits is base And Frequently-used Tools Library.
 
