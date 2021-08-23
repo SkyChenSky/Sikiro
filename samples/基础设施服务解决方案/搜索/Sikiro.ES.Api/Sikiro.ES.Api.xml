@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sikiro.ES.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Sikiro.ES.Api.Attribute.ChineseAttribute">
+            <summary>
+             中文
+             </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Attribute.EmailAttribute">
+            <summary>
+             邮箱验证特性
+             </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Attribute.GolbalExceptionAttribute">
+            <summary>
+            全局异常捕获
+            </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Attribute.IdCardAttribute">
+            <summary>
+             邮箱验证特性
+             </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Attribute.MobileAttribute">
+            <summary>
+             手机号码
+             </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Attribute.PasswordAttribute">
+            <summary>
+             密码验证特性
+             </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Controllers.UserViewRecordController">
+            <summary>
+            用户记录
+            </summary>
+        </member>
+        <member name="M:Sikiro.ES.Api.Controllers.UserViewRecordController.Get(Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest)">
+            <summary>
+            获取用户记录列表
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.ES.Api.Controllers.UserViewRecordController.Count(Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest)">
+            <summary>
+            获取用户记录数量
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.ES.Api.Controllers.UserViewRecordController.Post(Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest)">
+            <summary>
+            新增用户记录
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.ES.Api.Extention.ModelStateExtensions.GetModelStateMsg(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)">
+            <summary>
+            获取模型验证错误信息
+            </summary>
+            <param name="modelState"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Sikiro.ES.Api.Extention.TrimModelBinder">
+            <summary>
+            字符串去除空格
+            </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest.EntityId">
+            <summary>
+            作品ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest.CharpterId">
+            <summary>
+            章节ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest.EntityType">
+            <summary>
+            作品类型
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest.BeginDateTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest.EndDateTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest">
+            <summary>
+            总数
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest.EntityId">
+            <summary>
+            作品ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest.CharpterId">
+            <summary>
+            章节ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest.EntityType">
+            <summary>
+            作品类型
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest.BeginDateTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest.EndDateTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest.EntityId">
+            <summary>
+            作品ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest.EntityType">
+            <summary>
+            作品类型
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest.CharpterId">
+            <summary>
+            章节ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest.Duration">
+            <summary>
+            时长
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest.Ip">
+            <summary>
+            IP地址
+            </summary>
+        </member>
+    </members>
+</doc>

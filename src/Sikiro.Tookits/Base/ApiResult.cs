@@ -1,5 +1,4 @@
-﻿using System;
-using Sikiro.Tookits.Base.Enum;
+﻿using Sikiro.Tookits.Base.Enum;
 using Sikiro.Tookits.Extension;
 
 namespace Sikiro.Tookits.Base
@@ -104,7 +103,7 @@ namespace Sikiro.Tookits.Base
         /// <returns></returns>
         public static ApiResult IsFailed(object data)
         {
-            return IsSuccess(ApiResultCode.Failed.GetDescription(), ApiResultCode.Failed, data);
+            return IsFailed(ApiResultCode.Failed.GetDescription(), ApiResultCode.Failed, data);
         }
 
         /// <summary>
@@ -113,7 +112,7 @@ namespace Sikiro.Tookits.Base
         /// <returns></returns>
         public static ApiResult IsFailed()
         {
-            return IsSuccess(ApiResultCode.Failed.GetDescription(), ApiResultCode.Failed);
+            return IsFailed(ApiResultCode.Failed.GetDescription());
         }
     }
     #endregion
@@ -195,13 +194,16 @@ namespace Sikiro.Tookits.Base
         /// <returns></returns>
         public static ApiResult<T> IsFailed(T data)
         {
-            return new ApiResult<T>
-            {
-                Data = data,
-                Code = ApiResultCode.Failed,
-                Message = ApiResultCode.Failed.GetDescription(),
-                Success = true
-            };
+            return IsFailed(ApiResultCode.Failed.GetDescription(), data);
+        }
+
+        /// <summary>
+        /// 响应失败
+        /// </summary>
+        /// <returns></returns>
+        public new static ApiResult<T> IsFailed()
+        {
+            return IsFailed(ApiResultCode.Failed.GetDescription());
         }
     }
     #endregion
