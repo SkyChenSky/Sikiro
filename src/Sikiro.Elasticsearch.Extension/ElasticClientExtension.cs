@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using Nest;
+using Sikiro.Tookits.Helper;
 
 namespace Sikiro.Elasticsearch.Extension
 {
@@ -28,7 +29,6 @@ namespace Sikiro.Elasticsearch.Extension
 
             void OnCompleted()
             {
-                Console.WriteLine("BulkAll Finished");
                 countdownEvent.Signal();
             }
 
@@ -39,7 +39,7 @@ namespace Sikiro.Elasticsearch.Extension
                 },
                 onError: ex =>
                 {
-                    Console.WriteLine("BulkAll Error : {0}", ex);
+                    LoggerHelper.WriteToFile("BulkAll Error ", ex);
                     exception = ex;
                     countdownEvent.Signal();
                 },
@@ -51,13 +51,11 @@ namespace Sikiro.Elasticsearch.Extension
 
             if (exception != null)
             {
-                Console.WriteLine("BulkHotelGeo Error : {0}", exception);
+                LoggerHelper.WriteToFile("BulkHotelGeo Error ", exception);
                 return false;
             }
-            else
-            {
-                return true;
-            }
+
+            return true;
         }
 
         public static bool BulkAll<T>(this IElasticClient elasticClient, IEnumerable<T> list) where T : class

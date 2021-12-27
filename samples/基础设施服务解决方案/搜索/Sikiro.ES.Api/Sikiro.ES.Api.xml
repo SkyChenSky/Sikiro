@@ -34,28 +34,53 @@
              密码验证特性
              </summary>
         </member>
-        <member name="T:Sikiro.ES.Api.Controllers.UserViewRecordController">
+        <member name="T:Sikiro.ES.Api.Controllers.SearchKeyController">
             <summary>
-            用户记录
+            作品搜索
             </summary>
         </member>
-        <member name="M:Sikiro.ES.Api.Controllers.UserViewRecordController.Get(Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest)">
+        <member name="M:Sikiro.ES.Api.Controllers.SearchKeyController.Get(Sikiro.ES.Api.Model.SearchKey.SearchKeyGetRequest)">
             <summary>
-            获取用户记录列表
-            </summary>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Sikiro.ES.Api.Controllers.UserViewRecordController.Count(Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest)">
-            <summary>
-            获取用户记录数量
+            作品搜索列表
             </summary>
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:Sikiro.ES.Api.Controllers.UserViewRecordController.Post(Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest)">
+        <member name="M:Sikiro.ES.Api.Controllers.SearchKeyController.Count(Sikiro.ES.Api.Model.SearchKey.SearchKeyCountRequest)">
             <summary>
-            新增用户记录
+            搜索数
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.ES.Api.Controllers.SearchKeyController.Post(Sikiro.ES.Api.Model.SearchKey.SearchKeyPostRequest)">
+            <summary>
+            批量新增作品搜索列表(返回创建的indexName)
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.ES.Api.Controllers.SearchKeyController.Rename(Sikiro.ES.Api.Model.SearchKey.SearchKeyRanameRequest)">
+            <summary>
+            更改别名
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Sikiro.ES.Api.Controllers.UserViewDurationController">
+            <summary>
+            用户阅读时长记录
+            </summary>
+        </member>
+        <member name="M:Sikiro.ES.Api.Controllers.UserViewDurationController.Get(Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationGetRequest)">
+            <summary>
+            获取用户指定记录阅读时长
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Sikiro.ES.Api.Controllers.UserViewDurationController.GetRecord(Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetRequest)">
+            <summary>
+            获取用户指定记录阅读时长记录
             </summary>
             <param name="request"></param>
             <returns></returns>
@@ -72,109 +97,304 @@
             字符串去除空格
             </summary>
         </member>
-        <member name="T:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest">
+        <member name="P:Sikiro.ES.Api.Model.BaseRequest.Size">
+            <summary>
+            长度
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.BaseRequest.Timestamp">
+            <summary>
+            上次查询的时间戳
+            </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Model.SearchKey.SearchKeyCountRequest">
             <summary>
             列表
             </summary>
         </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest.UserId">
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyCountRequest.KeyName">
             <summary>
-            用户ID
+            搜索键
             </summary>
         </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest.EntityId">
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyCountRequest.IsSubsidiary">
             <summary>
-            作品ID
+            是否描述
             </summary>
         </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest.CharpterId">
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyCountRequest.SysTagIds">
             <summary>
-            章节ID
+            标签ID
             </summary>
         </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest.EntityType">
-            <summary>
-            作品类型
-            </summary>
-        </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest.BeginDateTime">
-            <summary>
-            开始时间
-            </summary>
-        </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordGetRequest.EndDateTime">
-            <summary>
-            结束时间
-            </summary>
-        </member>
-        <member name="T:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest">
-            <summary>
-            总数
-            </summary>
-        </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest.UserId">
-            <summary>
-            用户ID
-            </summary>
-        </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest.EntityId">
-            <summary>
-            作品ID
-            </summary>
-        </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest.CharpterId">
-            <summary>
-            章节ID
-            </summary>
-        </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest.EntityType">
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyCountRequest.EntityType">
             <summary>
             作品类型
             </summary>
         </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest.BeginDateTime">
+        <member name="T:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetRequest">
             <summary>
-            开始时间
+            列表
             </summary>
         </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordHeadRequest.EndDateTime">
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetRequest.KeyName">
             <summary>
-            结束时间
+            搜索键
             </summary>
         </member>
-        <member name="T:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest">
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetRequest.IsSubsidiary">
+            <summary>
+            是否描述
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetRequest.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetRequest.Size">
+            <summary>
+            长度
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetRequest.Page">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetRequest.SysTagIds">
+            <summary>
+            标签ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetRequest.EntityType">
+            <summary>
+            作品类型
+            </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetResponse">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetResponse.EntityId">
+            <summary>
+            作品ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetResponse.EntityType">
+            <summary>
+            作品类型
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetResponse.KeyName">
+            <summary>
+            搜索键
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetResponse.Weight">
+            <summary>
+            权重
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetResponse.IsSubsidiary">
+            <summary>
+            是否描述
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyGetResponse.SysTagId">
+            <summary>
+            标签ID
+            </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Model.SearchKey.SearchKeyPostRequest">
             <summary>
             新增
             </summary>
         </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest.UserId">
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyPostItem.KeyId">
             <summary>
-            用户ID
+            主键
             </summary>
         </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest.EntityId">
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyPostItem.EntityId">
             <summary>
             作品ID
             </summary>
         </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest.EntityType">
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyPostItem.EntityType">
             <summary>
             作品类型
             </summary>
         </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest.CharpterId">
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyPostItem.KeyName">
+            <summary>
+            搜索键
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyPostItem.Weight">
+            <summary>
+            权重
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyPostItem.IsSubsidiary">
+            <summary>
+            是否描述
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyPostItem.SysTagId">
+            <summary>
+            标签ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.SearchKey.SearchKeyPostItem.ActiveDate">
+            <summary>
+            激活时间
+            </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Model.SearchKey.SearchKeyRanameRequest">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.Entity.UserViewDuration.EntityId">
+            <summary>
+            作品ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.Entity.UserViewDuration.EntityType">
+            <summary>
+            作品类型
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.Entity.UserViewDuration.CharpterId">
             <summary>
             章节ID
             </summary>
         </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest.Duration">
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.Entity.UserViewDuration.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.Entity.UserViewDuration.CreateDateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.Entity.UserViewDuration.Duration">
             <summary>
             时长
             </summary>
         </member>
-        <member name="P:Sikiro.ES.Api.Model.UserViewRecord.UserViewRecordPostRequest.Ip">
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.Entity.UserViewDuration.Ip">
             <summary>
-            IP地址
+            IP
+            </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetRequest">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetRequest.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetRequest.EntityId">
+            <summary>
+            作品ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetRequest.CharpterId">
+            <summary>
+            章节ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetRequest.EntityType">
+            <summary>
+            作品类型 ,1=漫画,2=小说,3=音频,4=对话小说
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetRequest.BeginDateTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetRequest.EndDateTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetResponse">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetResponse.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetResponse.EntityId">
+            <summary>
+            作品ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetResponse.CharpterId">
+            <summary>
+            章节ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetResponse.EntityType">
+            <summary>
+            作品类型 ,1=漫画,2=小说,3=音频,4=对话小说
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetResponse.BeginDateTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationRecordGetResponse.EndDateTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="T:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationGetRequest">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationGetRequest.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationGetRequest.EntityId">
+            <summary>
+            作品ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationGetRequest.CharpterId">
+            <summary>
+            章节ID
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationGetRequest.EntityType">
+            <summary>
+            作品类型 ,1=漫画,2=小说,3=音频,4=对话小说
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationGetRequest.BeginDateTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:Sikiro.ES.Api.Model.UserViewDuration.UserViewDurationGetRequest.EndDateTime">
+            <summary>
+            结束时间
             </summary>
         </member>
     </members>

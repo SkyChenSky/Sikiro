@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Threading.Tasks;
 using EasyNetQ;
 using EasyNetQ.Topology;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,6 +37,41 @@ namespace Sikiro.Bus.Extension
                 }
             });
         }
+
+        /// <summary>
+        /// 定时发布
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="bus"></param>
+        /// <param name="msg">消息对象</param>
+        /// <param name="seconds">定时发布时间（秒）</param>
+        /// <param name="topic">话题</param>
+        public static async Task FuturePublishAsync<T>(this IBus bus, T msg, long seconds, string topic)
+        {
+            var publishDate = TimeSpan.FromSeconds(seconds);
+            publishDate = publishDate.TotalSeconds > 0 ? publishDate : TimeSpan.FromSeconds(1);
+            await bus.Scheduler.FuturePublishAsync(msg, publishDate, config =>
+            {
+                config.WithTopic(topic);
+            });
+        }
+
+        /// <summary>
+        /// 定时发布
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="bus"></param>
+        /// <param name="msg">消息对象</param>
+        /// <param name="expireDateTime">定时发布日期</param>
+        /// <param name="topic">话题</param>
+        public static async Task FuturePublishAsync<T>(this IBus bus, T msg, DateTime expireDateTime, string topic)
+        {
+            var seconds = (expireDateTime - DateTime.Now).TotalSeconds;
+            var publishDate = TimeSpan.FromSeconds((long)seconds);
+
+            await FuturePublishAsync(bus, msg, (long)publishDate.TotalSeconds, topic);
+        }
+
 
         /// <summary>
         /// 订阅

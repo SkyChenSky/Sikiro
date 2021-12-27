@@ -1,5 +1,6 @@
 ﻿using Nest;
 using Sikiro.Tookits.Base;
+using Sikiro.Tookits.Extension;
 
 namespace Sikiro.Elasticsearch.Extension
 {
@@ -8,8 +9,9 @@ namespace Sikiro.Elasticsearch.Extension
         public static ApiResult<TResult> GetApiResult<T, TResult>(this ISearchResponse<T> searchResponse)
             where T : class, new() where TResult : class, new()
         {
+            var data = searchResponse.Documents.MapTo<TResult>();
             return searchResponse.ApiCall.Success
-                ? ApiResult<TResult>.IsSuccess((TResult)searchResponse.Documents)
+                ? ApiResult<TResult>.IsSuccess(data)
                 : ApiResult<TResult>.IsFailed(searchResponse.ApiCall.OriginalException.Message);
         }
 

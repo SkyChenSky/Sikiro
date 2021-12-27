@@ -1,15 +1,24 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Loader;
+using Elastic.Apm.NetCoreAll;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using Sikiro.Bus.Extension;
 using Sikiro.Elasticsearch.Extension;
 using Sikiro.ES.Api.Attribute;
 using Sikiro.ES.Api.Extention;
-using Sikiro.ES.Api.Model.UserViewRecord.MQ;
+using Sikiro.ES.Api.Model.UserViewDuration.MQ;
 using Sikiro.Tookits.Base;
 
 namespace Sikiro.ES.Api
@@ -29,6 +38,10 @@ namespace Sikiro.ES.Api
             {
                 options.Filters.Add<GolbalExceptionAttribute>();
                 options.ModelBinderProviders.Insert(0, new TrimModelBinderProvider());
+            }).AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss.fff";
+                options.SerializerSettings.Formatting = Formatting.Indented;
             }).AddMvcOptions(options =>
             {
                 options.EnableEndpointRouting = false;
@@ -50,35 +63,45 @@ namespace Sikiro.ES.Api
 
             services.AddService();
 
-            services.AddSwaggerDocument(config =>
+            services.AddSwaggerGen(c =>
             {
-                config.PostProcess = document =>
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo
+                    {
+                        Title = "Elasticsearch内部API",
+                        Version = "v1",
+                        Description = Assembly.GetExecutingAssembly().GetName(true).Name
+                    });
+                var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
+                if (!string.IsNullOrWhiteSpace(basePath))
                 {
-                    document.Info.Version = "v1";
-                    document.Info.Title = "Elasticsearch内部API";
-                    document.Info.Description = Assembly.GetExecutingAssembly().GetName(true).Name;
-                };
+                    var xmlPath = Path.Combine(basePath, "SF.ES.Api.xml");
+                    c.IncludeXmlComments(xmlPath);
+                }
             });
 
             services.AddElasticsearch(Configuration);
 
             services.AddEasyNetQ(Configuration["RabbitMQ"]);
-            services.AddSingleton<UserViewRecordConsumer>();
+
+            services.AddConsumer();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime)
         {
+            app.UseAllElasticApm(Configuration);
+
             app.UseHealthChecks("/health");
 
             app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SF.ES.Api v1");
+                c.RoutePrefix = "";
+            });
 
             app.UseStaticFiles();
-
-            app.UseOpenApi();
-            app.UseSwaggerUi3(options =>
-            {
-                options.Path = "";
-            });
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>
@@ -86,7 +109,29 @@ namespace Sikiro.ES.Api
                 endpoints.MapControllers();
             });
 
-            app.UseSubscribe<UserViewRecordMessage, UserViewRecordConsumer>(lifetime);
+            app.UseSubscribe<UserViewDurationMessage, UserViewDurationConsumer>(lifetime);
+        }
+    }
+
+    public static class ConfigureServicesExtension
+    {
+        public static List<Type> GetTypeOfConsumer(this AssemblyName assemblyName)
+        {
+            return AssemblyLoadContext.Default.LoadFromAssemblyName(assemblyName).ExportedTypes.Where(b => b.BaseType?.Name == typeof(BaseConsumer<>).Name).ToList();
+        }
+
+        public static IServiceCollection AddConsumer(this IServiceCollection services)
+        {
+            var defaultAssemblyNames = DependencyContext.Default.GetDefaultAssemblyNames().Where(a => a.FullName.Contains("Sikiro.")).ToList();
+
+            var assemblies = defaultAssemblyNames.SelectMany(a => a.GetTypeOfConsumer()).ToList();
+
+            assemblies.ForEach(assembliy =>
+            {
+                services.AddSingleton(assembliy);
+            });
+
+            return services;
         }
     }
 }

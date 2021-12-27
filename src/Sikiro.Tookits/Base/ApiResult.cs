@@ -122,8 +122,13 @@ namespace Sikiro.Tookits.Base
     /// 接口层响应实体（泛型）
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ApiResult<T> : ApiResult where T : class, new()
+    public class ApiResult<T> : ApiResult
     {
+        /// <summary>
+        /// 数据
+        /// </summary>
+        public new T Data { get; protected set; }
+
         /// <summary>
         /// 响应成功
         /// </summary>
@@ -131,7 +136,7 @@ namespace Sikiro.Tookits.Base
         /// <param name="code"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static ApiResult<T> IsSuccess(string msg, ApiResultCode code = ApiResultCode.Succeed, T data = null)
+        public static ApiResult<T> IsSuccess(string msg, ApiResultCode code = ApiResultCode.Succeed, T data = default)
         {
             return new ApiResult<T> { Data = data, Code = code, Message = msg, Success = true };
         }
@@ -171,7 +176,7 @@ namespace Sikiro.Tookits.Base
         /// <param name="code"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static ApiResult<T> IsFailed(string msg, ApiResultCode code = ApiResultCode.Failed, T data = null)
+        public static ApiResult<T> IsFailed(string msg, ApiResultCode code = ApiResultCode.Failed, T data = default)
         {
             return new ApiResult<T> { Data = data, Code = code, Message = msg, Failed = true };
         }

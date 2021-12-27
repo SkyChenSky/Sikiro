@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Sikiro.Common.Utils;
+using Sikiro.Tookits.Extension;
 
 namespace Sikiro.ES.Api.Extention
 {

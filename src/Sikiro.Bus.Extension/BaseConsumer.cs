@@ -1,7 +1,7 @@
 ﻿namespace Sikiro.Bus.Extension
 {
-    public abstract class BaseConsumer
+    public abstract class BaseConsumer<T> where T : EasyNetQEntity
     {
-        public abstract void Excute<T>(T msg) where T : EasyNetQEntity;
+        public abstract void Excute(T msg);
     }
 }

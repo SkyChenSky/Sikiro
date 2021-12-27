@@ -6,11 +6,11 @@ using Microsoft.Extensions.Hosting;
 namespace Sikiro.Bus.Extension
 {
     /// <summary>
-    /// 跟业务强关联
+    /// 订阅消费
     /// </summary>
     public static class ConsumerExtension
     {
-        public static IApplicationBuilder UseSubscribe<T, TConsumer>(this IApplicationBuilder appBuilder, IHostApplicationLifetime lifetime) where T : EasyNetQEntity, new() where TConsumer : BaseConsumer
+        public static IApplicationBuilder UseSubscribe<T, TConsumer>(this IApplicationBuilder appBuilder, IHostApplicationLifetime lifetime) where T : EasyNetQEntity, new() where TConsumer : BaseConsumer<T>
         {
             var bus = appBuilder.ApplicationServices.GetRequiredService<IBus>();
             var consumer = appBuilder.ApplicationServices.GetRequiredService<TConsumer>();

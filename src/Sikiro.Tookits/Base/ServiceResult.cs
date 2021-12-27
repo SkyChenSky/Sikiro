@@ -1,4 +1,5 @@
-﻿using Sikiro.Tookits.Base.Enum;
+﻿using System;
+using Sikiro.Tookits.Base.Enum;
 using Sikiro.Tookits.Extension;
 
 namespace Sikiro.Tookits.Base
@@ -123,12 +124,58 @@ namespace Sikiro.Tookits.Base
     /// 服务层响应实体（泛型）
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ServiceResult<T> : ServiceResult where T : class, new()
+    public class ServiceResult<T> : ServiceResult
     {
+        #region 初始化
+        public ServiceResultCode ResultCode { set; get; }
+
+        private string _message;
+
+        /// <summary>
+        /// 响应信息
+        /// </summary>
+        public string Message
+        {
+            set => _message = value;
+            get
+            {
+                if (!_message.IsNullOrEmpty())
+                    return _message;
+
+                if (Exception.IsNotNull())
+                    return Exception.Message;
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 异常
+        /// </summary>
+        public Exception Exception { get; set; }
+
         /// <summary>
         /// 数据
         /// </summary>
-        public new T Data { get; private set; }
+        public new T Data { get; set; }
+
+        public ServiceResult()
+        {
+        }
+
+        public ServiceResult(string msg, ServiceResultCode resultCode)
+        {
+            Message = msg;
+            ResultCode = resultCode;
+        }
+
+        public ServiceResult(Exception ex, ServiceResultCode resultCode)
+        {
+            Exception = ex;
+            ResultCode = resultCode;
+        }
+
+        #endregion
 
         /// <summary>
         /// 响应成功
@@ -136,7 +183,7 @@ namespace Sikiro.Tookits.Base
         /// <param name="msg"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static ServiceResult<T> IsSuccess(string msg, T data = null)
+        public static ServiceResult<T> IsSuccess(string msg, T data = default)
         {
             return new ServiceResult<T> { Data = data, Message = msg, Code = ServiceResultCode.Succeed };
         }
@@ -157,7 +204,7 @@ namespace Sikiro.Tookits.Base
         /// <param name="msg"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static ServiceResult<T> IsFailed(string msg, T data = null)
+        public static ServiceResult<T> IsFailed(string msg, T data = default)
         {
             return new ServiceResult<T> { Data = data, Message = msg, Code = ServiceResultCode.Failed };
         }

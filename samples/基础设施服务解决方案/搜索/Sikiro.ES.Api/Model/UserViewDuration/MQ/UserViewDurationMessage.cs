@@ -2,10 +2,10 @@
 using EasyNetQ;
 using Sikiro.Bus.Extension;
 
-namespace Sikiro.ES.Api.Model.UserViewRecord.MQ
+namespace Sikiro.ES.Api.Model.UserViewDuration.MQ
 {
-    [Queue("Queue.SF.UserViewRecord", ExchangeName = "Exchange.SF.UserViewRecord")]
-    public class UserViewRecordMessage : EasyNetQEntity
+    [Queue("Queue.Sikiro.UserViewDuration", ExchangeName = "Exchange.Sikiro.UserViewDuration")]
+    public class UserViewDurationMessage : EasyNetQEntity
     {
         public long EntityId { get; set; }
 

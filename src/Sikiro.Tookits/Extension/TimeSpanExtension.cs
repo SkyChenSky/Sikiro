@@ -41,5 +41,21 @@ namespace Sikiro.Tookits.Extension
             var tt = dt.Ticks + timestamp * 10000;
             return new DateTime(tt);
         }
+
+
+        /// <summary>
+        /// 月份差
+        /// </summary>
+        /// <param name="firstDateTime"></param>
+        /// <param name="secondDateTime"></param>
+        /// <returns></returns>
+        public static int DifferMonth(this DateTime firstDateTime, DateTime secondDateTime)
+        {
+            int year = firstDateTime.Year - secondDateTime.Year;
+
+            int month = year * 12 + (firstDateTime.Month - secondDateTime.Month);
+
+            return month;
+        }
     }
 }

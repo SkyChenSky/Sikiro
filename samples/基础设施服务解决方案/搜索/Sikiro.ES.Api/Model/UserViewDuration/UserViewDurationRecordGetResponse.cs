@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Sikiro.ES.Api.Model.UserViewRecord
+namespace Sikiro.ES.Api.Model.UserViewDuration
 {
     /// <summary>
-    /// 总数
+    /// 列表
     /// </summary>
-    public class UserViewRecordHeadRequest : BaseRequest
+    public class UserViewDurationRecordGetResponse
     {
         /// <summary>
         /// 用户ID
@@ -23,9 +23,9 @@ namespace Sikiro.ES.Api.Model.UserViewRecord
         public long? CharpterId { get; set; }
 
         /// <summary>
-        /// 作品类型
+        /// 作品类型 ,1=漫画,2=小说,3=音频,4=对话小说
         /// </summary>
-        public long EntityType { get; set; }
+        public long? EntityType { get; set; }
 
         /// <summary>
         /// 开始时间
@@ -36,5 +36,6 @@ namespace Sikiro.ES.Api.Model.UserViewRecord
         /// 结束时间
         /// </summary>
         public DateTime? EndDateTime { get; set; }
+
     }
 }
