@@ -75,7 +75,7 @@ namespace Sikiro.ES.Api
                 var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
                 if (!string.IsNullOrWhiteSpace(basePath))
                 {
-                    var xmlPath = Path.Combine(basePath, "SF.ES.Api.xml");
+                    var xmlPath = Path.Combine(basePath, "Sikiro.ES.Api.xml");
                     c.IncludeXmlComments(xmlPath);
                 }
             });
