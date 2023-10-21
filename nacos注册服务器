@@ -1,0 +1,13 @@
+
+// 根据NamingFactory创建一个Service服务类
+NamingService naming = NamingFactory.createNamingService(properties);
+// 通过服务类去注向注册中心注册自己的服务
+naming.registerInstance("nacos.test.3", "11.11.11.11", 8888, "TEST1");
+    try {
+        Class<?> driverImplClass = Class.forName("com.alibaba.nacos.client.naming.NacosNamingService");
+        Constructor constructor = driverImplClass.getConstructor(Properties.class);
+        return (NamingService) constructor.newInstance(properties);
+    } catch (Throwable e) {
+        throw new NacosException(NacosException.CLIENT_INVALID_PARAM, e);
+    }
+}
