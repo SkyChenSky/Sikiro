@@ -1,0 +1,9 @@
+//滚动字
+<marquee border="0" align="middle" scrolldelay="120">
+//倒帖的文字特效代码
+<p align=right><FONT
+style="FONT-SIZE:50pt;filter:FlipH(color=silver);WIDTH:100%;
+COLOR:red;LINE-HEIGHT:150%;FONT-FAMILY:
+//翻转文字特效代码
+<FONT style="FONT-SIZE:50pt;filter:FlipV(color=silver);WIDTH:100%;
+COLOR:red;LINE-HEIGHT:150%;FONT-FAMILY:
